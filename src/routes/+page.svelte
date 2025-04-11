@@ -1,5 +1,6 @@
 <script lang="ts">
   import NavButtons from "$lib/components/nav-buttons.svelte";
+  import Window from "$lib/components/window/window.svelte";
   import Wordmark from "$lib/components/wordmark.svelte";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
@@ -25,3 +26,4 @@
     <NavButtons hint />
   </div>
 {/if}
+<Window></Window>

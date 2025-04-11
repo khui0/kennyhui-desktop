@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.2.5",
+    "@neodrag/svelte": "^2.3.2",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "fuse.js": "^7.1.0",
