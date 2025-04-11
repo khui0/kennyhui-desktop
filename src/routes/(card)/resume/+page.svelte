@@ -1,11 +1,11 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import ResumeRole from "$lib/components/resume/resume-role.svelte";
-  import ResumeSection from "$lib/components/resume/resume-section.svelte";
-  import Resume from "$lib/components/resume/resume.svelte";
   import Wordmark from "$lib/components/wordmark.svelte";
-  import { backspaceKey, commandKey, modifiers } from "$lib/meta.svelte";
+  import { commandKey } from "$lib/meta.svelte";
   import { projects } from "$lib/projects/index";
+  import ResumeRole from "./resume-role.svelte";
+  import ResumeSection from "./resume-section.svelte";
+  import Resume from "./resume.svelte";
 </script>
 
 <svelte:window
