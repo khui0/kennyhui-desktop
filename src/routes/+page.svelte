@@ -1,5 +1,6 @@
 <script lang="ts">
   import NavButtons from "$lib/components/nav-buttons.svelte";
+  import WindowManager from "$lib/components/window/window-manager.svelte";
   import Window from "$lib/components/window/window.svelte";
   import Wordmark from "$lib/components/wordmark.svelte";
   import { onMount } from "svelte";
@@ -26,4 +27,14 @@
     <NavButtons hint />
   </div>
 {/if}
-<Window></Window>
+<WindowManager>
+  <Window>
+    <h1>hi</h1>
+    <div>
+      <p>
+        Cillum occaecat laborum ut. Reprehenderit ipsum culpa aliqua nulla eiusmod enim tempor
+        occaecat anim.
+      </p>
+    </div>
+  </Window>
+</WindowManager>

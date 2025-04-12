@@ -26,9 +26,9 @@
   --color-warning-content: oklch(28% 0.066 53.813);
   --color-error: oklch(70% 0.191 22.216);
   --color-error-content: oklch(25% 0.092 26.042);
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
-  --radius-box: 1rem;
+  --radius-selector: 5px;
+  --radius-field: 5px;
+  --radius-box: 10px;
   --size-selector: 0.21875rem;
   --size-field: 0.21875rem;
   --border: 0.5px;
@@ -60,9 +60,9 @@
   --color-warning-content: oklch(28% 0.066 53.813);
   --color-error: oklch(70% 0.191 22.216);
   --color-error-content: oklch(25% 0.092 26.042);
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
-  --radius-box: 1rem;
+  --radius-selector: 5px;
+  --radius-field: 5px;
+  --radius-box: 10px;
   --size-selector: 0.21875rem;
   --size-field: 0.21875rem;
   --border: 0.5px;
@@ -88,7 +88,7 @@
 
   html {
     scroll-behavior: smooth;
-    font-family: "DM Sans Variable", sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "DM Sans Variable", sans-serif;
   }
 
   ::selection {
