@@ -6,12 +6,16 @@
     y = 0,
     width = 400,
     height = 300,
+    minWidth = 300,
+    minHeight = 200,
     children,
   }: {
     x?: number;
     y?: number;
     width?: number;
     height?: number;
+    minWidth?: number;
+    minHeight?: number;
     children: Snippet;
   } = $props();
 </script>
@@ -62,10 +66,11 @@
 {/snippet}
 
 <div
-  class="glass-card rounded-box absolute shadow-xl"
+  class="glass-card rounded-box absolute shadow-xl box-content"
   style="width: {width}px; height: {height}px; transform: translate({x}px, {y}px);"
   data-window
   data-window-transform="0,0"
+  data-window-min="{minWidth},{minHeight}"
 >
   <div class="h-full w-full overflow-hidden">
     {@render children()}

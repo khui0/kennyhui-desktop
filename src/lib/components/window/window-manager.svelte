@@ -11,9 +11,11 @@
   let isDragging: boolean;
 
   let targetWindow: HTMLElement | null;
+  let minSize: Vector = { x: 0, y: 0 };
+  let borderWidth: number = 0;
   let windowTransform: number[] = [0, 0];
-  let windowInitialPosition: Vector;
-  let windowInitialSize: Vector;
+  let windowInitialPosition: Vector = { x: 0, y: 0 };
+  let windowInitialSize: Vector = { x: 0, y: 0 };
 
   function onpointerdown(e: PointerEvent) {
     const target = e.target as HTMLElement;
@@ -35,8 +37,9 @@
 
     windowInitialPosition = getPosition(parent);
     windowInitialSize = { x: parent.clientWidth, y: parent.clientHeight };
+    minSize = getMinSize(parent);
+    borderWidth = parseInt(getComputedStyle(parent).borderWidth.match(/([-.0-9]*)px/)?.[1] || "0");
 
-    console.log(windowInitialPosition);
     targetWindow = parent;
 
     window.getSelection()?.removeAllRanges();
@@ -53,15 +56,49 @@
     e.preventDefault();
 
     const cursor: Vector = { x: e.clientX, y: e.clientY };
-    const delta: Vector = { x: cursor.x - dragPosition.x, y: cursor.y - dragPosition.y };
     const offset: Vector = { x: cursor.x - dragInitial.x, y: cursor.y - dragInitial.y };
-    dragPosition = cursor;
 
     if (windowTransform[0] === 0 && windowTransform[1] === 0) {
       targetWindow.style.transform = toTranslate(
         offset.x + windowInitialPosition.x,
         offset.y + windowInitialPosition.y,
       );
+    } else {
+      const targetPosition: Vector = { ...windowInitialPosition };
+      const targetSize: Vector = { ...windowInitialSize };
+
+      switch (windowTransform[0]) {
+        case -1: {
+          const maxPosition = windowInitialPosition.x + windowInitialSize.x - minSize.x;
+
+          targetPosition.x = Math.min(windowInitialPosition.x + offset.x, maxPosition);
+          targetSize.x = Math.max(windowInitialSize.x - offset.x, minSize.x);
+          break;
+        }
+        case 1: {
+          targetSize.x = Math.max(windowInitialSize.x + offset.x, minSize.x);
+          break;
+        }
+      }
+      switch (windowTransform[1]) {
+        case -1: {
+          const maxPosition = windowInitialPosition.y + windowInitialSize.y - minSize.y;
+
+          targetPosition.y = Math.min(windowInitialPosition.y + offset.y, maxPosition);
+          targetSize.y = Math.max(windowInitialSize.y - offset.y, minSize.y);
+          break;
+        }
+        case 1: {
+          targetSize.y = Math.max(windowInitialSize.y + offset.y, minSize.y);
+          break;
+        }
+      }
+
+      console.log(targetSize);
+
+      targetWindow.style.transform = toTranslate(targetPosition.x, targetPosition.y);
+      targetWindow.style.width = targetSize.x + "px";
+      targetWindow.style.height = targetSize.y + "px";
     }
 
     window.getSelection()?.removeAllRanges();
@@ -106,12 +143,12 @@
   }
 
   function resize(element: HTMLElement, w: number, h: number, duration: number = 200) {
-    const rect = element.getBoundingClientRect();
+    const size = getSize(element);
     animate(
       element,
       {
-        width: rect.width + "px",
-        height: rect.height + "px",
+        width: size.x + "px",
+        height: size.y + "px",
       },
       {
         width: w + "px",
@@ -150,8 +187,19 @@
   function getSize(element: HTMLElement): Vector {
     const rect = element.getBoundingClientRect();
     return {
-      x: rect.width,
-      y: rect.height,
+      x: rect.width - borderWidth * 2,
+      y: rect.height - borderWidth * 2,
+    };
+  }
+
+  function getMinSize(element: HTMLElement): Vector {
+    const parts = element
+      .getAttribute("data-window-min")
+      ?.split(",")
+      .map((s) => parseInt(s));
+    return {
+      x: parts?.[0] || 0,
+      y: parts?.[1] || 0,
     };
   }
 
@@ -163,8 +211,8 @@
 
       const size = getSize(window);
       const targetSize: Vector = {
-        x: Math.min(size.x, maxSize.x),
-        y: Math.min(size.y, maxSize.y),
+        x: size.x <= minSize.x ? Math.min(minSize.x, maxSize.x) : Math.min(size.x, maxSize.x),
+        y: size.y <= minSize.y ? Math.min(minSize.y, maxSize.y) : Math.min(size.y, maxSize.y),
       };
       resize(window, targetSize.x, targetSize.y);
 
