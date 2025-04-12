@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import { clamp, type Vector } from "./vector";
   import Window from "./window.svelte";
+  import WindowControls from "./window-controls.svelte";
+  import WindowTitleBar from "./window-title-bar.svelte";
 
   let { windows }: { windows?: unknown[] } = $props();
 
@@ -241,7 +243,12 @@
 
 <div class="relative h-full w-full touch-none overflow-hidden" bind:this={container}>
   <Window>
-    <h1>hi</h1>
+    <div class="absolute left-0 mx-2.5 h-7">
+      <WindowControls />
+    </div>
+    <WindowTitleBar>
+      <h1 class="font-medium">hi</h1>
+    </WindowTitleBar>
     <div>
       <p data-nodrag>Cannot drag me</p>
       <p>

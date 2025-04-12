@@ -20,12 +20,12 @@
 
   --color-info: oklch(70% 0.165 254.624);
   --color-info-content: oklch(28% 0.091 267.935);
-  --color-success: oklch(77% 0.152 181.912);
-  --color-success-content: oklch(27% 0.046 192.524);
-  --color-warning: oklch(85% 0.199 91.936);
-  --color-warning-content: oklch(28% 0.066 53.813);
-  --color-error: oklch(70% 0.191 22.216);
-  --color-error-content: oklch(25% 0.092 26.042);
+  --color-success: #61c553;
+  --color-success-content: #296117;
+  --color-warning: #f4bf4f;
+  --color-warning-content: #8f591d;
+  --color-error: #ed6a5e;
+  --color-error-content: #8c1a11;
   --radius-selector: 5px;
   --radius-field: 5px;
   --radius-box: 10px;
@@ -54,12 +54,12 @@
 
   --color-info: oklch(70% 0.165 254.624);
   --color-info-content: oklch(28% 0.091 267.935);
-  --color-success: oklch(77% 0.152 181.912);
-  --color-success-content: oklch(27% 0.046 192.524);
-  --color-warning: oklch(85% 0.199 91.936);
-  --color-warning-content: oklch(28% 0.066 53.813);
-  --color-error: oklch(70% 0.191 22.216);
-  --color-error-content: oklch(25% 0.092 26.042);
+  --color-success: #61c553;
+  --color-success-content: #296117;
+  --color-warning: #f4bf4f;
+  --color-warning-content: #8f591d;
+  --color-error: #ed6a5e;
+  --color-error-content: #8c1a11;
   --radius-selector: 5px;
   --radius-field: 5px;
   --radius-box: 10px;
