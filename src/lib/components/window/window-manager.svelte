@@ -25,7 +25,7 @@
     const parent = target.closest("[data-window]") as HTMLElement;
     if (parent === null) return;
     if (!parent.contains(e.target as Node)) return;
-    if (target.hasAttribute("data-nodrag") && target !== parent) return;
+    if (target.closest("[data-nodrag]") && target !== parent) return;
 
     windowTransform = target
       .getAttribute("data-window-transform")
@@ -241,7 +241,10 @@
 />
 <svelte:document {onpointerdown} {onpointerup} {onpointermove} />
 
-<div class="relative h-full w-full touch-none overflow-hidden" bind:this={container}>
+<div
+  class="pointer-events-none relative h-full w-full touch-none overflow-hidden"
+  bind:this={container}
+>
   <Window>
     <div class="absolute left-0 mx-2.5 h-7">
       <WindowControls />
@@ -249,11 +252,12 @@
     <WindowTitleBar>
       <h1 class="font-medium">hi</h1>
     </WindowTitleBar>
-    <div>
-      <p data-nodrag>Cannot drag me</p>
+    <div class="h-full overflow-auto p-5" data-nodrag>
       <p>
-        Cillum occaecat laborum ut. Reprehenderit ipsum culpa aliqua nulla eiusmod enim tempor
-        occaecat anim.
+        Labore sunt adipisicing culpa minim aliquip dolore sint anim aliqua. Eiusmod ad duis amet.
+        Minim occaecat mollit deserunt. Laboris quis nisi labore non sunt consequat eu irure
+        excepteur non sint. Sint sint Lorem in ex aute qui aliqua ea aute pariatur amet consequat
+        esse dolor.
       </p>
     </div>
   </Window>

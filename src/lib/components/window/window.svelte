@@ -66,7 +66,7 @@
 {/snippet}
 
 <div
-  class="glass-card rounded-box absolute box-content shadow-2xl shadow-black/50 overflow-hidden"
+  class="glass-card rounded-box pointer-events-auto absolute box-content overflow-hidden shadow-2xl shadow-black/50"
   style="width: {width}px; height: {height}px; transform: translate({x}px, {y}px);"
   data-window
   data-window-transform="0,0"
