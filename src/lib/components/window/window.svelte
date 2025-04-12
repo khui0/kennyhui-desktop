@@ -23,7 +23,12 @@
   let initialSize: Vector = { x: 0, y: 0 };
   let position: Vector = $state({ x: 50, y: 50 });
 
-  function move(x: number, y: number, duration: number = 200) {
+  function setInitial() {
+    initialPosition = position;
+    initialSize = size;
+  }
+
+  export function move(x: number, y: number, duration: number = 200) {
     if (duration > 0) {
       const to = {
         left: x + "px",
@@ -53,7 +58,7 @@
     }
   }
 
-  function resize(w: number, h: number, duration: number = 200) {
+  export function resize(w: number, h: number, duration: number = 200) {
     if (duration > 0) {
       const to = {
         width: w + "px",
@@ -84,15 +89,15 @@
   }
 </script>
 
+<svelte:document  />
+
 {#snippet handles()}
+  <!-- Top Left -->
   <div
     data-blockdrag
     role="presentation"
     use:drag
-    oncustomdragstart={() => {
-      initialPosition = position;
-      initialSize = size;
-    }}
+    oncustomdragstart={setInitial}
     oncustomdrag={(e) => {
       const maxPosition = {
         x: initialPosition.x + initialSize.x - minSize.x,
@@ -110,6 +115,105 @@
       };
     }}
     class="handle absolute -top-1.25 -left-1.25 h-2.5 w-2.5 cursor-nwse-resize bg-red-500/50"
+  ></div>
+  <!-- Top Right -->
+  <div
+    data-blockdrag
+    role="presentation"
+    use:drag
+    oncustomdragstart={setInitial}
+    oncustomdrag={(e) => {
+      const maxPosition = {
+        x: initialPosition.x + minSize.x,
+        y: initialPosition.y + initialSize.y - minSize.y,
+      };
+
+      position = {
+        x: initialPosition.x,
+        y: Math.min(initialPosition.y + e.offset.y, maxPosition.y),
+      };
+
+      size = {
+        x: Math.max(initialSize.x + e.offset.x, minSize.x),
+        y: Math.max(initialSize.y - e.offset.y, minSize.y),
+      };
+    }}
+    class="handle absolute -top-1.25 -right-1.25 h-2.5 w-2.5 cursor-nesw-resize bg-red-500/50"
+  ></div>
+  <!-- Bottom Left -->
+  <div
+    data-blockdrag
+    role="presentation"
+    use:drag
+    oncustomdragstart={setInitial}
+    oncustomdrag={(e) => {
+      const maxPosition = {
+        x: initialPosition.x + initialSize.x - minSize.x,
+        y: initialPosition.y + minSize.y,
+      };
+
+      position = {
+        x: Math.min(initialPosition.x + e.offset.x, maxPosition.x),
+        y: initialPosition.y,
+      };
+
+      size = {
+        x: Math.max(initialSize.x - e.offset.x, minSize.x),
+        y: Math.max(initialSize.y + e.offset.y, minSize.y),
+      };
+    }}
+    class="handle absolute -bottom-1.25 -left-1.25 h-2.5 w-2.5 cursor-nesw-resize bg-red-500/50"
+  ></div>
+  <!-- Bottom Right -->
+  <div
+    data-blockdrag
+    role="presentation"
+    use:drag
+    oncustomdragstart={setInitial}
+    oncustomdrag={(e) => {
+      size = {
+        x: Math.max(initialSize.x + e.offset.x, minSize.x),
+        y: Math.max(initialSize.y + e.offset.y, minSize.y),
+      };
+    }}
+    class="handle absolute -right-1.25 -bottom-1.25 h-2.5 w-2.5 cursor-nwse-resize bg-red-500/50"
+  ></div>
+  <!-- Top -->
+  <div
+    data-blockdrag
+    role="presentation"
+    use:drag
+    oncustomdragstart={setInitial}
+    oncustomdrag={(e) => {
+      const maxPosition = {
+        y: initialPosition.y + initialSize.y - minSize.y,
+      };
+
+      position = {
+        x: position.x,
+        y: Math.min(initialPosition.y + e.offset.y, maxPosition.y),
+      };
+
+      size = {
+        x: size.x,
+        y: Math.max(initialSize.y - e.offset.y, minSize.y),
+      };
+    }}
+    class="handle absolute -top-1.25 right-1.25 left-1.25 h-2.5 cursor-ns-resize bg-blue-500/50"
+  ></div>
+  <!-- Top -->
+  <div
+    data-blockdrag
+    role="presentation"
+    use:drag
+    oncustomdragstart={setInitial}
+    oncustomdrag={(e) => {
+      size = {
+        x: size.x,
+        y: Math.max(initialSize.y + e.offset.y, minSize.y),
+      };
+    }}
+    class="handle absolute right-1.25 -bottom-1.25 left-1.25 h-2.5 cursor-ns-resize bg-blue-500/50"
   ></div>
 {/snippet}
 

@@ -44,6 +44,8 @@ export const drag: Action<
       position = cursor;
       isDragging = true;
 
+      window.getSelection()?.removeAllRanges();
+
       node.dispatchEvent(new CustomEvent("customdragstart"));
     });
 
@@ -60,6 +62,8 @@ export const drag: Action<
       const delta: Vector = { x: cursor.x - position.x, y: cursor.y - position.y };
       const offset: Vector = { x: cursor.x - initial.x, y: cursor.y - initial.y };
       position = cursor;
+
+      window.getSelection()?.removeAllRanges();
 
       node.dispatchEvent(new DragEvent(delta, offset));
     });
