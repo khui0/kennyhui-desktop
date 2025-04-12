@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { clamp, type Vector } from "./vector";
   import Window from "./window.svelte";
 
@@ -12,7 +13,6 @@
 
   let targetWindow: HTMLElement | null;
   let minSize: Vector = { x: 0, y: 0 };
-  let borderWidth: number = 0;
   let windowTransform: number[] = [0, 0];
   let windowInitialPosition: Vector = { x: 0, y: 0 };
   let windowInitialSize: Vector = { x: 0, y: 0 };
@@ -38,7 +38,6 @@
     windowInitialPosition = getPosition(parent);
     windowInitialSize = { x: parent.clientWidth, y: parent.clientHeight };
     minSize = getMinSize(parent);
-    borderWidth = parseInt(getComputedStyle(parent).borderWidth.match(/([-.0-9]*)px/)?.[1] || "0");
 
     targetWindow = parent;
 
@@ -185,10 +184,9 @@
   }
 
   function getSize(element: HTMLElement): Vector {
-    const rect = element.getBoundingClientRect();
     return {
-      x: rect.width - borderWidth * 2,
-      y: rect.height - borderWidth * 2,
+      x: element.clientWidth,
+      y: element.clientHeight,
     };
   }
 
@@ -211,8 +209,8 @@
 
       const size = getSize(window);
       const targetSize: Vector = {
-        x: size.x <= minSize.x ? Math.min(minSize.x, maxSize.x) : Math.min(size.x, maxSize.x),
-        y: size.y <= minSize.y ? Math.min(minSize.y, maxSize.y) : Math.min(size.y, maxSize.y),
+        x: size.x < minSize.x ? Math.min(minSize.x, maxSize.x) : Math.min(size.x, maxSize.x),
+        y: size.y < minSize.y ? Math.min(minSize.y, maxSize.y) : Math.min(size.y, maxSize.y),
       };
       resize(window, targetSize.x, targetSize.y);
 
@@ -227,6 +225,10 @@
   }
 
   let resizeTimeout: number = 0;
+
+  onMount(() => {
+    moveWindowsWithinBounds();
+  });
 </script>
 
 <svelte:window

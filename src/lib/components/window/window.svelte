@@ -26,47 +26,47 @@
   <!-- Top -->
   <div
     data-window-transform="0,-1"
-    class="handle absolute -top-1.25 right-1.25 left-1.25 h-2.5 cursor-ns-resize bg-blue-500/50"
+    class="handle absolute -top-1.25 right-1.25 left-1.25 h-2.5 cursor-ns-resize"
   ></div>
   <!-- Bottom -->
   <div
     data-window-transform="0,1"
-    class="handle absolute right-1.25 -bottom-1.25 left-1.25 h-2.5 cursor-ns-resize bg-green-500/50"
+    class="handle absolute right-1.25 -bottom-1.25 left-1.25 h-2.5 cursor-ns-resize"
   ></div>
   <!-- Left -->
   <div
     data-window-transform="-1,0"
-    class="handle absolute top-1.25 bottom-1.25 -left-1.25 w-2.5 cursor-ew-resize bg-yellow-500/50"
+    class="handle absolute top-1.25 bottom-1.25 -left-1.25 w-2.5 cursor-ew-resize"
   ></div>
   <!-- Right -->
   <div
     data-window-transform="1,0"
-    class="handle absolute top-1.25 -right-1.25 bottom-1.25 w-2.5 cursor-ew-resize bg-purple-500/50"
+    class="handle absolute top-1.25 -right-1.25 bottom-1.25 w-2.5 cursor-ew-resize"
   ></div>
   <!-- Top Left -->
   <div
     data-window-transform="-1,-1"
-    class="handle absolute -top-1.25 -left-1.25 h-4 w-4 cursor-nwse-resize bg-red-500/50"
+    class="handle absolute -top-1.25 -left-1.25 h-4 w-4 cursor-nwse-resize"
   ></div>
   <!-- Top Right -->
   <div
     data-window-transform="1,-1"
-    class="handle absolute -top-1.25 -right-1.25 h-4 w-4 cursor-nesw-resize bg-red-500/50"
+    class="handle absolute -top-1.25 -right-1.25 h-4 w-4 cursor-nesw-resize"
   ></div>
   <!-- Bottom Left -->
   <div
     data-window-transform="-1,1"
-    class="handle absolute -bottom-1.25 -left-1.25 h-4 w-4 cursor-nesw-resize bg-red-500/50"
+    class="handle absolute -bottom-1.25 -left-1.25 h-4 w-4 cursor-nesw-resize"
   ></div>
   <!-- Bottom Right -->
   <div
     data-window-transform="1,1"
-    class="handle absolute -right-1.25 -bottom-1.25 h-4 w-4 cursor-nwse-resize bg-red-500/50"
+    class="handle absolute -right-1.25 -bottom-1.25 h-4 w-4 cursor-nwse-resize"
   ></div>
 {/snippet}
 
 <div
-  class="glass-card rounded-box absolute shadow-xl box-content"
+  class="glass-card rounded-box absolute box-content shadow-2xl shadow-black/50"
   style="width: {width}px; height: {height}px; transform: translate({x}px, {y}px);"
   data-window
   data-window-transform="0,0"
