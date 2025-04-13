@@ -246,11 +246,11 @@
   bind:this={container}
 >
   <Window>
-    <div class="absolute left-0 mx-2.5 h-7">
+    <div class="absolute left-0 px-2 h-7">
       <WindowControls />
     </div>
     <WindowTitleBar>
-      <h1 class="font-medium">hi</h1>
+      <h1 class="font-medium">Title</h1>
     </WindowTitleBar>
     <div class="h-full overflow-auto p-5" data-nodrag>
       <p>
