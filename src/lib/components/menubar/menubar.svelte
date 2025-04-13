@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { launchpad } from "$lib/meta.svelte";
   import dayjs from "dayjs";
   import { onMount, type Snippet } from "svelte";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import MenubarItem from "./menubar-item.svelte";
-  import { launchpad } from "$lib/meta.svelte";
+  import { activeWindow } from "../window/windows.svelte";
 
   let { children }: { children?: Snippet } = $props();
 
@@ -18,6 +19,8 @@
   function update() {
     time = dayjs().format("ddd MMM D h:mm A");
   }
+
+  $inspect(activeWindow.current);
 </script>
 
 <menu
@@ -28,7 +31,9 @@
   }}
 >
   <MenubarItem type="logo"><TablerCircleFilled /></MenubarItem>
-  <MenubarItem type="name">Firefox</MenubarItem>
+  <MenubarItem type="name"
+    >{activeWindow.current ? activeWindow.current.name : "Finder"}</MenubarItem
+  >
   <MenubarItem>File</MenubarItem>
   <MenubarItem>Edit</MenubarItem>
   <div class="flex-1"></div>

@@ -1,4 +1,4 @@
-import { stackOrder, windows, type WindowSnap } from "./windows.svelte";
+import { activeWindow, stackOrder, windows, type WindowSnap } from "./windows.svelte";
 
 export interface Vector {
   x: number;
@@ -179,6 +179,7 @@ export function applyFocus() {
 
     if (i === stackOrder.length - 1) {
       window.setAttribute("data-window-active", "");
+      activeWindow.current = windows.find((window) => window.id === id) || null;
     } else {
       window.removeAttribute("data-window-active");
     }

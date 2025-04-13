@@ -6,6 +6,7 @@ export type WindowSnap = "full" | "left" | "right" | null;
 export interface WindowProperties {
   id: string;
   title: string;
+  name: string;
   body: Component;
   position?: Vector;
   size?: Vector;
@@ -15,8 +16,8 @@ export interface WindowProperties {
 }
 
 export const windows: WindowProperties[] = $state([]);
-
 export const stackOrder: string[] = $state([]);
+export const activeWindow: { current: WindowProperties | null } = $state({ current: null });
 
 export function add(...properties: WindowProperties[]): void {
   const containerSize: Vector = container.current ? getSize(container.current) : { x: 0, y: 0 };
@@ -55,6 +56,7 @@ export function unfocus(): void {
   if (container.current === null) return;
   container.current.querySelectorAll("[data-window-active]").forEach((window) => {
     window.removeAttribute("data-window-active");
+    activeWindow.current = null;
   });
 }
 

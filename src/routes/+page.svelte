@@ -10,11 +10,13 @@
       {
         id: "test-window-1",
         title: "Test Window 1",
+        name: "Resume 1",
         body: Resume,
       },
       {
         id: "test-window-2",
         title: "Test Window 2",
+        name: "Resume 2",
         body: Resume,
       },
     );
