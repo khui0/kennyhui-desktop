@@ -10,7 +10,7 @@ import {
   toTranslate,
   type Vector,
 } from "./helpers.svelte";
-import { focus, type WindowSnap } from "./windows.svelte";
+import { focus, unfocus, type WindowSnap } from "./windows.svelte";
 
 export const windowDragHandler: Action<
   Document,
@@ -50,7 +50,10 @@ let snap: WindowSnap = $state(null);
 
 function onpointerdown(e: PointerEvent) {
   const target = e.target as HTMLElement;
-  if (!target.closest("[data-window]")) return;
+  if (!target.closest("[data-window]")) {
+    unfocus();
+    return;
+  }
   const parent = target.closest("[data-window]") as HTMLElement;
   if (parent === null) return;
   if (!parent.contains(e.target as Node)) return;

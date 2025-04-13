@@ -1,5 +1,5 @@
 import type { Component } from "svelte";
-import type { Vector } from "./helpers.svelte";
+import { container, type Vector } from "./helpers.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -34,9 +34,16 @@ export function remove(id: string): void {
   );
 }
 
-export function focus(id: string) {
+export function focus(id: string): void {
   const index = stackOrder.findIndex((item) => item === id);
   if (index === -1 || index === stackOrder.length - 1) return;
   stackOrder.splice(index, 1);
   stackOrder.push(id);
+}
+
+export function unfocus(): void {
+  if (container.current === null) return;
+  container.current.querySelectorAll("[data-window-active]").forEach((window) => {
+    window.removeAttribute("data-window-active");
+  });
 }
