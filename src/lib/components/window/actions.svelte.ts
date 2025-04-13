@@ -124,7 +124,7 @@ function onpointermove(e: PointerEvent) {
 
         // Unsnap
         if ( properties?.snapTo !== null) {
-          unsnap(targetId, cursor);
+          unsnap(targetId);
         }
       }
     }

@@ -88,7 +88,7 @@ export function snap(id: string, snap: WindowSnap, target?: HTMLElement): void {
   }
 }
 
-export function unsnap(id: string, cursor?: Vector): void {
+export function unsnap(id: string): void {
   const window = windows.find((window) => window.id === id);
   if (!window) return;
 
