@@ -9,14 +9,32 @@ import {
   toTranslate,
   type Vector,
 } from "./helpers.svelte";
+import type { WindowSnap } from "./windows.svelte";
 
-export const windowDragHandler: Action<Document> = (node) => {
+export const windowDragHandler: Action<
+  Document,
+  undefined,
+  {
+    onsnap: (e: SnapEvent) => void;
+  }
+> = (node) => {
   $effect(() => {
     node.addEventListener("pointerdown", onpointerdown);
     node.addEventListener("pointerup", onpointerup);
     node.addEventListener("pointermove", onpointermove);
+
+    node.dispatchEvent(new SnapEvent(snap));
   });
 };
+
+class SnapEvent extends Event {
+  snap: WindowSnap;
+
+  constructor(snap: WindowSnap) {
+    super("snap");
+    this.snap = snap;
+  }
+}
 
 let dragInitial: Vector;
 let isDragging: boolean;
@@ -27,7 +45,7 @@ let windowTransform: number[] = [0, 0];
 let windowInitialPosition: Vector = { x: 0, y: 0 };
 let windowInitialSize: Vector = { x: 0, y: 0 };
 
-let snap: "left" | "right" | "full" | null = $state(null);
+let snap: WindowSnap = $state(null);
 
 function onpointerdown(e: PointerEvent) {
   const target = e.target as HTMLElement;

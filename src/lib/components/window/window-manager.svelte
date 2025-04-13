@@ -5,9 +5,9 @@
   import WindowControls from "./window-controls.svelte";
   import WindowTitleBar from "./window-title-bar.svelte";
   import Window from "./window.svelte";
+  import type { WindowSnap } from "./windows.svelte";
 
-  let { windows }: { windows?: unknown[] } = $props();
-  let snap: "left" | "right" | "full" | null = $state(null);
+  let snap: WindowSnap = $state(null);
 
   let resizeTimeout: number = 0;
 
@@ -22,7 +22,12 @@
     resizeTimeout = setTimeout(moveWindowsWithinBounds, 100);
   }}
 />
-<svelte:document use:windowDragHandler />
+<svelte:document
+  use:windowDragHandler
+  onsnap={(e) => {
+    snap = e.snap;
+  }}
+/>
 
 <div
   class="pointer-events-none relative h-full w-full touch-none overflow-hidden"
