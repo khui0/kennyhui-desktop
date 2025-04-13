@@ -6,6 +6,7 @@
   import WindowTitleBar from "./window-title-bar.svelte";
   import Window from "./window.svelte";
   import { stackOrder, windows, type WindowSnap } from "./windows.svelte";
+  import WindowContent from "./window-content.svelte";
 
   let snap: WindowSnap = $state(null);
 
@@ -61,9 +62,9 @@
       <WindowTitleBar>
         <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
       </WindowTitleBar>
-      <div class="h-full overflow-auto p-5">
+      <WindowContent>
         {@render (window.body as Snippet)()}
-      </div>
+      </WindowContent>
     </Window>
   {/each}
 </div>

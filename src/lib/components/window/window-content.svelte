@@ -5,7 +5,8 @@
 </script>
 
 <div
-  class="bg-base-100 window-active:bg-base-200/80 grid h-7 items-center justify-center text-sm shadow-xs select-none"
+  class="window-active:bg-white window-active:dark:bg-[#1e1e1e] h-full w-full overflow-auto p-5"
+  data-nodrag
 >
   {@render children?.()}
 </div>

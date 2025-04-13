@@ -57,6 +57,15 @@ function onpointerdown(e: PointerEvent) {
   const parent = target.closest("[data-window]") as HTMLElement;
   if (parent === null) return;
   if (!parent.contains(e.target as Node)) return;
+
+  const id = parent.getAttribute("data-window");
+  if (id) {
+    focus(id);
+    applyFocus();
+  } else {
+    console.error(parent, "does not define an id");
+  }
+  
   if (target.closest("[data-nodrag]") && target !== parent) return;
 
   windowTransform = target
@@ -73,14 +82,6 @@ function onpointerdown(e: PointerEvent) {
   minSize = getMinSize(parent);
 
   targetWindow = parent;
-
-  const id = parent.getAttribute("data-window");
-  if (id) {
-    focus(id);
-    applyFocus();
-  } else {
-    console.error(parent, "does not define an id");
-  }
 
   window.getSelection()?.removeAllRanges();
 }

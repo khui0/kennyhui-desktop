@@ -5,8 +5,8 @@
 @plugin "daisyui/theme" {
   name: "kennyhui-light";
   color-scheme: "light";
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: #eaeaea;
+  --color-base-100: #e5e5e5;
+  --color-base-200: #eeeeee;
   --color-base-300: #dadada;
   --color-base-content: oklch(20% 0 0);
   --color-primary: oklch(0% 0 0);
@@ -39,9 +39,9 @@
 @plugin "daisyui/theme" {
   name: "kennyhui-dark";
   color-scheme: "dark";
-  --color-base-100: oklch(14% 0 0);
-  --color-base-200: oklch(20% 0 0);
-  --color-base-300: oklch(26% 0 0);
+  --color-base-100: #262627;
+  --color-base-200: #373737;
+  --color-base-300: #3f3f3f;
   --color-base-content: oklch(100% 0 0);
   --color-primary: oklch(100% 0 0);
   --color-primary-content: oklch(0% 0 0);
@@ -134,7 +134,7 @@
 }
 
 @utility window-card {
-  @apply bg-base-200 [[data-window-active]]:bg-base-200/50 relative border-[0.5px] border-black/30! backdrop-blur-2xl transition-colors dark:border-black/90 print:border-none print:bg-transparent print:p-0 print:shadow-none;
+  @apply dark:bg-base-100/60 dark:not-[[data-window-active]]:bg-base-100 relative border-[0.5px] border-black/30! bg-[#f6f6f6]/84 backdrop-blur-2xl not-[[data-window-active]]:bg-[#f6f6f6] dark:border-black/90;
   &::after {
     content: "";
     @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15 print:outline-none;

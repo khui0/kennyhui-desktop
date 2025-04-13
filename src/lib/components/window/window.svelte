@@ -70,7 +70,7 @@
   data-window-transform="0,0"
   data-window-min="{minSize.x},{minSize.y}"
 >
-  <div class="h-full w-full overflow-hidden">
+  <div class="h-full w-full overflow-hidden flex flex-col">
     {@render children()}
   </div>
   {@render handles()}
