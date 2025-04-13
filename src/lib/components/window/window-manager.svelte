@@ -7,6 +7,7 @@
   import Window from "./window.svelte";
   import { stackOrder, windows, type WindowSnap } from "./windows.svelte";
   import WindowContent from "./window-content.svelte";
+  import { launchpad } from "$lib/meta.svelte";
 
   let snap: WindowSnap = $state(null);
 
@@ -33,7 +34,11 @@
 />
 
 <div
-  class="pointer-events-none relative h-full w-full touch-none overflow-hidden"
+  class={{
+    "pointer-events-none relative h-full w-full touch-none overflow-hidden transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]": true,
+    "opacity-0": launchpad.open,
+    "opacity-100": !launchpad.open,
+  }}
   bind:this={container.current}
 >
   <div
