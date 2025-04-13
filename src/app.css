@@ -126,7 +126,15 @@
 }
 
 @utility glass-card {
-  @apply bg-base-100/50 relative border-[0.5px] border-black/30! backdrop-blur-2xl dark:border-black/90 print:border-none print:bg-transparent print:p-0 print:shadow-none;
+  @apply bg-base-200/50 relative border-[0.5px] border-black/30! backdrop-blur-2xl transition-colors dark:border-black/90 print:border-none print:bg-transparent print:p-0 print:shadow-none;
+  &::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15 print:outline-none;
+  }
+}
+
+@utility window-card {
+  @apply bg-base-200 [[data-window-active]]:bg-base-200/50 relative border-[0.5px] border-black/30! backdrop-blur-2xl transition-colors dark:border-black/90 print:border-none print:bg-transparent print:p-0 print:shadow-none;
   &::after {
     content: "";
     @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15 print:outline-none;
