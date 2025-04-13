@@ -3,6 +3,8 @@ export interface Vector {
   y: number;
 }
 
+export const container: { current: HTMLElement | null } = $state({ current: null });
+
 export function add(a: Vector, b: Vector): Vector {
   return { x: a.x + b.x, y: a.y + b.y };
 }
@@ -113,4 +115,28 @@ export function getMinSize(element: HTMLElement): Vector {
     x: parts?.[0] || 0,
     y: parts?.[1] || 0,
   };
+}
+
+export function moveWindowsWithinBounds() {
+  if (container.current === null) return;
+  const maxSize = getSize(container.current);
+  container.current.querySelectorAll("[data-window]").forEach((element) => {
+    const window = element as HTMLElement;
+
+    const size = getSize(window);
+    const minSize = getMinSize(window);
+    const targetSize: Vector = {
+      x: size.x < minSize.x ? Math.min(minSize.x, maxSize.x) : Math.min(size.x, maxSize.x),
+      y: size.y < minSize.y ? Math.min(minSize.y, maxSize.y) : Math.min(size.y, maxSize.y),
+    };
+    resize(window, targetSize.x, targetSize.y);
+
+    const position = fromTranslate(window);
+    const targetPosition: Vector = {
+      x: clamp(position.x, 0, maxSize.x - targetSize.x),
+      y: clamp(position.y, 0, maxSize.y - targetSize.y),
+    };
+
+    move(window, targetPosition.x, targetPosition.y);
+  });
 }
