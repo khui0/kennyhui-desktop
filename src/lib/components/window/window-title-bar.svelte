@@ -4,6 +4,6 @@
   let { children }: { children?: Snippet } = $props();
 </script>
 
-<div class="bg-base-200 grid h-7 items-center justify-center text-sm shadow-sm select-none">
+<div class="bg-base-200 grid h-7 items-center justify-center text-sm shadow-xs select-none">
   {@render children?.()}
 </div>

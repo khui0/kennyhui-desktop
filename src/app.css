@@ -6,8 +6,8 @@
   name: "kennyhui-light";
   color-scheme: "light";
   --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(97% 0 0);
-  --color-base-300: oklch(92% 0 0);
+  --color-base-200: #eaeaea;
+  --color-base-300: #dadada;
   --color-base-content: oklch(20% 0 0);
   --color-primary: oklch(0% 0 0);
   --color-primary-content: oklch(100% 0 0);

@@ -1,5 +1,5 @@
 import type { Component } from "svelte";
-import { container, type Vector } from "./helpers.svelte";
+import { container, getSize, type Vector } from "./helpers.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -18,7 +18,16 @@ export const windows: WindowProperties[] = $state([]);
 export const stackOrder: string[] = $state([]);
 
 export function add(...properties: WindowProperties[]): void {
+  const containerSize: Vector = container.current ? getSize(container.current) : { x: 0, y: 0 };
+
   properties.forEach((window) => {
+    const windowSize = window.size || { x: 400, y: 300 };
+    if (!window.position) {
+      window.position = {
+        x: (containerSize.x - windowSize.x) / 2,
+        y: (containerSize.y - windowSize.y) / 2,
+      };
+    }
     windows.push(window);
     stackOrder.push(window.id);
   });

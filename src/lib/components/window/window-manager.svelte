@@ -59,7 +59,7 @@
         <WindowControls />
       </div>
       <WindowTitleBar>
-        <h1 class="font-medium">{window.title}</h1>
+        <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
       </WindowTitleBar>
       <div class="h-full overflow-auto p-5">
         {@render (window.body as Snippet)()}
