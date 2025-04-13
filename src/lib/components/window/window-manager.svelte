@@ -1,13 +1,13 @@
 <script lang="ts">
+  import { launchpad } from "$lib/meta.svelte";
   import { onMount, type Snippet } from "svelte";
   import { windowDragHandler } from "./actions.svelte";
   import { container, moveWindowsWithinBounds } from "./helpers.svelte";
+  import WindowContent from "./window-content.svelte";
   import WindowControls from "./window-controls.svelte";
   import WindowTitleBar from "./window-title-bar.svelte";
   import Window from "./window.svelte";
   import { stackOrder, windows, type WindowSnap } from "./windows.svelte";
-  import WindowContent from "./window-content.svelte";
-  import { launchpad } from "$lib/meta.svelte";
 
   let snap: WindowSnap = $state(null);
 
@@ -61,7 +61,7 @@
   ></div>
   {#each windows as window}
     <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
-      <div class="absolute left-0 h-7 flex items-center">
+      <div class="absolute left-0 flex h-7 items-center">
         <WindowControls />
       </div>
       <WindowTitleBar>

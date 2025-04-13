@@ -1,4 +1,4 @@
-import { stackOrder } from "./windows.svelte";
+import { stackOrder, windows, type WindowSnap } from "./windows.svelte";
 
 export interface Vector {
   x: number;
@@ -125,22 +125,48 @@ export function moveWindowsWithinBounds() {
   container.current.querySelectorAll("[data-window]").forEach((element) => {
     const window = element as HTMLElement;
 
-    const size = getSize(window);
-    const minSize = getMinSize(window);
-    const targetSize: Vector = {
-      x: size.x < minSize.x ? Math.min(minSize.x, maxSize.x) : Math.min(size.x, maxSize.x),
-      y: size.y < minSize.y ? Math.min(minSize.y, maxSize.y) : Math.min(size.y, maxSize.y),
-    };
-    resize(window, targetSize.x, targetSize.y);
+    const id = window.getAttribute("data-window");
+    const snapTo = windows.find((window) => window.id === id)?.snapTo || null;
 
-    const position = fromTranslate(window);
-    const targetPosition: Vector = {
-      x: clamp(position.x, 0, maxSize.x - targetSize.x),
-      y: clamp(position.y, 0, maxSize.y - targetSize.y),
-    };
+    if (snapTo !== null) {
+      applyWindowSnap(window, snapTo);
+    } else {
+      const size = getSize(window);
+      const minSize = getMinSize(window);
+      const targetSize: Vector = {
+        x: size.x < minSize.x ? Math.min(minSize.x, maxSize.x) : Math.min(size.x, maxSize.x),
+        y: size.y < minSize.y ? Math.min(minSize.y, maxSize.y) : Math.min(size.y, maxSize.y),
+      };
+      resize(window, targetSize.x, targetSize.y);
 
-    move(window, targetPosition.x, targetPosition.y);
+      const position = fromTranslate(window);
+      const targetPosition: Vector = {
+        x: clamp(position.x, 0, maxSize.x - targetSize.x),
+        y: clamp(position.y, 0, maxSize.y - targetSize.y),
+      };
+
+      move(window, targetPosition.x, targetPosition.y);
+    }
   });
+}
+
+function applyWindowSnap(element: HTMLElement, snap: WindowSnap, duration: number = 0) {
+  if (container.current === null) return;
+  if (snap === "full") {
+    move(element, container.current.clientLeft, container.current.clientTop, duration);
+    resize(element, container.current.clientWidth, container.current.clientHeight, duration);
+  } else if (snap === "left") {
+    move(element, container.current.clientLeft, container.current.clientTop, duration);
+    resize(element, container.current.clientWidth / 2, container.current.clientHeight, duration);
+  } else if (snap === "right") {
+    move(
+      element,
+      container.current.clientLeft + container.current.clientWidth / 2,
+      container.current.clientTop,
+      duration,
+    );
+    resize(element, container.current.clientWidth / 2, container.current.clientHeight, duration);
+  }
 }
 
 export function applyFocus() {
