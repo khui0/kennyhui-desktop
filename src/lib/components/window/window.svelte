@@ -2,6 +2,7 @@
   import type { Snippet } from "svelte";
 
   let {
+    id,
     x = 0,
     y = 0,
     width = 400,
@@ -10,6 +11,7 @@
     minHeight = 200,
     children,
   }: {
+    id: string;
     x?: number;
     y?: number;
     width?: number;
@@ -66,9 +68,9 @@
 {/snippet}
 
 <div
-  class="glass-card rounded-box pointer-events-auto absolute box-content overflow-hidden shadow-2xl shadow-black/50"
+  class="glass-card rounded-box pointer-events-auto fixed box-content overflow-hidden shadow-2xl shadow-black/50"
   style="width: {width}px; height: {height}px; transform: translate({x}px, {y}px);"
-  data-window
+  data-window={id}
   data-window-transform="0,0"
   data-window-min="{minWidth},{minHeight}"
 >

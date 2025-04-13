@@ -245,8 +245,8 @@
   class="pointer-events-none relative h-full w-full touch-none overflow-hidden"
   bind:this={container}
 >
-  <Window>
-    <div class="absolute left-0 px-2 h-7">
+  <Window id="test">
+    <div class="absolute left-0 h-7">
       <WindowControls />
     </div>
     <WindowTitleBar>
