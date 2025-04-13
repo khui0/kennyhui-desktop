@@ -49,6 +49,19 @@
   function onpointerup() {
     isDragging = false;
     moveWindowsWithinBounds();
+    if (targetWindow && container) {
+      if (snap === "full") {
+        move(targetWindow, container.clientLeft, container.clientTop);
+        resize(targetWindow, container.clientWidth, container.clientHeight);
+      } else if (snap === "left") {
+        move(targetWindow, container.clientLeft, container.clientTop);
+        resize(targetWindow, container.clientWidth / 2, container.clientHeight);
+      } else if (snap === "right") {
+        move(targetWindow, container.clientLeft + container.clientWidth / 2, container.clientTop);
+        resize(targetWindow, container.clientWidth / 2, container.clientHeight);
+      }
+    }
+    snap = null;
   }
 
   function onpointermove(e: PointerEvent) {
@@ -62,8 +75,22 @@
     if (windowTransform[0] === 0 && windowTransform[1] === 0) {
       targetWindow.style.transform = toTranslate(
         offset.x + windowInitialPosition.x,
-        offset.y + windowInitialPosition.y,
+        Math.max(offset.y + windowInitialPosition.y, 0),
       );
+
+      // Snapping
+
+      if (container) {
+        if (cursor.y <= container.offsetTop) {
+          snap = "full";
+        } else if (cursor.x <= container.offsetLeft) {
+          snap = "left";
+        } else if (cursor.x >= container.offsetLeft + container.clientWidth) {
+          snap = "right";
+        } else {
+          snap = null;
+        }
+      }
     } else {
       const targetPosition: Vector = { ...windowInitialPosition };
       const targetSize: Vector = { ...windowInitialSize };
@@ -231,6 +258,8 @@
   onMount(() => {
     moveWindowsWithinBounds();
   });
+
+  let snap: "left" | "right" | "full" | null = $state(null);
 </script>
 
 <svelte:window
@@ -245,6 +274,24 @@
   class="pointer-events-none relative h-full w-full touch-none overflow-hidden"
   bind:this={container}
 >
+  <div
+    class={{
+      "preview pointer-events-none top-0 bottom-0 left-0 w-1/2 opacity-0 transition-opacity duration-300": true,
+      "opacity-100": snap === "left",
+    }}
+  ></div>
+  <div
+    class={{
+      "preview pointer-events-none top-0 right-0 bottom-0 w-1/2 opacity-0 transition-opacity duration-300": true,
+      "opacity-100": snap === "right",
+    }}
+  ></div>
+  <div
+    class={{
+      "preview pointer-events-none inset-0 opacity-0 transition-opacity duration-300": true,
+      "opacity-100": snap === "full",
+    }}
+  ></div>
   <Window id="test">
     <div class="absolute left-0 h-7">
       <WindowControls />
