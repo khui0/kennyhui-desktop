@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, type Snippet } from "svelte";
   import { windowDragHandler } from "./actions.svelte";
   import { container, moveWindowsWithinBounds } from "./helpers.svelte";
   import WindowControls from "./window-controls.svelte";
   import WindowTitleBar from "./window-title-bar.svelte";
   import Window from "./window.svelte";
-  import type { WindowSnap } from "./windows.svelte";
+  import { stackOrder, windows, type WindowSnap } from "./windows.svelte";
 
   let snap: WindowSnap = $state(null);
 
@@ -14,6 +14,8 @@
   onMount(() => {
     moveWindowsWithinBounds();
   });
+
+  $inspect(stackOrder);
 </script>
 
 <svelte:window
@@ -51,20 +53,17 @@
       "opacity-100": snap === "full",
     }}
   ></div>
-  <Window id="test">
-    <div class="absolute left-0 h-7">
-      <WindowControls />
-    </div>
-    <WindowTitleBar>
-      <h1 class="font-medium">Title</h1>
-    </WindowTitleBar>
-    <div class="h-full overflow-auto p-5" data-nodrag>
-      <p>
-        Labore sunt adipisicing culpa minim aliquip dolore sint anim aliqua. Eiusmod ad duis amet.
-        Minim occaecat mollit deserunt. Laboris quis nisi labore non sunt consequat eu irure
-        excepteur non sint. Sint sint Lorem in ex aute qui aliqua ea aute pariatur amet consequat
-        esse dolor.
-      </p>
-    </div>
-  </Window>
+  {#each windows as window}
+    <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
+      <div class="absolute left-0 h-7">
+        <WindowControls />
+      </div>
+      <WindowTitleBar>
+        <h1 class="font-medium">{window.title}</h1>
+      </WindowTitleBar>
+      <div class="h-full overflow-auto p-5">
+        {@render (window.body as Snippet)()}
+      </div>
+    </Window>
+  {/each}
 </div>

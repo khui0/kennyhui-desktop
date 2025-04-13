@@ -1,5 +1,6 @@
 import type { Action } from "svelte/action";
 import {
+  applyFocus,
   container,
   fromTranslate,
   getMinSize,
@@ -9,7 +10,7 @@ import {
   toTranslate,
   type Vector,
 } from "./helpers.svelte";
-import type { WindowSnap } from "./windows.svelte";
+import { focus, type WindowSnap } from "./windows.svelte";
 
 export const windowDragHandler: Action<
   Document,
@@ -69,6 +70,14 @@ function onpointerdown(e: PointerEvent) {
   minSize = getMinSize(parent);
 
   targetWindow = parent;
+
+  const id = parent.getAttribute("data-window");
+  if (id) {
+    focus(id);
+    applyFocus();
+  } else {
+    console.error(parent, "does not define an id");
+  }
 
   window.getSelection()?.removeAllRanges();
 }

@@ -16,19 +16,19 @@
 >
   <div
     data-window-close
-    class="bg-error group-hover:text-error-content flex h-3 w-3 items-center justify-center rounded-full text-xs text-transparent"
+    class="window-active:bg-error window-active:group-hover:text-error-content flex h-3 w-3 items-center justify-center rounded-full bg-[#3F3F3F] text-xs text-transparent"
   >
     <HeroiconsXMark16Solid />
   </div>
   <div
     data-window-hide
-    class="bg-warning group-hover:text-warning-content flex h-3 w-3 items-center justify-center rounded-full text-xs text-transparent"
+    class="window-active:bg-warning window-active:group-hover:text-warning-content flex h-3 w-3 items-center justify-center rounded-full bg-[#3F3F3F] text-xs text-transparent"
   >
     <HeroiconsMinus16Solid />
   </div>
   <div
     data-window-fullscreen
-    class="bg-success group-hover:text-success-content flex h-3 w-3 items-center justify-center rounded-full text-xs text-transparent"
+    class="window-active:bg-success window-active:group-hover:text-success-content flex h-3 w-3 items-center justify-center rounded-full bg-[#3F3F3F] text-xs text-transparent"
   >
     <span class="-rotate-45 text-[8px]">
       <TablerCaretUpDownFilled />

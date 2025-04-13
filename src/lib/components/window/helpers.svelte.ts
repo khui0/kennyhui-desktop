@@ -1,3 +1,5 @@
+import { stackOrder } from "./windows.svelte";
+
 export interface Vector {
   x: number;
   y: number;
@@ -139,4 +141,20 @@ export function moveWindowsWithinBounds() {
 
     move(window, targetPosition.x, targetPosition.y);
   });
+}
+
+export function applyFocus() {
+  if (container.current === null) return;
+  for (let i = 0; i < stackOrder.length; i++) {
+    const id = stackOrder[i];
+    const window = container.current.querySelector(`[data-window="${id}"]`);
+    if (window === null) return;
+    (window as HTMLElement).style.zIndex = i.toString();
+
+    if (i === stackOrder.length - 1) {
+      window.setAttribute("data-window-active", "");
+    } else {
+      window.removeAttribute("data-window-active");
+    }
+  }
 }

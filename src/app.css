@@ -136,3 +136,5 @@
 @utility preview {
   @apply rounded-box border-base-content/20 bg-base-100/20 absolute border-2;
 }
+
+@custom-variant window-active (&:where([data-window-active] *));
