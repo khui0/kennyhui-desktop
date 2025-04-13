@@ -8,10 +8,10 @@
 
 <div
   class={{
-    "group grid h-full grid-cols-3 items-center gap-2": true,
-    "px-2": size === "sm",
-    "px-3.25": size === "md",
-    "px-5": size === "lg",
+    "group grid grid-cols-3 items-center gap-2": true,
+    "mx-2": size === "sm",
+    "mx-3.25": size === "md",
+    "mx-5": size === "lg",
   }}
 >
   <div

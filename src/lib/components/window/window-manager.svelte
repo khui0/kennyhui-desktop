@@ -61,7 +61,7 @@
   ></div>
   {#each windows as window}
     <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
-      <div class="absolute left-0 h-7">
+      <div class="absolute left-0 h-7 flex items-center">
         <WindowControls />
       </div>
       <WindowTitleBar>
