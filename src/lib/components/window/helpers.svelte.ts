@@ -42,20 +42,21 @@ export function animate(
   }, duration);
 }
 
-export function move(element: HTMLElement, x: number, y: number, duration: number = 200) {
+export function move(element: HTMLElement, x?: number, y?: number, duration: number = 200) {
   const position = fromTranslate(element);
+  const after = toTranslate(x ? x : position.x, y ? y : position.y);
   animate(
     element,
     {
       transform: toTranslate(position.x, position.y),
     },
     {
-      transform: toTranslate(x, y),
+      transform: after,
     },
     duration,
     () => {
       Object.assign(element.style, {
-        transform: toTranslate(x, y),
+        transform: after,
       });
     },
   );

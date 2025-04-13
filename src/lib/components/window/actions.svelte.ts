@@ -4,13 +4,11 @@ import {
   container,
   fromTranslate,
   getMinSize,
-  move,
   moveWindowsWithinBounds,
-  resize,
   toTranslate,
   type Vector,
 } from "./helpers.svelte";
-import { focus, unfocus, type WindowSnap } from "./windows.svelte";
+import { focus, snap, unfocus, unsnap, windows, type WindowSnap } from "./windows.svelte";
 
 export const windowDragHandler: Action<
   Document,
@@ -24,7 +22,7 @@ export const windowDragHandler: Action<
     node.addEventListener("pointerup", onpointerup);
     node.addEventListener("pointermove", onpointermove);
 
-    node.dispatchEvent(new SnapEvent(snap));
+    node.dispatchEvent(new SnapEvent(windowSnap));
   });
 };
 
@@ -41,12 +39,12 @@ let dragInitial: Vector;
 let isDragging: boolean;
 
 let targetWindow: HTMLElement | null;
+let targetId: string;
 let minSize: Vector = { x: 0, y: 0 };
 let windowTransform: number[] = [0, 0];
 let windowInitialPosition: Vector = { x: 0, y: 0 };
 let windowInitialSize: Vector = { x: 0, y: 0 };
-
-let snap: WindowSnap = $state(null);
+let windowSnap: WindowSnap = $state(null);
 
 function onpointerdown(e: PointerEvent) {
   const target = e.target as HTMLElement;
@@ -62,10 +60,12 @@ function onpointerdown(e: PointerEvent) {
   if (id) {
     focus(id);
     applyFocus();
+
+    targetId = id;
   } else {
     console.error(parent, "does not define an id");
   }
-  
+
   if (target.closest("[data-nodrag]") && target !== parent) return;
 
   windowTransform = target
@@ -89,23 +89,10 @@ function onpointerdown(e: PointerEvent) {
 function onpointerup() {
   isDragging = false;
   moveWindowsWithinBounds();
-  if (targetWindow && container.current !== null) {
-    if (snap === "full") {
-      move(targetWindow, container.current.clientLeft, container.current.clientTop);
-      resize(targetWindow, container.current.clientWidth, container.current.clientHeight);
-    } else if (snap === "left") {
-      move(targetWindow, container.current.clientLeft, container.current.clientTop);
-      resize(targetWindow, container.current.clientWidth / 2, container.current.clientHeight);
-    } else if (snap === "right") {
-      move(
-        targetWindow,
-        container.current.clientLeft + container.current.clientWidth / 2,
-        container.current.clientTop,
-      );
-      resize(targetWindow, container.current.clientWidth / 2, container.current.clientHeight);
-    }
-  }
-  snap = null;
+
+  snap(targetId, windowSnap, targetWindow ? targetWindow : undefined);
+
+  windowSnap = null;
 }
 
 function onpointermove(e: PointerEvent) {
@@ -123,16 +110,22 @@ function onpointermove(e: PointerEvent) {
     );
 
     // Snapping
-
     if (container.current !== null) {
+      const properties = windows.find((window) => window.id === targetId);
+
       if (cursor.y <= container.current.offsetTop) {
-        snap = "full";
+        windowSnap = "full";
       } else if (cursor.x <= container.current.offsetLeft) {
-        snap = "left";
+        windowSnap = "left";
       } else if (cursor.x >= container.current.offsetLeft + container.current.clientWidth) {
-        snap = "right";
+        windowSnap = "right";
       } else {
-        snap = null;
+        windowSnap = null;
+
+        // Unsnap
+        if ( properties?.snapTo !== null) {
+          unsnap(targetId, cursor);
+        }
       }
     }
   } else {

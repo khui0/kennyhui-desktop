@@ -1,5 +1,5 @@
 import type { Component } from "svelte";
-import { container, getSize, type Vector } from "./helpers.svelte";
+import { container, getSize, move, resize, type Vector } from "./helpers.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -11,6 +11,7 @@ export interface WindowProperties {
   size?: Vector;
   minSize?: Vector;
   snapTo?: WindowSnap;
+  previousSize?: Vector;
 }
 
 export const windows: WindowProperties[] = $state([]);
@@ -55,4 +56,51 @@ export function unfocus(): void {
   container.current.querySelectorAll("[data-window-active]").forEach((window) => {
     window.removeAttribute("data-window-active");
   });
+}
+
+export function snap(id: string, snap: WindowSnap, target?: HTMLElement): void {
+  if (container.current === null) return;
+  const targetWindow = target
+    ? target
+    : (container.current.querySelector(`[data-window="${id}"]`) as HTMLElement);
+  if (!targetWindow) return;
+
+  const index = windows.findIndex((window) => window.id === id);
+
+  if (index === -1) return;
+
+  windows[index].previousSize = getSize(targetWindow);
+  windows[index].snapTo = snap;
+
+  if (snap === "full") {
+    move(targetWindow, container.current.clientLeft, container.current.clientTop);
+    resize(targetWindow, container.current.clientWidth, container.current.clientHeight);
+  } else if (snap === "left") {
+    move(targetWindow, container.current.clientLeft, container.current.clientTop);
+    resize(targetWindow, container.current.clientWidth / 2, container.current.clientHeight);
+  } else if (snap === "right") {
+    move(
+      targetWindow,
+      container.current.clientLeft + container.current.clientWidth / 2,
+      container.current.clientTop,
+    );
+    resize(targetWindow, container.current.clientWidth / 2, container.current.clientHeight);
+  }
+}
+
+export function unsnap(id: string, cursor?: Vector): void {
+  const window = windows.find((window) => window.id === id);
+  if (!window) return;
+
+  window.snapTo = null;
+
+  if (window.previousSize && container.current !== null) {
+    const element = container.current.querySelector(`[data-window="${id}"]`) as HTMLElement;
+
+    resize(element, window.previousSize.x, window.previousSize.y);
+
+    // if (cursor) {
+    //   move(element, (cursor.x - window.previousSize.x) / 2);
+    // }
+  }
 }
