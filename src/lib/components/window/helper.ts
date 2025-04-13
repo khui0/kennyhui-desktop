@@ -1,0 +1,116 @@
+export interface Vector {
+  x: number;
+  y: number;
+}
+
+export function add(a: Vector, b: Vector): Vector {
+  return { x: a.x + b.x, y: a.y + b.y };
+}
+
+export function subtract(a: Vector, b: Vector): Vector {
+  return { x: a.x - b.x, y: a.y - b.y };
+}
+
+export function lerp(a: number, b: number, alpha: number) {
+  return a + alpha * (b - a);
+}
+
+export function clamp(n: number, min: number, max: number) {
+  return Math.min(Math.max(n, min), max);
+}
+
+export function animate(
+  element: HTMLElement,
+  from: Keyframe,
+  to: Keyframe,
+  duration: number,
+  callback: () => void,
+) {
+  const animation = element.animate([from, to], {
+    duration,
+    easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+    fill: "forwards",
+  });
+
+  setTimeout(() => {
+    animation.cancel();
+    callback();
+  }, duration);
+}
+
+export function move(element: HTMLElement, x: number, y: number, duration: number = 200) {
+  const position = fromTranslate(element);
+  animate(
+    element,
+    {
+      transform: toTranslate(position.x, position.y),
+    },
+    {
+      transform: toTranslate(x, y),
+    },
+    duration,
+    () => {
+      Object.assign(element.style, {
+        transform: toTranslate(x, y),
+      });
+    },
+  );
+}
+
+export function resize(element: HTMLElement, w: number, h: number, duration: number = 200) {
+  const size = getSize(element);
+  animate(
+    element,
+    {
+      width: size.x + "px",
+      height: size.y + "px",
+    },
+    {
+      width: w + "px",
+      height: h + "px",
+    },
+    duration,
+    () => {
+      Object.assign(element.style, {
+        width: w + "px",
+        height: h + "px",
+      });
+    },
+  );
+}
+
+export function fromTranslate(element: HTMLElement): Vector {
+  const translate = element.style.transform.match(/translate\(([-.0-9]*)px(?:, ?([-.0-9]*)px)?\)/);
+  const position = translate
+    ? {
+        x: parseFloat(translate[1]) || 0,
+        y: parseFloat(translate[2]) || 0,
+      }
+    : {
+        x: 0,
+        y: 0,
+      };
+  return position;
+}
+
+export function toTranslate(x: number, y: number) {
+  return `translate(${x}px, ${y}px)`;
+}
+
+export function getSize(element: HTMLElement): Vector {
+  return {
+    x: element.clientWidth,
+    y: element.clientHeight,
+  };
+}
+
+export function getMinSize(element: HTMLElement): Vector {
+  const parts = element
+    .getAttribute("data-window-min")
+    ?.split(",")
+    .map((s) => parseInt(s));
+  return {
+    x: parts?.[0] || 0,
+    y: parts?.[1] || 0,
+  };
+}

@@ -1,16 +1,24 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { clamp, type Vector } from "./vector";
-  import Window from "./window.svelte";
+  import {
+    clamp,
+    getMinSize,
+    fromTranslate,
+    getSize,
+    move,
+    resize,
+    toTranslate,
+    type Vector,
+  } from "./helper";
   import WindowControls from "./window-controls.svelte";
   import WindowTitleBar from "./window-title-bar.svelte";
+  import Window from "./window.svelte";
 
   let { windows }: { windows?: unknown[] } = $props();
 
   let container: HTMLElement | null = $state(null);
 
   let dragInitial: Vector;
-  let dragPosition: Vector;
   let isDragging: boolean;
 
   let targetWindow: HTMLElement | null;
@@ -34,10 +42,9 @@
 
     const cursor: Vector = { x: e.clientX, y: e.clientY };
     dragInitial = cursor;
-    dragPosition = cursor;
     isDragging = true;
 
-    windowInitialPosition = getPosition(parent);
+    windowInitialPosition = fromTranslate(parent);
     windowInitialSize = { x: parent.clientWidth, y: parent.clientHeight };
     minSize = getMinSize(parent);
 
@@ -132,104 +139,6 @@
     window.getSelection()?.removeAllRanges();
   }
 
-  function animate(
-    element: HTMLElement,
-    from: Keyframe,
-    to: Keyframe,
-    duration: number,
-    callback: () => void,
-  ) {
-    const animation = element.animate([from, to], {
-      duration,
-      easing: "cubic-bezier(0.65, 0, 0.35, 1)",
-      fill: "forwards",
-    });
-
-    setTimeout(() => {
-      animation.cancel();
-      callback();
-    }, duration);
-  }
-
-  function move(element: HTMLElement, x: number, y: number, duration: number = 200) {
-    const position = getPosition(element);
-    animate(
-      element,
-      {
-        transform: toTranslate(position.x, position.y),
-      },
-      {
-        transform: toTranslate(x, y),
-      },
-      duration,
-      () => {
-        Object.assign(element.style, {
-          transform: toTranslate(x, y),
-        });
-      },
-    );
-  }
-
-  function resize(element: HTMLElement, w: number, h: number, duration: number = 200) {
-    const size = getSize(element);
-    animate(
-      element,
-      {
-        width: size.x + "px",
-        height: size.y + "px",
-      },
-      {
-        width: w + "px",
-        height: h + "px",
-      },
-      duration,
-      () => {
-        Object.assign(element.style, {
-          width: w + "px",
-          height: h + "px",
-        });
-      },
-    );
-  }
-
-  function getPosition(element: HTMLElement): Vector {
-    const translate = element.style.transform.match(
-      /translate\(([-.0-9]*)px(?:, ?([-.0-9]*)px)?\)/,
-    );
-    const position = translate
-      ? {
-          x: parseFloat(translate[1]) || 0,
-          y: parseFloat(translate[2]) || 0,
-        }
-      : {
-          x: 0,
-          y: 0,
-        };
-    return position;
-  }
-
-  function toTranslate(x: number, y: number) {
-    return `translate(${x}px, ${y}px)`;
-  }
-
-  function getSize(element: HTMLElement): Vector {
-    return {
-      x: element.clientWidth,
-      y: element.clientHeight,
-    };
-  }
-
-  function getMinSize(element: HTMLElement): Vector {
-    const parts = element
-      .getAttribute("data-window-min")
-      ?.split(",")
-      .map((s) => parseInt(s));
-    return {
-      x: parts?.[0] || 0,
-      y: parts?.[1] || 0,
-    };
-  }
-
   function moveWindowsWithinBounds() {
     if (container === null) return;
     const maxSize = getSize(container);
@@ -243,7 +152,7 @@
       };
       resize(window, targetSize.x, targetSize.y);
 
-      const position = getPosition(window);
+      const position = fromTranslate(window);
       const targetPosition: Vector = {
         x: clamp(position.x, 0, maxSize.x - targetSize.x),
         y: clamp(position.y, 0, maxSize.y - targetSize.y),
