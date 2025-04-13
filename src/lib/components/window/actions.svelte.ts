@@ -104,11 +104,6 @@ function onpointermove(e: PointerEvent) {
   const offset: Vector = { x: cursor.x - dragInitial.x, y: cursor.y - dragInitial.y };
 
   if (windowTransform[0] === 0 && windowTransform[1] === 0) {
-    targetWindow.style.transform = toTranslate(
-      offset.x + windowInitialPosition.x,
-      Math.max(offset.y + windowInitialPosition.y, 0),
-    );
-
     // Snapping
     if (container.current !== null) {
       const properties = windows.find((window) => window.id === targetId);
@@ -123,10 +118,23 @@ function onpointermove(e: PointerEvent) {
         windowSnap = null;
 
         // Unsnap
-        if ( properties?.snapTo !== null) {
-          unsnap(targetId);
+        if (properties?.snapTo !== null) {
+          const previousSize = unsnap(targetId);
+          if (previousSize) {
+            windowInitialSize = previousSize;
+
+            windowInitialPosition = {
+              x: cursor.x - previousSize.x / 2,
+              y: windowInitialPosition.y,
+            };
+          }
         }
       }
+
+      targetWindow.style.transform = toTranslate(
+        offset.x + windowInitialPosition.x,
+        Math.max(offset.y + windowInitialPosition.y, 0),
+      );
     }
   } else {
     const targetPosition: Vector = { ...windowInitialPosition };

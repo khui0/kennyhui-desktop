@@ -88,7 +88,7 @@ export function snap(id: string, snap: WindowSnap, target?: HTMLElement): void {
   }
 }
 
-export function unsnap(id: string): void {
+export function unsnap(id: string): Vector | undefined {
   const window = windows.find((window) => window.id === id);
   if (!window) return;
 
@@ -97,10 +97,8 @@ export function unsnap(id: string): void {
   if (window.previousSize && container.current !== null) {
     const element = container.current.querySelector(`[data-window="${id}"]`) as HTMLElement;
 
-    resize(element, window.previousSize.x, window.previousSize.y);
+    resize(element, window.previousSize.x, window.previousSize.y, 0);
 
-    // if (cursor) {
-    //   move(element, (cursor.x - window.previousSize.x) / 2);
-    // }
+    return window.previousSize;
   }
 }
