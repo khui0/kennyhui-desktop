@@ -111,7 +111,7 @@
 }
 
 @utility bg-glass {
-  @apply bg-base-200/50 relative outline backdrop-blur-2xl transition-colors not-dark:outline-black/10 sm:outline-[0.5px] dark:outline-black/90;
+  @apply bg-base-200/50 relative outline backdrop-blur-[15px] transition-colors not-dark:outline-black/10 sm:outline-[0.5px] dark:outline-black/90;
 
   &::after {
     content: "";
@@ -120,7 +120,7 @@
 }
 
 @utility bg-window {
-  @apply dark:bg-base-100/60 dark:not-[[data-window-active]]:bg-base-100 relative bg-[#f6f6f6]/84 outline backdrop-blur-2xl not-dark:outline-black/10 not-[[data-window-active]]:bg-[#f6f6f6] sm:outline-[0.5px] dark:outline-black/90;
+  @apply dark:bg-base-100/60 dark:not-[[data-window-active]]:bg-base-100 relative bg-[#f6f6f6]/84 outline backdrop-blur-[20px] not-dark:outline-black/10 not-[[data-window-active]]:bg-[#f6f6f6] sm:outline-[0.5px] dark:outline-black/90;
 
   &::after {
     content: "";
@@ -129,7 +129,7 @@
 }
 
 @utility bg-dock {
-  @apply relative bg-[#f6f6f6]/39 outline-black/50 backdrop-blur-2xl dark:bg-[#4A4A4A]/39 dark:outline sm:dark:outline-[0.5px];
+  @apply relative bg-[#f6f6f6]/39 outline-black/50 backdrop-blur-[15px] dark:bg-[#4A4A4A]/39 dark:outline sm:dark:outline-[0.5px];
 
   &::after {
     content: "";
