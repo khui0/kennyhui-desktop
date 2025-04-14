@@ -78,9 +78,12 @@ function onpointerdown(e: PointerEvent) {
     .map((s) => parseInt(s)) || [0, 0];
 
   const cursor: Vector = { x: e.clientX, y: e.clientY };
-  dragInitial = cursor;
-  isDragging = true;
 
+  if (!target.closest("[data-window-controls]")) {
+    dragInitial = cursor;
+    isDragging = true;
+  }
+  
   windowInitialPosition = fromTranslate(parent);
   windowInitialSize = { x: parent.clientWidth, y: parent.clientHeight };
   minSize = getMinSize(parent);

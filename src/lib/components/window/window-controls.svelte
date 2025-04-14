@@ -7,6 +7,7 @@
 </script>
 
 <div
+  data-window-controls
   class={{
     "group grid grid-cols-3 items-center gap-2": true,
     "mx-2": size === "sm",
