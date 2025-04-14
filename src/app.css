@@ -120,7 +120,7 @@
 }
 
 @utility bg-window {
-  @apply dark:bg-base-100/60 dark:not-[[data-window-active]]:bg-base-100 relative bg-[#f6f6f6]/84 outline backdrop-blur-[20px] not-dark:outline-black/10 not-[[data-window-active]]:bg-[#f6f6f6] sm:outline-[0.5px] dark:outline-black/90;
+  @apply dark:bg-base-100/50 dark:not-[[data-window-active]]:bg-base-100 relative bg-[#f6f6f6]/65 outline backdrop-blur-[40px] backdrop-saturate-150 not-dark:outline-black/10 not-[[data-window-active]]:bg-[#f6f6f6] sm:outline-[0.5px] dark:outline-black/90;
 
   &::after {
     content: "";
@@ -139,4 +139,16 @@
 
 @utility preview {
   @apply rounded-box border-base-content/20 bg-base-100/20 absolute border-2;
+}
+
+@utility highlight {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+
+@utility btn {
+  @apply highlight bg-base-content/15 rounded-field h-[22px] translate-none border-none px-[7px] py-[3px] text-[13px] font-normal text-base-content/80;
+
+  &:active {
+    @apply bg-base-content/25;
+  }
 }
