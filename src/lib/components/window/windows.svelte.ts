@@ -42,13 +42,16 @@ export function add(...properties: WindowProperties[]): void {
 }
 
 export function remove(id: string): void {
-  const windowIndex = windows.findIndex((window) => window.id === id);
-  if (windowIndex === -1) return;
-  windows.splice(windowIndex, 1);
-  stackOrder.splice(
-    stackOrder.findIndex((item) => item === id),
-    1,
-  );
+  for (let i = 0; i < windows.length; i++) {
+    if (windows[i].id.startsWith(id)) {
+      windows.splice(i, 1);
+    }
+  }
+  for (let i = 0; i < stackOrder.length; i++) {
+    if (stackOrder[i].startsWith(id)) {
+      stackOrder.splice(i, 1);
+    }
+  }
 }
 
 export function focus(id: string): void {

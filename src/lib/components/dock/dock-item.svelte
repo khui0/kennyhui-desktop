@@ -2,7 +2,6 @@
   import { App } from "$lib/applications.svelte";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import AppIcon from "../app/app-icon.svelte";
-  import { stackOrder } from "../window/windows.svelte";
   let { app }: { app: App } = $props();
 
   let open: boolean = $derived(app.count() > 0);
@@ -10,8 +9,6 @@
   function onclick() {
     app.open();
   }
-
-  $inspect(stackOrder);
 </script>
 
 <button class="group relative shrink-0" {onclick}>

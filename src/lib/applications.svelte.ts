@@ -1,5 +1,11 @@
 import type { Component } from "svelte";
-import { add, focus, stackOrder, type WindowProperties } from "./components/window/windows.svelte";
+import {
+  add,
+  focus,
+  remove,
+  stackOrder,
+  type WindowProperties,
+} from "./components/window/windows.svelte";
 import { query, type PictureModule } from "./images";
 import { applyFocus, type Vector } from "./components/window/helpers.svelte";
 import Resume from "../routes/(card)/resume/resume.svelte";
@@ -49,6 +55,11 @@ export class App {
       add(this.window());
     }
     focus(this.id);
+    applyFocus();
+  }
+
+  close(): void {
+    remove(this.id);
     applyFocus();
   }
 }

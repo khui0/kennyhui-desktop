@@ -9,6 +9,7 @@ import {
   type Vector,
 } from "./helpers.svelte";
 import { focus, snap, unfocus, unsnap, windows, type WindowSnap } from "./windows.svelte";
+import { applications } from "$lib/applications.svelte";
 
 export const windowDragHandler: Action<
   Document,
@@ -89,13 +90,19 @@ function onpointerdown(e: PointerEvent) {
   window.getSelection()?.removeAllRanges();
 }
 
-function onpointerup() {
+function onpointerup(e: PointerEvent) {
   isDragging = false;
   moveWindowsWithinBounds();
 
   if (windowSnap !== null) {
     snap(targetId, windowSnap, targetWindow ? targetWindow : undefined);
     windowSnap = null;
+  }
+
+  const target = e.target as HTMLElement;
+
+  if (target.closest("[data-window-close]")) {
+    applications.find((app) => targetId.startsWith(app.id))?.close();
   }
 }
 

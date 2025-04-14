@@ -6,8 +6,6 @@
   import { activeWindow } from "../window/windows.svelte";
   import MenubarItem from "./menubar-item.svelte";
 
-  let { children }: { children?: Snippet } = $props();
-
   let time: string = $state("");
 
   update();

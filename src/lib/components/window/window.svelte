@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { Vector } from "./helpers.svelte";
+  import { scale } from "svelte/transition";
 
   let {
     id,
@@ -63,6 +64,7 @@
 {/snippet}
 
 <div
+  in:scale={{ start: 0.9 }}
   class="bg-window rounded-box pointer-events-auto fixed box-content overflow-hidden shadow-2xl shadow-black/20 [[data-window-active]]:shadow-black/40"
   style="width: {size.x}px; height: {size.y}px; transform: translate({position.x}px, {position.y}px);"
   data-window={id}
