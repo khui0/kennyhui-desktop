@@ -5,7 +5,7 @@
 </script>
 
 <WindowContent>
-  <h2 class="text-2xl font-bold">Kenny Hui</h2>
+  <h2 class="text-3xl font-bold">Kenny Hui</h2>
   <ResumeSection title="Experience">
     <ResumeRole title="Freelance Frontend Developer" date="January 2024 - June 2024">
       Developed a web-based storefront for a client that allowed for the creation of posts and

@@ -74,6 +74,10 @@
 
 @custom-variant window-active (&:where([data-window-active] *));
 
+@theme {
+  --text-sm: 13px;
+}
+
 @layer base {
   *,
   ::after,
@@ -146,7 +150,7 @@
 }
 
 @utility btn {
-  @apply highlight bg-base-content/15 rounded-field h-[22px] translate-none border-none px-[7px] py-[3px] text-[13px] font-normal text-base-content/80;
+  @apply highlight bg-base-content/15 rounded-field text-base-content/80 h-[22px] translate-none border-none px-[7px] py-[3px] text-[13px] font-normal;
 
   &:active {
     @apply bg-base-content/25;
