@@ -108,11 +108,16 @@ function onpointermove(e: PointerEvent) {
     if (container.current !== null) {
       const properties = windows.find((window) => window.id === targetId);
 
-      if (cursor.y <= container.current.offsetTop) {
+      const margin = 5;
+
+      if (cursor.y <= container.current.offsetTop + margin) {
         windowSnap = "full";
-      } else if (cursor.x <= container.current.offsetLeft) {
+      } else if (cursor.x <= container.current.offsetLeft + margin) {
         windowSnap = "left";
-      } else if (cursor.x >= container.current.offsetLeft + container.current.clientWidth) {
+      } else if (
+        cursor.x >=
+        container.current.offsetLeft + container.current.clientWidth - margin
+      ) {
         windowSnap = "right";
       } else {
         windowSnap = null;
