@@ -35,7 +35,7 @@
     {/each}
   </div>
 </div>
-<div class="m-6 mb-0">
+<div class="m-6 mb-0 print:m-0 print:mt-6">
   <div class="flex flex-wrap justify-between gap-2">
     <h2 class="text-5xl leading-none font-bold tracking-tight">{data.project.title}</h2>
     <div class="flex flex-wrap items-center justify-center gap-2 py-1 print:hidden">
@@ -54,6 +54,6 @@
     <p>{data.project.year}</p>
   </div>
 </div>
-<div class="prose m-6 font-light print:max-w-full">
+<div class="prose not-print:m-6 font-light print:max-w-full">
   {@html data.html?.code}
 </div>

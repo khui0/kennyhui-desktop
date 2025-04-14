@@ -106,7 +106,7 @@
   }
 
   kbd {
-    @apply bg-base-300 mx-0 inline-flex min-w-6 items-center justify-center rounded-sm px-1.5 text-sm;
+    @apply highlight bg-base-200/80 mx-0 inline-flex min-w-6 items-center justify-center rounded-sm px-1.5 text-sm;
   }
 
   a {
