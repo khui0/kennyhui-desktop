@@ -35,4 +35,5 @@ export class App {
 export const applications: App[] = $state([
   new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume", Resume),
   new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"), "Contact Me", Resume),
+  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"), "Contact Me", Resume),
 ]);
