@@ -58,18 +58,16 @@
     }}
   ></div>
   {#each windows as window}
-    {#key window.id}
-      <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
-        <div class="absolute left-0 flex h-7 items-center">
-          <WindowControls />
-        </div>
-        <WindowTitleBar>
-          <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
-        </WindowTitleBar>
-        <WindowContent>
-          {@render (window.body as Snippet)()}
-        </WindowContent>
-      </Window>
-    {/key}
+    <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
+      <div class="absolute left-0 flex h-7 items-center">
+        <WindowControls />
+      </div>
+      <WindowTitleBar>
+        <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
+      </WindowTitleBar>
+      <WindowContent>
+        {@render (window.body as Snippet)()}
+      </WindowContent>
+    </Window>
   {/each}
 </div>
