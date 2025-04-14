@@ -96,8 +96,7 @@
   }
 
   kbd {
-    @apply highlight bg-base-300 mx-0 inline-flex min-w-6 items-center justify-center rounded-sm px-1.5 text-sm;
-    font-family: "DM Sans Variable", sans-serif;
+    @apply bg-base-300 mx-0 inline-flex min-w-6 items-center justify-center rounded-sm px-1.5 text-sm;
   }
 
   a {
@@ -109,22 +108,6 @@
   text-shadow: 0 0.05em 0.1em rgba(0, 0, 0, 0.3);
 }
 
-@utility focus-ring {
-  @apply outline-base-content outline-offset-2 focus-visible:outline-2;
-}
-
-@utility highlight {
-  box-shadow: 0 1px 1px -1px rgba(255, 255, 255, 0.3) inset;
-}
-
-@utility btn {
-  @apply highlight bg-base-100/50 hover:bg-base-100 border-none font-medium;
-}
-
-@utility btn-ghost {
-  @apply bg-transparent not-hover:shadow-none;
-}
-
 @utility glass-card {
   @apply bg-base-200/50 relative border-[0.5px] border-black/30! backdrop-blur-2xl transition-colors dark:border-black/90 print:border-none print:bg-transparent print:p-0 print:shadow-none;
   &::after {
@@ -133,11 +116,19 @@
   }
 }
 
-@utility window-card {
-  @apply dark:bg-base-100/60 dark:not-[[data-window-active]]:bg-base-100 relative border-[0.5px] border-black/30! bg-[#f6f6f6]/84 backdrop-blur-2xl not-[[data-window-active]]:bg-[#f6f6f6] dark:border-black/90;
+@utility bg-window-* {
+  @apply dark:bg-base-100/60 dark:not-[[data-window-active]]:bg-base-100 relative rounded-[--value(integer)px] border-[0.5px] border-black/30! bg-[#f6f6f6]/84 backdrop-blur-2xl not-[[data-window-active]]:bg-[#f6f6f6] dark:border-black/90;
   &::after {
     content: "";
-    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15 print:outline-none;
+    @apply pointer-events-none absolute inset-0 rounded-[calc(--value(integer)px-0.5px)] outline -outline-offset-1 outline-white/15 print:outline-none;
+  }
+}
+
+@utility bg-dock-* {
+  @apply relative rounded-[--value(integer)px] border-black/90 bg-[#f6f6f6]/84 backdrop-blur-2xl dark:border-[0.5px] dark:bg-[#4A4A4A]/39;
+  &::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-[calc(--value(integer)px-0.5px)] outline -outline-offset-1 outline-white/15 print:outline-none;
   }
 }
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Dock from "$lib/components/dock/dock.svelte";
   import Menubar from "$lib/components/menubar/menubar.svelte";
   import WindowManager from "$lib/components/window/window-manager.svelte";
   import { add } from "$lib/components/window/windows.svelte";
@@ -26,4 +27,5 @@
 <div class="flex h-full w-full flex-col">
   <Menubar />
   <WindowManager />
+  <Dock />
 </div>
