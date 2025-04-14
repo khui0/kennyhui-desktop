@@ -11,7 +11,7 @@
     <p class="text-base-content/30 text-sm font-extralight uppercase">CS @ SBU &mdash; New York</p>
   </section>
   <section
-    class="[&>*:nth-child(even)]:text-base-content/50 grid flex-1 grid-cols-[4fr_6fr] items-center gap-2 text-sm [&>*:nth-child(even)]:justify-self-start [&>*:nth-child(odd)]:justify-self-end"
+    class="[&>*:nth-child(even)]:text-base-content/50 grid flex-1 grid-cols-[3fr_5fr] items-center gap-2 text-sm [&>*:nth-child(even)]:justify-self-start [&>*:nth-child(odd)]:justify-self-end"
   >
     <p>Email</p>
     <a data-nodrag href="mailto:hello@kennyhui.dev">hello@kennyhui.dev</a>
