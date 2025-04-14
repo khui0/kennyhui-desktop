@@ -32,7 +32,7 @@
 >
   <MenubarItem type="logo"><TablerCircleFilled /></MenubarItem>
   <MenubarItem type="name"
-    >{activeWindow.current ? activeWindow.current.name : "Finder"}</MenubarItem
+    >{activeWindow.current ? activeWindow.current.name : "Kenny Hui"}</MenubarItem
   >
   <MenubarItem>File</MenubarItem>
   <MenubarItem>Edit</MenubarItem>
