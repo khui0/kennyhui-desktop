@@ -13,6 +13,7 @@ export interface WindowProperties {
   minSize?: Vector;
   snapTo?: WindowSnap;
   previousSize?: Vector;
+  titlebar?: boolean;
 }
 
 export const windows: WindowProperties[] = $state([]);

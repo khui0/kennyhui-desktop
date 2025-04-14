@@ -21,6 +21,9 @@ export class App {
   description: string;
   body: Component;
   allowMultipleWindows: boolean;
+  titlebar: boolean;
+  defaultSize: Vector;
+  minSize?: Vector;
 
   constructor(
     id: string,
@@ -29,6 +32,9 @@ export class App {
     description: string,
     body: Component,
     allowMultipleWindows: boolean = false,
+    titlebar: boolean = true,
+    defaultSize: Vector = { x: 400, y: 300 },
+    minSize: Vector = { x: 300, y: 28 },
   ) {
     this.id = id;
     this.name = name;
@@ -36,15 +42,20 @@ export class App {
     this.description = description;
     this.body = body;
     this.allowMultipleWindows = allowMultipleWindows;
+    this.titlebar = titlebar;
+    this.defaultSize = defaultSize;
+    this.minSize = minSize;
   }
 
-  window(title: string = this.name, size: Vector = { x: 400, y: 300 }): WindowProperties {
+  window(title: string = this.name, size: Vector = this.defaultSize): WindowProperties {
     return {
       id: `${this.id}.${this.count()}`,
       title,
       name: this.name,
       body: this.body,
       size,
+      titlebar: this.titlebar,
+      minSize: this.minSize,
     };
   }
 
@@ -81,6 +92,16 @@ export class App {
 
 export const applications: App[] = $state([
   new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume", Resume),
-  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"), "Contact Me", Contact),
+  new App(
+    "dev.kennyhui.contact",
+    "Contact",
+    query("icons/contact.png"),
+    "Contact Me",
+    Contact,
+    false,
+    false,
+    { x: 280, y: 500 },
+    { x: 280, y: 500 },
+  ),
   new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"), "Contact Me", Resume),
 ]);

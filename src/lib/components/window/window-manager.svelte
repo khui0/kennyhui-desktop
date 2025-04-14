@@ -3,7 +3,6 @@
   import { onMount, type Snippet } from "svelte";
   import { windowDragHandler } from "./actions.svelte";
   import { container, moveWindowsWithinBounds } from "./helpers.svelte";
-  import WindowContent from "./window-content.svelte";
   import WindowControls from "./window-controls.svelte";
   import WindowTitleBar from "./window-title-bar.svelte";
   import Window from "./window.svelte";
@@ -64,9 +63,11 @@
       <div class="absolute left-0 flex h-7 items-center">
         <WindowControls />
       </div>
-      <WindowTitleBar>
-        <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
-      </WindowTitleBar>
+      {#if window.titlebar}
+        <WindowTitleBar>
+          <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
+        </WindowTitleBar>
+      {/if}
       {@render (window.body as Snippet)()}
     </Window>
   {/each}
