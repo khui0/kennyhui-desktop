@@ -100,9 +100,14 @@ function onpointerup(e: PointerEvent) {
   }
 
   const target = e.target as HTMLElement;
+  const parent = target.closest("[data-window]") as HTMLElement;
+  if (parent === null) return;
+  if (!parent.contains(e.target as Node)) return;
 
-  if (target.closest("[data-window-close]")) {
-    applications.find((app) => targetId.startsWith(app.id))?.close();
+  const id = parent.getAttribute("data-window");
+
+  if (target.closest("[data-window-close]") && id !== null) {
+    applications.find((app) => id.startsWith(app.id))?.close();
   }
 }
 

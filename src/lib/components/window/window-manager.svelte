@@ -7,7 +7,7 @@
   import WindowControls from "./window-controls.svelte";
   import WindowTitleBar from "./window-title-bar.svelte";
   import Window from "./window.svelte";
-  import { windows, type WindowSnap } from "./windows.svelte";
+  import { stackOrder, windows, type WindowSnap } from "./windows.svelte";
 
   let snap: WindowSnap = $state(null);
 
@@ -16,6 +16,8 @@
   onMount(() => {
     moveWindowsWithinBounds();
   });
+
+  $inspect(windows, stackOrder);
 </script>
 
 <svelte:window

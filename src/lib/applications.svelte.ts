@@ -3,7 +3,9 @@ import {
   add,
   focus,
   remove,
+  show,
   stackOrder,
+  windows,
   type WindowProperties,
 } from "./components/window/windows.svelte";
 import { query, type PictureModule } from "./images";
@@ -11,8 +13,6 @@ import { applyFocus, type Vector } from "./components/window/helpers.svelte";
 import Resume from "../routes/(card)/resume/resume.svelte";
 
 export class App {
-  static count: number = 0;
-
   id: string;
   name: string;
   icon: PictureModule;
@@ -38,7 +38,7 @@ export class App {
 
   window(title: string = this.name, size: Vector = { x: 400, y: 300 }): WindowProperties {
     return {
-      id: `${this.id}.${App.count.toString()}`,
+      id: `${this.id}.${this.count()}`,
       title,
       name: this.name,
       body: this.body,
@@ -46,13 +46,21 @@ export class App {
     };
   }
 
+  // Returns number of App.window() instances
+  instances(): number {
+    return windows.filter((window) => window.id.startsWith(this.id)).length;
+  }
+
+  // Return number of windows shown
   count(): number {
     return stackOrder.filter((id) => id.startsWith(this.id)).length;
   }
 
   open(): void {
-    if (this.count() <= 0 || this.allowMultipleWindows) {
+    if (this.instances() <= 0) {
       add(this.window());
+    } else if (this.count() <= 0 || this.allowMultipleWindows) {
+      show(this.window());
     }
     focus(this.id);
     applyFocus();

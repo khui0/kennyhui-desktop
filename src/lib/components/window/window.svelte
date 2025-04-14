@@ -1,6 +1,7 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
   import type { Vector } from "./helpers.svelte";
+  import { stackOrder } from "./windows.svelte";
 
   let {
     id,
@@ -15,6 +16,10 @@
     minSize?: Vector;
     children: Snippet;
   } = $props();
+
+  let open: boolean = $derived(stackOrder.indexOf(id) !== -1);
+
+  $inspect(open);
 </script>
 
 <svelte:document />
@@ -63,7 +68,11 @@
 {/snippet}
 
 <div
-  class="bg-window rounded-box pointer-events-auto fixed box-content overflow-hidden shadow-2xl shadow-black/20 [[data-window-active]]:shadow-black/40"
+  class={{
+    "bg-window rounded-box fixed box-content overflow-hidden shadow-2xl shadow-black/20 transition-opacity [[data-window-active]]:shadow-black/40": true,
+    "pointer-events-auto opacity-100": open,
+    "opacity-0": !open,
+  }}
   style="width: {size.x}px; height: {size.y}px; transform: translate({position.x}px, {position.y}px);"
   data-window={id}
   data-window-transform="0,0"

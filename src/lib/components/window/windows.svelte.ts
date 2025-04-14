@@ -1,6 +1,5 @@
 import { tick, type Component } from "svelte";
 import { applyFocus, container, getSize, move, resize, type Vector } from "./helpers.svelte";
-import { App } from "$lib/applications.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -32,8 +31,7 @@ export function add(...properties: WindowProperties[]): void {
       };
     }
     windows.push(window);
-    stackOrder.push(window.id);
-    App.count++;
+    show(window);
   });
 
   tick().then(() => {
@@ -41,12 +39,11 @@ export function add(...properties: WindowProperties[]): void {
   });
 }
 
+export function show(window: WindowProperties): void {
+  stackOrder.push(window.id);
+}
+
 export function remove(id: string): void {
-  for (let i = 0; i < windows.length; i++) {
-    if (windows[i].id.startsWith(id)) {
-      windows.splice(i, 1);
-    }
-  }
   for (let i = 0; i < stackOrder.length; i++) {
     if (stackOrder[i].startsWith(id)) {
       stackOrder.splice(i, 1);
