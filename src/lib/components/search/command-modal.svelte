@@ -78,7 +78,7 @@
         <div
           in:scale={{ start: 0.975, duration: DURATION }}
           out:scale={{ start: 0.975, duration: DURATION }}
-          class="glass-card fixed top-1/5 left-1/2 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 overflow-hidden rounded-xl shadow-2xl shadow-black/70"
+          class="bg-glass fixed top-1/5 left-1/2 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 overflow-hidden rounded-xl shadow-2xl shadow-black/70"
         >
           {@render children?.()}
         </div>

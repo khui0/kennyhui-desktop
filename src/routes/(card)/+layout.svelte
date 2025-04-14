@@ -39,7 +39,7 @@
   <article
     in:fly={{ y: 50 }}
     out:fly={{ y: 50 }}
-    class="rounded-box not-print:glass-card shadow-2xl not-print:overflow-hidden print:p-0 print:shadow-none"
+    class="rounded-box not-print:bg-glass shadow-2xl not-print:overflow-hidden print:p-0 print:shadow-none"
   >
     {@render children()}
   </article>

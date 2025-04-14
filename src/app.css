@@ -72,6 +72,8 @@
 
 @custom-variant dark (&:where([data-theme="kennyhui-dark"], [data-theme="kennyhui-dark"] *));
 
+@custom-variant window-active (&:where([data-window-active] *));
+
 @layer base {
   *,
   ::after,
@@ -108,32 +110,33 @@
   text-shadow: 0 0.05em 0.1em rgba(0, 0, 0, 0.3);
 }
 
-@utility glass-card {
-  @apply bg-base-200/50 relative border-[0.5px] border-black/30! backdrop-blur-2xl transition-colors dark:border-black/90 print:border-none print:bg-transparent print:p-0 print:shadow-none;
+@utility bg-glass {
+  @apply bg-base-200/50 relative outline outline-black/30! backdrop-blur-2xl transition-colors sm:outline-[0.5px] dark:outline-black/90;
+
   &::after {
     content: "";
-    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15 print:outline-none;
+    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15;
   }
 }
 
-@utility bg-window-* {
-  @apply dark:bg-base-100/60 dark:not-[[data-window-active]]:bg-base-100 relative rounded-[--value(integer)px] border-[0.5px] border-black/30! bg-[#f6f6f6]/84 backdrop-blur-2xl not-[[data-window-active]]:bg-[#f6f6f6] dark:border-black/90;
+@utility bg-window {
+  @apply dark:bg-base-100/60 dark:not-[[data-window-active]]:bg-base-100 relative bg-[#f6f6f6]/84 outline backdrop-blur-2xl not-dark:outline-black/30 not-[[data-window-active]]:bg-[#f6f6f6] sm:outline-[0.5px] dark:outline-black/90;
+
   &::after {
     content: "";
-    @apply pointer-events-none absolute inset-0 rounded-[calc(--value(integer)px-0.5px)] outline -outline-offset-1 outline-white/15 print:outline-none;
+    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15;
   }
 }
 
-@utility bg-dock-* {
-  @apply relative rounded-[--value(integer)px] border-black/90 bg-[#f6f6f6]/84 backdrop-blur-2xl dark:border-[0.5px] dark:bg-[#4A4A4A]/39;
+@utility bg-dock {
+  @apply relative bg-[#f6f6f6]/84 outline-black/50 backdrop-blur-2xl dark:bg-[#4A4A4A]/39 dark:outline sm:dark:outline-[0.5px];
+
   &::after {
     content: "";
-    @apply pointer-events-none absolute inset-0 rounded-[calc(--value(integer)px-0.5px)] outline -outline-offset-1 outline-white/15 print:outline-none;
+    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15;
   }
 }
 
 @utility preview {
   @apply rounded-box border-base-content/20 bg-base-100/20 absolute border-2;
 }
-
-@custom-variant window-active (&:where([data-window-active] *));

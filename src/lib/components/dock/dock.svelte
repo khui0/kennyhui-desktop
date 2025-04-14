@@ -21,7 +21,7 @@
 
 <div class="mt-[0.5px] h-18">
   <div
-    class="bg-dock-18 z-50 mx-auto mb-1.5 flex h-15.5 w-fit max-w-full items-start gap-3 bg-[F6F6F6]/36 p-2.25 backdrop-blur-[135px]"
+    class="bg-dock rounded-[18px] z-50 mx-auto mb-1.5 flex h-15.5 w-fit max-w-full items-start gap-3 bg-[F6F6F6]/36 p-2.25 backdrop-blur-[135px]"
   >
     {#each applications as app}
       <DockTooltip>
