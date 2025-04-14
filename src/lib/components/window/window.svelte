@@ -70,8 +70,8 @@
 <div
   class={{
     "bg-window rounded-box fixed box-content overflow-hidden shadow-2xl shadow-black/20 transition-opacity [[data-window-active]]:shadow-black/40": true,
-    "pointer-events-auto opacity-100": open,
-    "opacity-0": !open,
+    "pointer-events-auto  opacity-100": open,
+    "pointer-events-none opacity-0": !open,
   }}
   style="width: {size.x}px; height: {size.y}px; transform: translate({position.x}px, {position.y}px);"
   data-window={id}
