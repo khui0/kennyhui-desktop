@@ -48,7 +48,8 @@ let windowSnap: WindowSnap = $state(null);
 
 function onpointerdown(e: PointerEvent) {
   const target = e.target as HTMLElement;
-  if (!target.closest("[data-window]")) {
+  const clickedMenubar = target.closest("[data-menubar]");
+  if (!target.closest("[data-window]") && !clickedMenubar) {
     unfocus();
     return;
   }
@@ -57,13 +58,15 @@ function onpointerdown(e: PointerEvent) {
   if (!parent.contains(e.target as Node)) return;
 
   const id = parent.getAttribute("data-window");
-  if (id) {
-    focus(id);
-    applyFocus();
+  if (!clickedMenubar) {
+    if (id) {
+      focus(id);
+      applyFocus();
 
-    targetId = id;
-  } else {
-    console.error(parent, "does not define an id");
+      targetId = id;
+    } else {
+      console.error(parent, "does not define an id");
+    }
   }
 
   if (target.closest("[data-nodrag]") && target !== parent) return;

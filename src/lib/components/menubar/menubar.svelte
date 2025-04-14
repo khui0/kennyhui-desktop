@@ -24,6 +24,7 @@
 </script>
 
 <menu
+  data-menubar
   class={{
     "flex h-8 w-full items-center overflow-x-auto overflow-y-hidden bg-white/50 px-2 backdrop-blur-[50px] transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:bg-black/18": true,
     "opacity-0": launchpad.open,
