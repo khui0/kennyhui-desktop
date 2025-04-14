@@ -3,8 +3,8 @@
   import dayjs from "dayjs";
   import { onMount, type Snippet } from "svelte";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
-  import MenubarItem from "./menubar-item.svelte";
   import { activeWindow } from "../window/windows.svelte";
+  import MenubarItem from "./menubar-item.svelte";
 
   let { children }: { children?: Snippet } = $props();
 
@@ -19,8 +19,6 @@
   function update() {
     time = dayjs().format("ddd MMM D h:mm A");
   }
-
-  $inspect(activeWindow.current);
 </script>
 
 <menu

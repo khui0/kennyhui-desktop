@@ -1,5 +1,6 @@
 import { tick, type Component } from "svelte";
 import { applyFocus, container, getSize, move, resize, type Vector } from "./helpers.svelte";
+import { App } from "$lib/applications.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -32,6 +33,7 @@ export function add(...properties: WindowProperties[]): void {
     }
     windows.push(window);
     stackOrder.push(window.id);
+    App.count++;
   });
 
   tick().then(() => {
@@ -50,10 +52,11 @@ export function remove(id: string): void {
 }
 
 export function focus(id: string): void {
-  const index = stackOrder.findIndex((item) => item === id);
+  const index = stackOrder.findIndex((item) => item.startsWith(id));
   if (index === -1 || index === stackOrder.length - 1) return;
+  const item = stackOrder[index];
   stackOrder.splice(index, 1);
-  stackOrder.push(id);
+  stackOrder.push(item);
 }
 
 export function unfocus(): void {

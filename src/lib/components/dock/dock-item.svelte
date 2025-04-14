@@ -2,17 +2,19 @@
   import { App } from "$lib/applications.svelte";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import AppIcon from "../app/app-icon.svelte";
-  import { add } from "../window/windows.svelte";
+  import { stackOrder } from "../window/windows.svelte";
   let { app }: { app: App } = $props();
 
-  let open: boolean = $state(false);
+  let open: boolean = $derived(app.count() > 0);
 
-  function openApp() {
-    add(app.window());
+  function onclick() {
+    app.open();
   }
+
+  $inspect(stackOrder);
 </script>
 
-<button class="group relative shrink-0" onclick={openApp}>
+<button class="group relative shrink-0" {onclick}>
   <div
     class="pointer-events-none absolute left-1/2 -translate-x-1/2 pb-4 opacity-0 group-hover:bottom-full group-hover:opacity-100"
   >
