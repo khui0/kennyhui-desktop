@@ -1,5 +1,5 @@
-import type { Component } from "svelte";
-import { container, getSize, move, resize, type Vector } from "./helpers.svelte";
+import { tick, type Component } from "svelte";
+import { applyFocus, container, getSize, move, resize, type Vector } from "./helpers.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -32,6 +32,10 @@ export function add(...properties: WindowProperties[]): void {
     }
     windows.push(window);
     stackOrder.push(window.id);
+  });
+
+  tick().then(() => {
+    applyFocus();
   });
 }
 
