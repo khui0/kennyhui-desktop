@@ -6,10 +6,10 @@
 
 <div class="group relative shrink-0">
   <div
-    class="pointer-events-none absolute bottom-1/2 left-1/2 -translate-x-1/2 pb-4 opacity-0 group-hover:bottom-full group-hover:opacity-100"
+    class="pointer-events-none absolute left-1/2 -translate-x-1/2 pb-4 opacity-0 group-hover:bottom-full group-hover:opacity-100"
   >
     <div
-      class="bg-glass rounded-selector text-base-content/90 px-2 py-1 text-[13px] font-light text-nowrap"
+      class="bg-glass rounded-selector text-base-content/90 px-3 py-0.75 text-[13px] text-nowrap shadow-md"
     >
       {@render tooltip()}
     </div>
