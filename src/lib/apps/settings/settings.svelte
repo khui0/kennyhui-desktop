@@ -9,9 +9,9 @@
       <h2 class="text-[15px] font-semibold">Appearance</h2>
     </div>
     <div data-nodrag>
-      <div class="rounded-field bg-base-300/30 border border-base-content/5 p-1.5">
+      <div class="rounded-field bg-base-300/30 border-base-content/5 border p-1.5">
         <div class="grid grid-cols-[auto_1fr]">
-          <p class="leading-[22px] ml-1">Appearance</p>
+          <p class="ml-1 leading-[22px]">Appearance</p>
           <div class="flex justify-end">
             <ThemeSelector />
           </div>
