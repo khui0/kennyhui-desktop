@@ -90,9 +90,10 @@ function onpointerup() {
   isDragging = false;
   moveWindowsWithinBounds();
 
-  snap(targetId, windowSnap, targetWindow ? targetWindow : undefined);
-
-  windowSnap = null;
+  if (windowSnap !== null) {
+    snap(targetId, windowSnap, targetWindow ? targetWindow : undefined);
+    windowSnap = null;
+  }
 }
 
 function onpointermove(e: PointerEvent) {
