@@ -1,12 +1,13 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  let { children }: { children?: Snippet } = $props();
+  let {
+    children,
+  }: {
+    children?: Snippet;
+  } = $props();
 </script>
 
-<div
-  class="window-active:bg-white window-active:dark:bg-[#1e1e1e] h-full w-full overflow-auto p-5"
-  data-nodrag
->
+<div data-nodrag class="window-content p-5">
   {@render children?.()}
 </div>

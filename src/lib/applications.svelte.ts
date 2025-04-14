@@ -13,6 +13,7 @@ import { query, type PictureModule } from "./images";
 import { applyFocus, type Vector } from "./components/window/helpers.svelte";
 import Contact from "./apps/contact/contact.svelte";
 import Resume from "./apps/resume/resume.svelte";
+import Settings from "./apps/settings/settings.svelte";
 
 export class App {
   id: string;
@@ -103,5 +104,17 @@ export const applications: App[] = $state([
     { x: 280, y: 500 },
     { x: 280, y: 500 },
   ),
-  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"), "Contact Me", Resume),
+  new App(
+    "dev.kennyhui.settings",
+    "Settings",
+    query("icons/settings.png"),
+    "Contact Me",
+    Settings,
+    false,
+    false,
+    {
+      x: 600,
+      y: 500,
+    },
+  ),
 ]);

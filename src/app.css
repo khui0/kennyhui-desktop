@@ -5,7 +5,7 @@
 @plugin "daisyui/theme" {
   name: "kennyhui-light";
   color-scheme: "light";
-  --color-base-100: #e5e5e5;
+  --color-base-100: #ebebeb;
   --color-base-200: #eeeeee;
   --color-base-300: #dadada;
   --color-base-content: oklch(20% 0 0);
@@ -29,8 +29,8 @@
   --radius-selector: 5px;
   --radius-field: 5px;
   --radius-box: 10px;
-  --size-selector: 0.21875rem;
-  --size-field: 0.21875rem;
+  --size-selector: 3px;
+  --size-field: 2.2px;
   --border: 0.5px;
   --depth: 0;
   --noise: 0;
@@ -63,8 +63,8 @@
   --radius-selector: 5px;
   --radius-field: 5px;
   --radius-box: 10px;
-  --size-selector: 0.21875rem;
-  --size-field: 0.21875rem;
+  --size-selector: 3px;
+  --size-field: 2.2px;
   --border: 0.5px;
   --depth: 0;
   --noise: 0;
@@ -84,12 +84,16 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-base-200, currentColor);
+    @apply border-base-content/10;
   }
 
   html,
   body {
     @apply h-full;
+  }
+
+  body {
+    @apply text-sm;
   }
 
   html {
@@ -124,7 +128,7 @@
 }
 
 @utility bg-window {
-  @apply dark:bg-base-100/50 dark:not-[[data-window-active]]:bg-base-100 relative bg-[#f6f6f6]/65 outline backdrop-blur-[40px] backdrop-saturate-150 not-dark:outline-black/10 not-[[data-window-active]]:bg-[#f6f6f6] sm:outline-[0.5px] dark:outline-black/90;
+  @apply dark:bg-base-100/50 not-[[data-window-active]]:bg-base-100 bg-base-100/65 relative outline backdrop-blur-[40px] backdrop-saturate-150 not-dark:outline-black/10 sm:outline-[0.5px] dark:outline-black/90;
 
   &::after {
     content: "";
@@ -155,4 +159,16 @@
   &:active {
     @apply bg-base-content/25;
   }
+}
+
+@utility select {
+  @apply border-none bg-transparent px-2.5;
+
+  &:hover {
+    @apply highlight bg-base-content/25;
+  }
+}
+
+@utility window-content {
+  @apply window-active:bg-white window-active:dark:bg-[#1e1e1e] h-full w-full overflow-auto;
 }

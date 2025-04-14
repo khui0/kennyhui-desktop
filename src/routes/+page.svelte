@@ -6,7 +6,7 @@
   import { onMount } from "svelte";
 
   onMount(() => {
-    applications.find((app) => app.id === "dev.kennyhui.resume")?.open();
+    applications.find((app) => app.id === "dev.kennyhui.contact")?.open();
   });
 </script>
 
