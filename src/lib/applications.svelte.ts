@@ -11,7 +11,8 @@ import {
 } from "./components/window/windows.svelte";
 import { query, type PictureModule } from "./images";
 import { applyFocus, type Vector } from "./components/window/helpers.svelte";
-import Resume from "../routes/(card)/resume/resume.svelte";
+import Contact from "./apps/contact/contact.svelte";
+import Resume from "./apps/resume/resume.svelte";
 
 export class App {
   id: string;
@@ -80,6 +81,6 @@ export class App {
 
 export const applications: App[] = $state([
   new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume", Resume),
-  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"), "Contact Me", Resume),
+  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"), "Contact Me", Contact),
   new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"), "Contact Me", Resume),
 ]);

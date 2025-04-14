@@ -67,9 +67,7 @@
       <WindowTitleBar>
         <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
       </WindowTitleBar>
-      <WindowContent>
-        {@render (window.body as Snippet)()}
-      </WindowContent>
+      {@render (window.body as Snippet)()}
     </Window>
   {/each}
 </div>

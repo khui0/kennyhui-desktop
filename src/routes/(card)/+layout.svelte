@@ -1,5 +1,4 @@
 <script lang="ts">
-  import NavButtons from "$lib/components/nav-buttons.svelte";
   import Wordmark from "$lib/components/wordmark.svelte";
   import { onMount, type Snippet } from "svelte";
   import { fade, fly } from "svelte/transition";
@@ -32,9 +31,6 @@
       <Wordmark class="w-auto text-4xl" />
       <p class="text-xs font-extralight tracking-tighter uppercase">CS @ SBU &mdash; New York</p>
     </a>
-    <div class="flex items-center gap-2 p-2">
-      <NavButtons home />
-    </div>
   </div>
   <article
     in:fly={{ y: 50 }}
