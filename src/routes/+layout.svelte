@@ -39,11 +39,9 @@
 />
 
 <MetaTags {...metaTags} />
-{#if ready}
-  <div in:fade={{ duration: 1000 }} class="fixed inset-0 z-[-1]">
-    <Gradient />
-  </div>
-{/if}
+<div class="fixed inset-0 z-[-1]">
+  <Gradient />
+</div>
 {@render children()}
 
 <Launchpad bind:this={launchpad.current} />

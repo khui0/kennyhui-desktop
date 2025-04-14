@@ -11,18 +11,9 @@
     init();
     theme.subscribe(init);
   });
-
-  let hidden: boolean = false;
 </script>
 
-<canvas
-  id="gradient-canvas"
-  class={{
-    "print:hidden": true,
-    "opacity-0": hidden,
-    "opacity-100 transition-opacity": !hidden,
-  }}
-></canvas>
+<canvas id="gradient-canvas"></canvas>
 
 <style>
   #gradient-canvas {
