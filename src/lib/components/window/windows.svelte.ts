@@ -44,6 +44,15 @@ export function show(window: WindowProperties): void {
 }
 
 export function remove(id: string): void {
+  hide(id);
+  for (let i = 0; i < windows.length; i++) {
+    if (windows[i].id.startsWith(id)) {
+      windows.splice(i, 1);
+    }
+  }
+}
+
+export function hide(id: string): void {
   for (let i = 0; i < stackOrder.length; i++) {
     if (stackOrder[i].startsWith(id)) {
       stackOrder.splice(i, 1);

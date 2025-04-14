@@ -4,7 +4,7 @@
   import AppIcon from "../app/app-icon.svelte";
   let { app }: { app: App } = $props();
 
-  let open: boolean = $derived(app.count() > 0);
+  let open: boolean = $derived(app.instances() > 0);
 
   function onclick() {
     app.open();

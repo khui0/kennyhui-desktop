@@ -106,8 +106,14 @@ function onpointerup(e: PointerEvent) {
 
   const id = parent.getAttribute("data-window");
 
-  if (target.closest("[data-window-close]") && id !== null) {
-    applications.find((app) => id.startsWith(app.id))?.close();
+  if (id !== null) {
+    const app = applications.find((app) => id.startsWith(app.id));
+    if (target.closest("[data-window-close]")) {
+      app?.quit();
+    }
+    if (target.closest("[data-window-hide]")) {
+      applications.find((app) => id.startsWith(app.id))?.close();
+    }
   }
 }
 

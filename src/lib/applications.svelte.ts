@@ -2,6 +2,7 @@ import type { Component } from "svelte";
 import {
   add,
   focus,
+  hide,
   remove,
   show,
   stackOrder,
@@ -67,6 +68,11 @@ export class App {
   }
 
   close(): void {
+    hide(this.id);
+    applyFocus();
+  }
+
+  quit(): void {
     remove(this.id);
     applyFocus();
   }
