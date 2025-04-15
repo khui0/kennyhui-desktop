@@ -64,7 +64,7 @@ export function hide(id: string): void {
 }
 
 export function focus(id: string): void {
-  const index = stackOrder.findIndex((item) => item.startsWith(id));
+  const index = stackOrder.findLastIndex((item) => item.startsWith(id));
   if (index === -1 || index === stackOrder.length - 1) return;
   const item = stackOrder[index];
   stackOrder.splice(index, 1);

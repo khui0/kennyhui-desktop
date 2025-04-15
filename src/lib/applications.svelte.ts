@@ -1,4 +1,9 @@
 import type { Component } from "svelte";
+import Browser from "./apps/browser/browser.svelte";
+import Contact from "./apps/contact/contact.svelte";
+import Resume from "./apps/resume/resume.svelte";
+import Settings from "./apps/settings/settings.svelte";
+import { applyFocus, type Vector } from "./components/window/helpers.svelte";
 import {
   add,
   focus,
@@ -10,12 +15,7 @@ import {
   type WindowProperties,
 } from "./components/window/windows.svelte";
 import { query, type PictureModule } from "./images";
-import { applyFocus, type Vector } from "./components/window/helpers.svelte";
-import Contact from "./apps/contact/contact.svelte";
-import Resume from "./apps/resume/resume.svelte";
-import Settings from "./apps/settings/settings.svelte";
 import { launchpad } from "./meta.svelte";
-import Browser from "./apps/browser/browser.svelte";
 
 export class App {
   id: string;
@@ -24,7 +24,7 @@ export class App {
   description: string;
   body: Component | null = null;
   callback: (() => void) | null = null;
-  allowMultipleWindows: boolean = false;
+  multipleWindows: boolean = false;
   titlebar: boolean = true;
   defaultSize: Vector = { x: 400, y: 300 };
   minSize: Vector = { x: 300, y: 28 };
@@ -43,8 +43,8 @@ export class App {
     return this;
   }
 
-  setAllowMultipleWindows(allowMultipleWindows: boolean): App {
-    this.allowMultipleWindows = allowMultipleWindows;
+  allowMultipleWindows(): App {
+    this.multipleWindows = true;
     return this;
   }
 
@@ -106,7 +106,7 @@ export class App {
     if (this.body !== null) {
       if (this.instances() <= 0) {
         add(this.window());
-      } else if (this.count() <= 0 || this.allowMultipleWindows) {
+      } else if (this.count() <= 0) {
         show(this.window());
       }
       focus(this.id);
@@ -160,5 +160,6 @@ export const applications: App[] = $state([
     .setMinSize({
       x: 300,
       y: 58,
-    }),
+    })
+    .allowMultipleWindows(),
 ]);
