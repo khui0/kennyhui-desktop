@@ -1,3 +1,4 @@
+import { applications } from "$lib/applications.svelte";
 import type { Action } from "svelte/action";
 import {
   applyFocus,
@@ -6,10 +7,9 @@ import {
   getMinSize,
   moveWindowsWithinBounds,
   toTranslate,
-  type Vector,
+  type Vector
 } from "./helpers.svelte";
 import { focus, snap, unfocus, unsnap, windows, type WindowSnap } from "./windows.svelte";
-import { applications } from "$lib/applications.svelte";
 
 export const windowDragHandler: Action<
   Document,
@@ -65,6 +65,11 @@ function onpointerdown(e: PointerEvent) {
       applyFocus();
 
       targetId = id;
+
+      // const window = windows.find((window) => window.id.startsWith(id));
+      // if (window) {
+      //   window.previousPosition = fromTranslate(parent);
+      // }
     } else {
       console.error(parent, "does not define an id");
     }
@@ -111,11 +116,17 @@ function onpointerup(e: PointerEvent) {
 
   if (id !== null) {
     const app = applications.find((app) => id.startsWith(app.id));
-    if (target.closest("[data-window-close]")) {
+    if (target?.closest("[data-window-close]")) {
       app?.quit();
     }
-    if (target.closest("[data-window-hide]")) {
+    if (target?.closest("[data-window-hide]")) {
       applications.find((app) => id.startsWith(app.id))?.close();
+    }
+    if (target?.closest("[data-window-fullscreen]")) {
+      const window = windows.find((window) => window.id.startsWith(id));
+      if (window?.snapTo !== "full") {
+        snap(id, "full", parent);
+      }
     }
   }
 }

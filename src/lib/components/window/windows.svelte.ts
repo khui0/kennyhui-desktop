@@ -14,6 +14,7 @@ export interface WindowProperties {
   minSize?: Vector;
   snapTo?: WindowSnap;
   previousSize?: Vector;
+  previousPosition?: Vector;
   titlebar?: boolean;
 }
 
