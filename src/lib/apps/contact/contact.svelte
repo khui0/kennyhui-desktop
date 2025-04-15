@@ -8,7 +8,7 @@
 <div class="flex h-full flex-col gap-2.5 p-5 text-center">
   <section class="mx-auto mt-10 text-start">
     <Wordmark class="w-auto text-8xl" />
-    <p class="text-base-content/30 text-sm font-extralight uppercase">CS @ SBU &mdash; New York</p>
+    <p class="text-base-content/30 text-sm uppercase">CS @ SBU &mdash; New York</p>
   </section>
   <section
     class="[&>*:nth-child(even)]:text-base-content/50 grid flex-1 grid-cols-[3fr_5fr] items-center gap-2 text-sm [&>*:nth-child(even)]:justify-self-start [&>*:nth-child(odd)]:justify-self-end"
