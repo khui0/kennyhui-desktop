@@ -20,32 +20,60 @@ export class App {
   name: string;
   icon: PictureModule;
   description: string;
-  body: Component;
-  allowMultipleWindows: boolean;
-  titlebar: boolean;
-  defaultSize: Vector;
-  minSize?: Vector;
+  body: Component | null = null;
+  callback: (() => void) | null = null;
+  allowMultipleWindows: boolean = false;
+  titlebar: boolean = true;
+  defaultSize: Vector = { x: 400, y: 300 };
+  minSize: Vector = { x: 300, y: 28 };
+  showInDock: boolean = true;
+  showInLaunchpad: boolean = true;
 
-  constructor(
-    id: string,
-    name: string,
-    icon: PictureModule,
-    description: string,
-    body: Component,
-    allowMultipleWindows: boolean = false,
-    titlebar: boolean = true,
-    defaultSize: Vector = { x: 400, y: 300 },
-    minSize: Vector = { x: 300, y: 28 },
-  ) {
+  constructor(id: string, name: string, icon: PictureModule, description: string) {
     this.id = id;
     this.name = name;
     this.icon = icon;
     this.description = description;
+  }
+
+  setBody(body: Component): App {
     this.body = body;
+    return this;
+  }
+
+  setAllowMultipleWindows(allowMultipleWindows: boolean): App {
     this.allowMultipleWindows = allowMultipleWindows;
-    this.titlebar = titlebar;
-    this.defaultSize = defaultSize;
-    this.minSize = minSize;
+    return this;
+  }
+
+  disableTitlebar(): App {
+    this.titlebar = false;
+    return this;
+  }
+
+  setDefaultSize(size: Vector): App {
+    this.defaultSize = size;
+    return this;
+  }
+
+  setMinSize(size: Vector): App {
+    this.minSize = size;
+    return this;
+  }
+
+  setCallback(callback: () => void): App {
+    this.callback = callback;
+    return this;
+  }
+
+  hideFromDock(): App {
+    this.showInDock = false;
+    return this;
+  }
+
+  hideFromLaunchpad(): App {
+    this.showInLaunchpad = false;
+    return this;
   }
 
   window(title: string = this.name, size: Vector = this.defaultSize): WindowProperties {
@@ -54,6 +82,7 @@ export class App {
       title,
       name: this.name,
       body: this.body,
+      callback: this.callback,
       size,
       titlebar: this.titlebar,
       minSize: this.minSize,
@@ -92,29 +121,17 @@ export class App {
 }
 
 export const applications: App[] = $state([
-  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume", Resume),
-  new App(
-    "dev.kennyhui.contact",
-    "Contact",
-    query("icons/contact.png"),
-    "Contact Me",
-    Contact,
-    false,
-    false,
-    { x: 280, y: 500 },
-    { x: 280, y: 500 },
-  ),
-  new App(
-    "dev.kennyhui.settings",
-    "Settings",
-    query("icons/settings.png"),
-    "Contact Me",
-    Settings,
-    false,
-    false,
-    {
+  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume").setBody(Resume),
+  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"), "Contact Me")
+    .setBody(Contact)
+    .disableTitlebar()
+    .setDefaultSize({ x: 280, y: 500 })
+    .setMinSize({ x: 280, y: 500 }),
+  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"), "Contact Me")
+    .setBody(Settings)
+    .disableTitlebar()
+    .setDefaultSize({
       x: 600,
       y: 500,
-    },
-  ),
+    }),
 ]);

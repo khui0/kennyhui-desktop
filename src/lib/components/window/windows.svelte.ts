@@ -7,7 +7,8 @@ export interface WindowProperties {
   id: string;
   title: string;
   name: string;
-  body: Component;
+  body: Component | null;
+  callback: (() => void) | null;
   position?: Vector;
   size?: Vector;
   minSize?: Vector;

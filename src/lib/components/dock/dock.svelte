@@ -8,7 +8,7 @@
     data-dock
     class="bg-dock flex min-h-15.25 w-fit max-w-full shrink-0 items-start gap-3 rounded-[18px] bg-[F6F6F6]/36 p-2.25 shadow-xl backdrop-blur-[135px]"
   >
-    {#each applications as app}
+    {#each applications.filter((app) => app.showInDock) as app}
       <DockItem {app} />
     {/each}
   </div>
