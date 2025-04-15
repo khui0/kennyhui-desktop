@@ -75,8 +75,8 @@ export function unfocus(): void {
   if (container.current === null) return;
   container.current.querySelectorAll("[data-window-active]").forEach((window) => {
     window.removeAttribute("data-window-active");
-    activeWindow.current = null;
   });
+  activeWindow.current = null;
 }
 
 export function snap(id: string, snap: WindowSnap, target?: HTMLElement): void {

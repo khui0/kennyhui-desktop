@@ -58,7 +58,7 @@ let windowSnap: WindowSnap = $state(null);
 function onpointerdown(e: PointerEvent) {
   const target = e.target as HTMLElement;
   const ignoreUnfocus = target.closest("[data-menubar]") || target.closest("[data-dock]");
-  if (!target.closest("[data-window]") && !ignoreUnfocus) {
+  if (target.closest("[data-window]") === null && ignoreUnfocus === null) {
     unfocus();
     return;
   }
