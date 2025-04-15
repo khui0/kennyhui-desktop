@@ -18,6 +18,7 @@
   </section>
   <section class="my-2 flex flex-wrap justify-center gap-2">
     <a
+      data-nodrag
       class="btn"
       aria-label="LinkedIn"
       href="https://www.linkedin.com/in/k-hui/"
@@ -28,6 +29,7 @@
       linkedin.com/in/k-hui
     </a>
     <a
+      data-nodrag
       class="btn"
       aria-label="GitHub"
       href="https://github.com/khui0"
@@ -38,6 +40,7 @@
       github.com/khui0
     </a>
     <a
+      data-nodrag
       class="btn"
       aria-label="Bluesky"
       href="https://bsky.app/profile/kennyhui.dev"
