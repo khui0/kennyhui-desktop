@@ -18,8 +18,6 @@
   } = $props();
 
   let open: boolean = $derived(stackOrder.indexOf(id) !== -1);
-
-  $inspect(open);
 </script>
 
 <svelte:document />

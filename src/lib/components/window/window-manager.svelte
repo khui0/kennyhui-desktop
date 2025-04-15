@@ -15,8 +15,6 @@
   onMount(() => {
     moveWindowsWithinBounds();
   });
-
-  $inspect(windows, stackOrder);
 </script>
 
 <svelte:window

@@ -15,8 +15,6 @@
   let history: string[] = $state([]);
   let position: number = -1;
 
-  $inspect(history);
-
   onMount(() => {
     navigate("https://www.google.com/search?igu=1");
   });
