@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { onMount, tick } from "svelte";
-  import HeroiconsArrowLeft16Solid from "~icons/heroicons/arrow-left-16-solid";
-  import HeroiconsArrowRight16Solid from "~icons/heroicons/arrow-right-16-solid";
-  import HeroiconsArrowPath16Solid from "~icons/heroicons/arrow-path-16-solid";
-  import HeroiconsSquaresPlus16Solid from "~icons/heroicons/squares-plus-16-solid";
   import { applications } from "$lib/applications.svelte";
   import { add } from "$lib/components/window/windows.svelte";
+  import { onMount } from "svelte";
+  import HeroiconsArrowLeft16Solid from "~icons/heroicons/arrow-left-16-solid";
+  import HeroiconsArrowPath16Solid from "~icons/heroicons/arrow-path-16-solid";
+  import HeroiconsArrowRight16Solid from "~icons/heroicons/arrow-right-16-solid";
+  import HeroiconsSquaresPlus16Solid from "~icons/heroicons/squares-plus-16-solid";
+
+  const app = $derived(applications.find((app) => app.id === "dev.kennyhui.browser"));
 
   let iframeRef: HTMLIFrameElement | null = $state(null);
 
@@ -69,7 +71,6 @@
   }
 
   function newWindow() {
-    const app = applications.find((app) => app.id === "dev.kennyhui.browser");
     if (!app) return;
     if (app.count() < 3) {
       add(app.window(`${app.name} (${app.instances() + 1})`));
@@ -106,7 +107,14 @@
       />
     </form>
     <div>
-      <button class="btn" aria-label="new window" onclick={newWindow}>
+      <button
+        class={{
+          btn: true,
+          "pointer-events-none opacity-50": (app?.instances() || 3) >= 3,
+        }}
+        aria-label="new window"
+        onclick={newWindow}
+      >
         <HeroiconsSquaresPlus16Solid />
       </button>
       <button class="btn" aria-label="refresh" onclick={refresh}>
