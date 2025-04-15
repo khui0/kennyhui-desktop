@@ -156,5 +156,9 @@ export const applications: App[] = $state([
     .setDefaultSize({
       x: 600,
       y: 500,
+    })
+    .setMinSize({
+      x: 300,
+      y: 58,
     }),
 ]);

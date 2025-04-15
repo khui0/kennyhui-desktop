@@ -68,7 +68,7 @@
   }
 </script>
 
-<div class="relative h-full">
+<div class="relative h-full flex flex-col">
   <div data-nodrag class="bg-base-200/80 flex items-center gap-2 p-1">
     <div class="flex items-center gap-1">
       <button class="btn" aria-label="back" onclick={back}>
