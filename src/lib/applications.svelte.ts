@@ -125,7 +125,9 @@ export class App {
 }
 
 export const applications: App[] = $state([
-  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume").setBody(Resume),
+  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume")
+    .setBody(Resume)
+    .setDefaultSize({ x: 400, y: 450 }),
   new App("dev.kennyhui.launchpad", "Launchpad", query("icons/launchpad.png"), "Show all apps")
     .setCallback(() => {
       launchpad.current?.show();
