@@ -138,7 +138,7 @@ export const applications: App[] = $state([
     .disableTitlebar()
     .setDefaultSize({ x: 280, y: 500 })
     .setMinSize({ x: 280, y: 500 }),
-  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"), "Contact Me")
+  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"), "Configure kennyhui.dev")
     .setBody(Settings)
     .disableTitlebar()
     .setDefaultSize({
