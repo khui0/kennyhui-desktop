@@ -3,6 +3,7 @@
   import HeroiconsArrowLeft16Solid from "~icons/heroicons/arrow-left-16-solid";
   import HeroiconsArrowRight16Solid from "~icons/heroicons/arrow-right-16-solid";
   import HeroiconsArrowPath16Solid from "~icons/heroicons/arrow-path-16-solid";
+  import HeroiconsSquaresPlus16Solid from '~icons/heroicons/squares-plus-16-solid';
 
   let iframeRef: HTMLIFrameElement | null = $state(null);
 
@@ -97,6 +98,9 @@
       />
     </form>
     <div>
+      <button class="btn" aria-label="refresh" onclick={refresh}>
+        <HeroiconsSquaresPlus16Solid />
+      </button>
       <button class="btn" aria-label="refresh" onclick={refresh}>
         <HeroiconsArrowPath16Solid />
       </button>

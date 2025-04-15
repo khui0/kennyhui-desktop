@@ -1,4 +1,3 @@
-import { applications } from "$lib/applications.svelte";
 import type { Action } from "svelte/action";
 import {
   applyFocus,
@@ -9,7 +8,16 @@ import {
   toTranslate,
   type Vector,
 } from "./helpers.svelte";
-import { focus, hide, snap, unfocus, unsnap, windows, type WindowSnap } from "./windows.svelte";
+import {
+  focus,
+  hide,
+  remove,
+  snap,
+  unfocus,
+  unsnap,
+  windows,
+  type WindowSnap,
+} from "./windows.svelte";
 
 export const windowDragHandler: Action<
   Document,
@@ -111,11 +119,12 @@ function onpointerup(e: PointerEvent) {
 
   if (id !== null) {
     if (target?.closest("[data-window-close]")) {
-      const app = applications.find((app) => id.startsWith(app.id));
-      app?.quit();
+      remove(id);
+      applyFocus();
     }
     if (target?.closest("[data-window-hide]")) {
       hide(id);
+      applyFocus();
     }
     if (target?.closest("[data-window-fullscreen]")) {
       const window = windows.find((window) => window.id.startsWith(id));
