@@ -1,14 +1,16 @@
 <script lang="ts">
-  import { controlKey, launchpad, search } from "$lib/meta.svelte";
-  import { tick } from "svelte";
-  import { items, type LaunchpadItem } from "../launchpad/launchpad";
-  import CommandModal from "./command-modal.svelte";
-  import Fuse from "fuse.js";
-  import { goto } from "$app/navigation";
-  import AppIcon from "../app/app-icon.svelte";
   import { App, applications } from "$lib/applications.svelte";
+  import { controlKey, search } from "$lib/meta.svelte";
+  import Fuse from "fuse.js";
+  import { tick } from "svelte";
+  import AppIcon from "../app/app-icon.svelte";
+  import CommandModal from "./command-modal.svelte";
 
-  const fuse = new Fuse(applications, {
+  const sorted = applications.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+  );
+
+  const fuse = new Fuse(sorted, {
     shouldSort: true,
     keys: ["name", "description"],
   });
@@ -18,7 +20,7 @@
 
   let query: string = $state("");
   let selected: number = $state(0);
-  let results: App[] = $state(applications);
+  let results: App[] = $state(sorted);
 
   let open: boolean = $state(false);
 
@@ -32,7 +34,7 @@
 
   $effect(() => {
     const filtered = fuse.search(query).map((res) => res.item);
-    results = filtered.length === 0 ? applications : filtered;
+    results = filtered.length === 0 ? sorted : filtered;
     selected = 0;
   });
 
