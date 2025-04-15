@@ -106,7 +106,7 @@ export class App {
     if (this.body !== null) {
       if (this.instances() <= 0) {
         add(this.window());
-      } else if (this.count() <= 0) {
+      } else  {
         windows.forEach((window) => {
           if (window.id.startsWith(this.id)) {
             show(window.id);

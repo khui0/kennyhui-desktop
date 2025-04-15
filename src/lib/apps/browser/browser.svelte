@@ -3,7 +3,9 @@
   import HeroiconsArrowLeft16Solid from "~icons/heroicons/arrow-left-16-solid";
   import HeroiconsArrowRight16Solid from "~icons/heroicons/arrow-right-16-solid";
   import HeroiconsArrowPath16Solid from "~icons/heroicons/arrow-path-16-solid";
-  import HeroiconsSquaresPlus16Solid from '~icons/heroicons/squares-plus-16-solid';
+  import HeroiconsSquaresPlus16Solid from "~icons/heroicons/squares-plus-16-solid";
+  import { applications } from "$lib/applications.svelte";
+  import { add } from "$lib/components/window/windows.svelte";
 
   let iframeRef: HTMLIFrameElement | null = $state(null);
 
@@ -36,7 +38,8 @@
 
   function resolveQuery(input: string): URL {
     if (URL.canParse(input)) return new URL(input);
-    if (/^(?:[a-z0-9][a-z0-9]*\.)?[a-z0-9][a-z0-9]*\.[a-z0-9]+$/.test(input)) return new URL(`https://${input}`);
+    if (/^(?:[a-z0-9][a-z0-9]*\.)?[a-z0-9][a-z0-9]*\.[a-z0-9]+$/.test(input))
+      return new URL(`https://${input}`);
     return new URL(`https://www.google.com/search?igu=1&q=${encodeURIComponent(input)}`);
   }
 
@@ -47,7 +50,6 @@
       position--;
       iframeRef.src = history[position];
       searchBar = iframeRef.src;
-
     }
   }
 
@@ -67,9 +69,17 @@
     iframeRef.src = "";
     iframeRef.src = history[position];
   }
+
+  function newWindow() {
+    const app = applications.find((app) => app.id === "dev.kennyhui.browser");
+    if (!app) return;
+    if (app.count() < 3) {
+      add(app.window(`${app.name} (${app.instances() + 1})`));
+    }
+  }
 </script>
 
-<div class="relative h-full flex flex-col">
+<div class="relative flex h-full flex-col">
   <div data-nodrag class="bg-base-200/80 flex items-center gap-2 p-1">
     <div class="flex items-center gap-1">
       <button class="btn" aria-label="back" onclick={back}>
@@ -98,7 +108,7 @@
       />
     </form>
     <div>
-      <button class="btn" aria-label="refresh" onclick={refresh}>
+      <button class="btn" aria-label="new window" onclick={newWindow}>
         <HeroiconsSquaresPlus16Solid />
       </button>
       <button class="btn" aria-label="refresh" onclick={refresh}>

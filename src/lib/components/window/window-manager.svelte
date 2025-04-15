@@ -58,21 +58,19 @@
       "opacity-100": snap === "full",
     }}
   ></div>
-  {#each windows as window}
-    {#key window.id}
-      <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
-        <div class="absolute left-0 flex h-7 items-center">
-          <WindowControls />
-        </div>
-        {#if window.titlebar}
-          <WindowTitleBar>
-            <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
-          </WindowTitleBar>
-        {/if}
-        {#if window.body !== null}
-          {@render (window.body as Snippet)()}
-        {/if}
-      </Window>
-    {/key}
+  {#each windows as window (window.id)}
+    <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
+      <div class="absolute left-0 flex h-7 items-center">
+        <WindowControls />
+      </div>
+      {#if window.titlebar}
+        <WindowTitleBar>
+          <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
+        </WindowTitleBar>
+      {/if}
+      {#if window.body !== null}
+        {@render (window.body as Snippet)()}
+      {/if}
+    </Window>
   {/each}
 </div>
