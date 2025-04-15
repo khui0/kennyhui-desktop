@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex h-full flex-col gap-2.5 p-5 text-center">
-  <section class="mx-auto mt-10 text-start">
+  <section class="mx-auto mt-16 text-start">
     <Wordmark class="w-auto text-8xl" />
     <p class="text-base-content/30 text-sm uppercase">CS @ SBU &mdash; New York</p>
   </section>
