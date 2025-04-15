@@ -107,7 +107,11 @@ export class App {
       if (this.instances() <= 0) {
         add(this.window());
       } else if (this.count() <= 0) {
-        show(this.window());
+        windows.forEach((window) => {
+          if (window.id.startsWith(this.id)) {
+            show(window.id);
+          }
+        });
       }
       focus(this.id);
       applyFocus();

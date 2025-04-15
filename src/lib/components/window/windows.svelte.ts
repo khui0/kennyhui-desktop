@@ -34,7 +34,7 @@ export function add(...properties: WindowProperties[]): void {
       };
     }
     windows.push(window);
-    show(window);
+    show(window.id);
   });
 
   tick().then(() => {
@@ -42,8 +42,8 @@ export function add(...properties: WindowProperties[]): void {
   });
 }
 
-export function show(window: WindowProperties): void {
-  stackOrder.push(window.id);
+export function show(id: string): void {
+  stackOrder.push(id);
 }
 
 export function remove(id: string): void {
