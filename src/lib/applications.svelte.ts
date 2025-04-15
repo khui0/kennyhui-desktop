@@ -15,6 +15,7 @@ import Contact from "./apps/contact/contact.svelte";
 import Resume from "./apps/resume/resume.svelte";
 import Settings from "./apps/settings/settings.svelte";
 import { launchpad } from "./meta.svelte";
+import Browser from "./apps/browser/browser.svelte";
 
 export class App {
   id: string;
@@ -138,9 +139,20 @@ export const applications: App[] = $state([
     .disableTitlebar()
     .setDefaultSize({ x: 280, y: 500 })
     .setMinSize({ x: 280, y: 500 }),
-  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"), "Configure kennyhui.dev")
+  new App(
+    "dev.kennyhui.settings",
+    "Settings",
+    query("icons/settings.png"),
+    "Configure kennyhui.dev",
+  )
     .setBody(Settings)
     .disableTitlebar()
+    .setDefaultSize({
+      x: 600,
+      y: 500,
+    }),
+  new App("dev.kennyhui.browser", "Browser", query("icons/chromium.png"), "Browse the web")
+    .setBody(Browser)
     .setDefaultSize({
       x: 600,
       y: 500,

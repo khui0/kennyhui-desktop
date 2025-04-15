@@ -6,9 +6,9 @@
   import AppIcon from "../app/app-icon.svelte";
   import CommandModal from "./command-modal.svelte";
 
-  const sorted = applications.sort((a, b) =>
-    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
-  );
+  const sorted = applications
+    .slice(0)
+    .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
   const fuse = new Fuse(sorted, {
     shouldSort: true,
