@@ -30,9 +30,9 @@
 </script>
 
 <FullscreenModal bind:this={modal} bind:open title="Launchpad">
-  <p class="pointer-events-none self-center p-8 pb-0 opacity-50">
-    Click anywhere or <kbd>Esc</kbd> to close
-  </p>
+  <div class="self-center p-8 pb-0">
+    <input type="text" class="input" placeholder="Search" />
+  </div>
   <div
     class="mx-auto grid w-full max-w-4/5 grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-16 p-8 pb-16"
     role="presentation"
@@ -46,7 +46,7 @@
         aria-label={item.title}
         href="/{item.path}"
         onclick={close}
-        class="relative active: mx-auto flex w-fit cursor-default flex-col items-center gap-2 rounded-sm focus:outline-none"
+        class="active: relative mx-auto flex w-fit cursor-default flex-col items-center gap-2 rounded-sm focus:outline-none"
       >
         <AppIcon src={item.icon.default} alt="{item.title} icon" size="lg" />
         <p
