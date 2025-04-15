@@ -126,14 +126,11 @@ export class App {
 
 export const applications: App[] = $state([
   new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume").setBody(Resume),
-  new App(
-    "dev.kennyhui.launchpad",
-    "Launchpad",
-    query("icons/launchpad.png"),
-    "Show all apps",
-  ).setCallback(() => {
-    launchpad.current?.show();
-  }),
+  new App("dev.kennyhui.launchpad", "Launchpad", query("icons/launchpad.png"), "Show all apps")
+    .setCallback(() => {
+      launchpad.current?.show();
+    })
+    .hideFromLaunchpad(),
   new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"), "Contact Me")
     .setBody(Contact)
     .disableTitlebar()
