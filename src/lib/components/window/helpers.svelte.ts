@@ -1,4 +1,4 @@
-import { activeWindow, stackOrder, windows, type WindowSnap } from "./windows.svelte";
+import { activeWindow, stackOrder, unfocus, windows, type WindowSnap } from "./windows.svelte";
 
 export interface Vector {
   x: number;
@@ -183,5 +183,8 @@ export function applyFocus() {
     } else {
       window.removeAttribute("data-window-active");
     }
+  }
+  if (windows.length === 0) {
+    unfocus();
   }
 }
