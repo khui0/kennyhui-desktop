@@ -3,7 +3,7 @@
   import DockItem from "./dock-item.svelte";
 </script>
 
-<div class="mt-0.5 flex h-17.5 shrink-0 items-start justify-center px-2">
+<div class="mt-[1px] flex h-17.5 shrink-0 items-start justify-center px-2">
   <div
     data-dock
     class="bg-dock flex min-h-15.5 w-fit max-w-full shrink-0 items-start gap-3 rounded-[18px] bg-[F6F6F6]/36 p-2.5 shadow-xl backdrop-blur-[135px]"
