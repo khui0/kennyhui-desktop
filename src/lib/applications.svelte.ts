@@ -16,6 +16,7 @@ import {
 } from "./components/window/windows.svelte";
 import { query, type PictureModule } from "./images";
 import { launchpad } from "./meta.svelte";
+import Debug from "./apps/debug/debug.svelte";
 
 export class App {
   id: string;
@@ -106,7 +107,7 @@ export class App {
     if (this.body !== null) {
       if (this.instances() <= 0) {
         add(this.window());
-      } else  {
+      } else if (this.count() <= 0) {
         windows.forEach((window) => {
           if (window.id.startsWith(this.id)) {
             show(window.id);
@@ -166,4 +167,9 @@ export const applications: App[] = $state([
       y: 58,
     })
     .allowMultipleWindows(),
+  new App("dev.kennyhui.debug", "Debug", query("icons/debug.png"), "Debugging interface")
+    .setBody(Debug)
+    .disableTitlebar()
+    .setDefaultSize({ x: 280, y: 400 })
+    .setMinSize({ x: 280, y: 400 }),
 ]);
