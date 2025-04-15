@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { applications } from "$lib/applications.svelte";
   import { launchpad } from "$lib/meta.svelte";
   import AppIcon from "../app/app-icon.svelte";
   import FullscreenModal from "./fullscreen-modal.svelte";
-  import { items } from "./launchpad";
 
   let modal: FullscreenModal | undefined = $state();
 
@@ -41,20 +41,22 @@
       close();
     }}
   >
-    {#each items as item}
-      <a
-        aria-label={item.title}
-        href="/{item.path}"
-        onclick={close}
+    {#each applications.filter((app) => app.showInLaunchpad) as app}
+      <button
+        aria-label={app.name}
+        onclick={() => {
+          close();
+          app.open();
+        }}
         class="active: relative mx-auto flex w-fit cursor-default flex-col items-center gap-2 rounded-sm focus:outline-none"
       >
-        <AppIcon src={item.icon.default} alt="{item.title} icon" size="lg" />
+        <AppIcon src={app.icon.default} alt="{app.name} icon" size="lg" />
         <p
           class="text-shadow pointer-events-none absolute top-full left-1/2 mt-2.5 w-24 -translate-x-1/2 text-center text-[13px]"
         >
-          {item.title}
+          {app.name}
         </p>
-      </a>
+      </button>
     {/each}
   </div>
 </FullscreenModal>

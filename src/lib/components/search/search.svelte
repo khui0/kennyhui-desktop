@@ -6,10 +6,11 @@
   import Fuse from "fuse.js";
   import { goto } from "$app/navigation";
   import AppIcon from "../app/app-icon.svelte";
+  import { App, applications } from "$lib/applications.svelte";
 
-  const fuse = new Fuse(items, {
+  const fuse = new Fuse(applications, {
     shouldSort: true,
-    keys: ["title", "short"],
+    keys: ["name", "description"],
   });
 
   let modal: CommandModal | undefined = $state();
@@ -17,7 +18,7 @@
 
   let query: string = $state("");
   let selected: number = $state(0);
-  let results: LaunchpadItem[] = $state(items);
+  let results: App[] = $state(applications);
 
   let open: boolean = $state(false);
 
@@ -31,7 +32,7 @@
 
   $effect(() => {
     const filtered = fuse.search(query).map((res) => res.item);
-    results = filtered.length === 0 ? items : filtered;
+    results = filtered.length === 0 ? applications : filtered;
     selected = 0;
   });
 
@@ -76,7 +77,7 @@
       input?.focus();
 
       if (e.key === "Enter") {
-        goto("/" + results[selected].path);
+        results[selected].open();
         close();
       }
     }
@@ -93,7 +94,7 @@
       placeholder="Search for apps"
     />
     <ul class="border-base-content/8 border-t p-2">
-      {#each results as item, i}
+      {#each results as app, i}
         <li>
           <button
             class={{
@@ -101,15 +102,15 @@
               "bg-base-content/10": i === selected,
             }}
             onclick={() => {
-              goto("/" + item.path);
+              app.open();
               close();
             }}
           >
-            <AppIcon src={item.icon.default} alt="{item.title} icon" size="xs" />
-            <span>{item.title}</span>
-            <span class="text-base-content/50 overflow-hidden text-ellipsis whitespace-nowrap"
-              >{item.short}</span
-            >
+            <AppIcon src={app.icon.default} alt="{app.name} icon" size="xs" />
+            <span>{app.name}</span>
+            <span class="text-base-content/50 overflow-hidden text-ellipsis whitespace-nowrap">
+              {app.description}
+            </span>
           </button>
         </li>
       {/each}
