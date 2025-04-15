@@ -172,3 +172,7 @@
 @utility window-content {
   @apply window-active:bg-white window-active:dark:bg-[#1e1e1e] h-full w-full overflow-auto;
 }
+
+@utility input {
+  @apply bg-base-100/50;
+}
