@@ -35,7 +35,7 @@
 
   function resolveQuery(input: string): URL {
     if (URL.canParse(input)) return new URL(input);
-    if (/^(?:[a-z0-9][a-z0-9]*\.)[a-z0-9][a-z0-9]*\.[a-z0-9]+$/.test(input)) return new URL(`https://${input}`);
+    if (/^(?:[a-z0-9][a-z0-9]*\.)?[a-z0-9][a-z0-9]*\.[a-z0-9]+$/.test(input)) return new URL(`https://${input}`);
     return new URL(`https://www.google.com/search?igu=1&q=${encodeURIComponent(input)}`);
   }
 
