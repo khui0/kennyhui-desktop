@@ -22,7 +22,6 @@ export class App {
   id: string;
   name: string;
   icon: PictureModule;
-  description: string;
   body: Component | null = null;
   callback: (() => void) | null = null;
   multipleWindows: boolean = false;
@@ -32,11 +31,10 @@ export class App {
   showInDock: boolean = true;
   showInLaunchpad: boolean = true;
 
-  constructor(id: string, name: string, icon: PictureModule, description: string) {
+  constructor(id: string, name: string, icon: PictureModule) {
     this.id = id;
     this.name = name;
     this.icon = icon;
-    this.description = description;
   }
 
   setBody(body: Component): App {
@@ -131,32 +129,27 @@ export class App {
 }
 
 export const applications: App[] = $state([
-  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume")
+  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"))
     .setBody(Resume)
     .setDefaultSize({ x: 400, y: 450 }),
-  new App("dev.kennyhui.launchpad", "Launchpad", query("icons/launchpad.png"), "Show all apps")
+  new App("dev.kennyhui.launchpad", "Launchpad", query("icons/launchpad.png"))
     .setCallback(() => {
       launchpad.current?.show();
     })
     .hideFromLaunchpad(),
-  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"), "Contact Me")
+  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"))
     .setBody(Contact)
     .disableTitlebar()
     .setDefaultSize({ x: 280, y: 500 })
     .setMinSize({ x: 280, y: 500 }),
-  new App(
-    "dev.kennyhui.settings",
-    "Settings",
-    query("icons/settings.png"),
-    "Configure kennyhui.dev",
-  )
+  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"))
     .setBody(Settings)
     .disableTitlebar()
     .setDefaultSize({
       x: 600,
       y: 500,
     }),
-  new App("dev.kennyhui.browser", "Browser", query("icons/chromium.png"), "Browse the web")
+  new App("dev.kennyhui.browser", "Browser", query("icons/chromium.png"))
     .setBody(Browser)
     .setDefaultSize({
       x: 600,
@@ -167,9 +160,10 @@ export const applications: App[] = $state([
       y: 58,
     })
     .allowMultipleWindows(),
-  new App("dev.kennyhui.debug", "Debug", query("icons/debug.png"), "Debugging interface")
+  new App("dev.kennyhui.debug", "Debug", query("icons/debug.png"))
     .setBody(Debug)
     .disableTitlebar()
     .setDefaultSize({ x: 280, y: 400 })
-    .setMinSize({ x: 280, y: 400 }),
+    .setMinSize({ x: 280, y: 400 })
+    .hideFromDock(),
 ]);

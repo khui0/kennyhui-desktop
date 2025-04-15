@@ -111,7 +111,6 @@
             <AppIcon src={app.icon.default} alt="{app.name} icon" size="xs" />
             <span>{app.name}</span>
             <span class="text-base-content/50 overflow-hidden text-ellipsis whitespace-nowrap">
-              {app.description}
             </span>
           </button>
         </li>
