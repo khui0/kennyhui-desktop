@@ -83,7 +83,7 @@ function onpointerdown(e: PointerEvent) {
     dragInitial = cursor;
     isDragging = true;
   }
-  
+
   windowInitialPosition = fromTranslate(parent);
   windowInitialSize = { x: parent.clientWidth, y: parent.clientHeight };
   minSize = getMinSize(parent);
@@ -103,7 +103,7 @@ function onpointerup(e: PointerEvent) {
   }
 
   const target = e.target as HTMLElement;
-  const parent = target.closest("[data-window]") as HTMLElement;
+  const parent = target?.closest("[data-window]") as HTMLElement;
   if (parent === null) return;
   if (!parent.contains(e.target as Node)) return;
 

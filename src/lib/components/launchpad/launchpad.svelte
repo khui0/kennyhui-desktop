@@ -31,7 +31,7 @@
 
 <FullscreenModal bind:this={modal} bind:open title="Launchpad">
   <div class="self-center p-8 pb-0">
-    <input type="text" class="input" placeholder="Search" />
+    <p class="text-base-content/50">Click anywhere or <kbd>Esc</kbd> to close</p>
   </div>
   <div
     class="mx-auto grid w-full max-w-4/5 grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-16 p-8 pb-16"
