@@ -69,7 +69,9 @@
             <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
           </WindowTitleBar>
         {/if}
-        {@render (window.body as Snippet)()}
+        {#if window.body !== null}
+          {@render (window.body as Snippet)()}
+        {/if}
       </Window>
     {/key}
   {/each}

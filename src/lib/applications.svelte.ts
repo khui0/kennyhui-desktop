@@ -14,6 +14,7 @@ import { applyFocus, type Vector } from "./components/window/helpers.svelte";
 import Contact from "./apps/contact/contact.svelte";
 import Resume from "./apps/resume/resume.svelte";
 import Settings from "./apps/settings/settings.svelte";
+import { launchpad } from "./meta.svelte";
 
 export class App {
   id: string;
@@ -100,13 +101,16 @@ export class App {
   }
 
   open(): void {
-    if (this.instances() <= 0) {
-      add(this.window());
-    } else if (this.count() <= 0 || this.allowMultipleWindows) {
-      show(this.window());
+    this.callback?.();
+    if (this.body !== null) {
+      if (this.instances() <= 0) {
+        add(this.window());
+      } else if (this.count() <= 0 || this.allowMultipleWindows) {
+        show(this.window());
+      }
+      focus(this.id);
+      applyFocus();
     }
-    focus(this.id);
-    applyFocus();
   }
 
   close(): void {
@@ -122,6 +126,14 @@ export class App {
 
 export const applications: App[] = $state([
   new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"), "My Resume").setBody(Resume),
+  new App(
+    "dev.kennyhui.launchpad",
+    "Launchpad",
+    query("icons/launchpad.png"),
+    "Show all apps",
+  ).setCallback(() => {
+    launchpad.current?.show();
+  }),
   new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"), "Contact Me")
     .setBody(Contact)
     .disableTitlebar()
