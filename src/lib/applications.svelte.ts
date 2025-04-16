@@ -28,6 +28,7 @@ export class App {
   titlebar: boolean = true;
   defaultSize: Vector = { x: 400, y: 300 };
   minSize: Vector = { x: 300, y: 28 };
+  defaultPosition: Vector | null = null;
   showInDock: boolean = true;
   showInLaunchpad: boolean = true;
 
@@ -62,6 +63,11 @@ export class App {
     return this;
   }
 
+  setDefaultPosition(position: Vector): App {
+    this.defaultPosition = position;
+    return this;
+  }
+
   setCallback(callback: () => void): App {
     this.callback = callback;
     return this;
@@ -78,7 +84,7 @@ export class App {
   }
 
   window(title: string = this.name, size: Vector = this.defaultSize): WindowProperties {
-    return {
+    const properties: WindowProperties = {
       id: `${this.id}.${this.count()}`,
       title,
       name: this.name,
@@ -88,6 +94,10 @@ export class App {
       titlebar: this.titlebar,
       minSize: this.minSize,
     };
+    if (this.defaultPosition !== null) {
+      properties.position = this.defaultPosition;
+    }
+    return properties;
   }
 
   // Returns number of App.window() instances
@@ -165,5 +175,6 @@ export const applications: App[] = $state([
     .disableTitlebar()
     .setDefaultSize({ x: 280, y: 400 })
     .setMinSize({ x: 280, y: 400 })
+    .setDefaultPosition({ x: 40, y: 40 })
     .hideFromDock(),
 ]);
