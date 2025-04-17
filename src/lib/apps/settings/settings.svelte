@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ThemeSelector from "$lib/components/theme/theme-selector.svelte";
+  import ThemeSelector from "./theme-selector.svelte";
 </script>
 
 <div class="grid h-full grid-cols-[200px_1fr]">
