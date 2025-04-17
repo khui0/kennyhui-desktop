@@ -27,6 +27,8 @@
       flip = true;
     }
   });
+
+  
 </script>
 
 <div data-menubar-item={id} class="group relative -mx-1 py-1" bind:this={menuRef}>

@@ -5,6 +5,7 @@
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import { activeWindow } from "../window/windows.svelte";
   import MenubarItem from "./menubar-item.svelte";
+  import { activateMenubar, deactivateMenubar } from "./helpers.svelte";
 
   let time: string = $state("");
   let menubarRef: HTMLElement | null = $state(null);
@@ -48,10 +49,7 @@
       if (id === null) return;
 
       startDisableTimeout();
-
-      menubarRef?.setAttribute("data-menubar-active", "");
-      menubar.active = true;
-      menubar.activeId = id;
+      activateMenubar(id);
     } else {
       deactivateMenubar();
     }
@@ -66,9 +64,7 @@
     if (item !== null) {
       const id = item.getAttribute("data-menubar-item");
       if (id !== null && id !== menubar.activeId) {
-        menubarRef?.setAttribute("data-menubar-active", "");
-        menubar.active = true;
-        menubar.activeId = id;
+        activateMenubar(id);
       }
     }
   }
@@ -87,17 +83,12 @@
     }
     itemVisitNumber++;
   }
-
-  function deactivateMenubar(): void {
-    menubarRef?.removeAttribute("data-menubar-active");
-    menubar.active = false;
-    menubar.activeId = "";
-  }
 </script>
 
 <svelte:document {onpointerdown} {onpointermove} {onpointerup} />
 
 <menu
+  data-menubar
   bind:this={menubarRef}
   class={{
     "absolute flex h-8 w-full items-center bg-white/50 px-2 backdrop-blur-[50px] transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:bg-black/18": true,
