@@ -17,7 +17,7 @@ export const settingsPages: SettingsPage[] = [
   },
   {
     title: "Appearance",
-    icon: query("icons/about.png"),
+    icon: query("icons/appearance.png"),
     content: Appearance,
   },
 ];
