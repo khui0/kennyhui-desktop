@@ -14,23 +14,34 @@
     children?: Snippet;
   } = $props();
 
-  let width: number = $state(0);
+  let parentRef: HTMLElement | null = $state(null);
   let menuRef: HTMLElement | null = $state(null);
 
   let open: boolean = $derived(menubar.activeId === id);
   let flip: boolean = $state(false);
 
-  onMount(() => {
-    if (!menuRef) return;
-    const rect = menuRef.getBoundingClientRect();
+  $effect(() => {
+    open;
+    console.log("uh");
+    positionMenu();
+  });
 
-    if (rect.x + width >= document.body.clientWidth) {
+  function positionMenu(): void {
+    if (!parentRef) return;
+    if (!menuRef) return;
+
+    const left = parentRef.getBoundingClientRect().x;
+    const width = menuRef.clientWidth;
+
+    console.log(left, width, document.body.clientWidth);
+
+    if (left + width >= document.body.clientWidth) {
       flip = true;
     }
-  });
+  }
 </script>
 
-<div data-menubar-item={id} class="group relative -mx-1 py-1" bind:this={menuRef}>
+<div data-menubar-item={id} class="group relative -mx-1 py-1" bind:this={parentRef}>
   <button
     class={{
       "flex h-6 shrink-0 items-center justify-center rounded-sm px-[11px] text-[13px] text-shadow-md": true,
@@ -57,7 +68,7 @@
         "left-0": !flip,
         "right-0": flip,
       }}
-      bind:clientWidth={width}
+      bind:this={menuRef}
     >
       <Menu />
     </div>
