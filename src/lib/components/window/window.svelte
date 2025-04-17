@@ -67,7 +67,7 @@
 
 <div
   class={{
-    "bg-window rounded-box fixed box-content overflow-hidden shadow-2xl shadow-black/20 transition-opacity [[data-window-active]]:shadow-black/40": true,
+    "bg-window rounded-box @container fixed box-content overflow-hidden shadow-2xl shadow-black/20 transition-opacity [[data-window-active]]:shadow-black/40": true,
     "pointer-events-auto opacity-100": open,
     "pointer-events-none opacity-0": !open,
   }}

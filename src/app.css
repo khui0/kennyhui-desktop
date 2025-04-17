@@ -13,7 +13,7 @@
   --color-primary-content: oklch(100% 0 0);
   --color-secondary: oklch(0% 0 0);
   --color-secondary-content: oklch(100% 0 0);
-  --color-accent: oklch(0% 0 0);
+  --color-accent: #0a82ff;
   --color-accent-content: oklch(100% 0 0);
   --color-neutral: oklch(0% 0 0);
   --color-neutral-content: oklch(100% 0 0);
@@ -47,8 +47,8 @@
   --color-primary-content: oklch(0% 0 0);
   --color-secondary: oklch(100% 0 0);
   --color-secondary-content: oklch(0% 0 0);
-  --color-accent: oklch(100% 0 0);
-  --color-accent-content: oklch(0% 0 0);
+  --color-accent: #0a82ff;
+  --color-accent-content: oklch(100% 0 0);
   --color-neutral: oklch(100% 0 0);
   --color-neutral-content: oklch(0% 0 0);
 
@@ -156,15 +156,31 @@
 }
 
 @utility btn {
-  @apply highlight bg-base-content/15 rounded-field text-base-content/80 h-[22px] translate-none border-none px-[7px] py-[3px] text-[13px] font-normal;
+  @apply bg-base-content/15 rounded-field text-base-content/80 h-[22px] translate-none border-none px-[7px] py-[3px] text-[13px] font-normal;
+
+  &:not(.btn-ghost) {
+    @apply highlight;
+  }
 
   &:active {
     @apply bg-base-content/25;
   }
+
+  &:active:not(.btn-active) {
+    @apply translate-none;
+  }
+}
+
+@utility btn-lg {
+  @apply h-7 rounded-[6px] px-[5px] text-lg;
+}
+
+@utility btn-ghost {
+  @apply hover:bg-base-content/5 active:bg-base-content/15 text-base-content/60 active:text-base-content bg-transparent;
 }
 
 @utility select {
-  @apply border-none bg-transparent px-2.5;
+  @apply border-none bg-transparent px-2.5 text-sm;
 
   &:hover {
     @apply highlight bg-base-content/25;
