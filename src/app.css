@@ -1,0 +1,134 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "kennyhui-light";
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97% 0 0);
+  --color-base-300: oklch(92% 0 0);
+  --color-base-content: oklch(20% 0 0);
+  --color-primary: oklch(0% 0 0);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(0% 0 0);
+  --color-secondary-content: oklch(100% 0 0);
+  --color-accent: oklch(0% 0 0);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(0% 0 0);
+  --color-neutral-content: oklch(100% 0 0);
+
+  --color-info: oklch(70% 0.165 254.624);
+  --color-info-content: oklch(28% 0.091 267.935);
+  --color-success: oklch(77% 0.152 181.912);
+  --color-success-content: oklch(27% 0.046 192.524);
+  --color-warning: oklch(85% 0.199 91.936);
+  --color-warning-content: oklch(28% 0.066 53.813);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(25% 0.092 26.042);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 0.5px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "kennyhui-dark";
+  color-scheme: "dark";
+  --color-base-100: oklch(14% 0 0);
+  --color-base-200: oklch(20% 0 0);
+  --color-base-300: oklch(26% 0 0);
+  --color-base-content: oklch(100% 0 0);
+  --color-primary: oklch(100% 0 0);
+  --color-primary-content: oklch(0% 0 0);
+  --color-secondary: oklch(100% 0 0);
+  --color-secondary-content: oklch(0% 0 0);
+  --color-accent: oklch(100% 0 0);
+  --color-accent-content: oklch(0% 0 0);
+  --color-neutral: oklch(100% 0 0);
+  --color-neutral-content: oklch(0% 0 0);
+
+  --color-info: oklch(70% 0.165 254.624);
+  --color-info-content: oklch(28% 0.091 267.935);
+  --color-success: oklch(77% 0.152 181.912);
+  --color-success-content: oklch(27% 0.046 192.524);
+  --color-warning: oklch(85% 0.199 91.936);
+  --color-warning-content: oklch(28% 0.066 53.813);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(25% 0.092 26.042);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 0.5px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@custom-variant dark (&:where([data-theme="kennyhui-dark"], [data-theme="kennyhui-dark"] *));
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-base-200, currentColor);
+  }
+
+  html,
+  body {
+    @apply h-full;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: "DM Sans Variable", sans-serif;
+  }
+
+  ::selection {
+    @apply text-neutral-content bg-neutral;
+  }
+
+  kbd {
+    @apply highlight bg-base-300 mx-0 inline-flex min-w-6 items-center justify-center rounded-sm px-1.5 text-sm;
+    font-family: "DM Sans Variable", sans-serif;
+  }
+
+  a {
+    @apply outline-base-content outline-offset-2 focus-visible:outline-2;
+  }
+}
+
+@utility text-shadow {
+  text-shadow: 0 0.05em 0.1em rgba(0, 0, 0, 0.3);
+}
+
+@utility focus-ring {
+  @apply outline-base-content outline-offset-2 focus-visible:outline-2;
+}
+
+@utility highlight {
+  box-shadow: 0 1px 1px -1px rgba(255, 255, 255, 0.3) inset;
+}
+
+@utility btn {
+  @apply highlight bg-base-100/50 hover:bg-base-100 border-none font-medium;
+}
+
+@utility btn-ghost {
+  @apply bg-transparent not-hover:shadow-none;
+}
+
+@utility glass-card {
+  @apply bg-base-100/50 relative border-[0.5px] border-black/30! backdrop-blur-2xl dark:border-black/90 print:border-none print:bg-transparent print:p-0 print:shadow-none;
+  &::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15 print:outline-none;
+  }
+}
