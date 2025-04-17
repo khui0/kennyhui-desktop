@@ -17,7 +17,13 @@ export const search: {
   open: false,
 });
 
-export const menubar: { active: boolean } = $state({ active: false });
+export const menubar: {
+  active: boolean;
+  activeId: string;
+} = $state({
+  active: false,
+  activeId: "",
+});
 
 export function isMac(): boolean {
   try {
