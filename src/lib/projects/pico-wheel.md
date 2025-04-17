@@ -1,1 +1,0 @@
-_Pico Wheel_ is a 3D printed, low-cost, sim racing wheel powered by Raspberry Pi Pico and an AS5600 magnetic encoder. The firmware is written in Arduino and the parts were designed in Autodesk Fusion.
