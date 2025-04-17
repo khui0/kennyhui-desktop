@@ -11,6 +11,7 @@
     systemActiveMenu,
     systemMenu,
   } from "./helpers.svelte";
+  import MenubarButton from "./menubar-button.svelte";
 
   let time: string = $state("");
 
@@ -105,11 +106,19 @@
   }}
 >
   <MenubarItem type="logo" data={systemMenu}><TablerCircleFilled /></MenubarItem>
-  <MenubarItem type="name" data={systemActiveMenu}>
-    {activeWindow.current ? activeWindow.current.name : systemActiveMenu.text}
-  </MenubarItem>
-  <!-- <MenubarItem id="file">File</MenubarItem>
-  <MenubarItem id="edit">Edit</MenubarItem> -->
+  {#if activeWindow.menuBarActive !== null}
+    <MenubarItem type="name" data={activeWindow.menuBarActive} />
+  {:else}
+    <MenubarItem type="name" data={systemActiveMenu} />
+  {/if}
+  {#if activeWindow.current !== null}
+    {#each activeWindow.menuBarItems as data}
+      <MenubarItem {data} />
+    {/each}
+  {/if}
   <div class="flex-1"></div>
-  <!-- <MenubarItem id="time" >{time}</MenubarItem> -->
+  <MenubarButton id="system-time">
+    {#snippet content()}{/snippet}
+    {time}
+  </MenubarButton>
 </menu>

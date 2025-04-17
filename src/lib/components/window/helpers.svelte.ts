@@ -1,3 +1,4 @@
+import { applications } from "$lib/applications.svelte";
 import { activeWindow, stackOrder, unfocus, windows, type WindowSnap } from "./windows.svelte";
 
 export interface Vector {
@@ -180,6 +181,10 @@ export function applyFocus() {
     if (i === stackOrder.length - 1) {
       window.setAttribute("data-window-active", "");
       activeWindow.current = windows.find((window) => window.id === id) || null;
+      const app = applications.find((app) => id.startsWith(app.id));
+      if (!app) return;
+      activeWindow.menuBarActive = app.menuBarActive();
+      activeWindow.menuBarItems = app.menuBarItems;
     } else {
       window.removeAttribute("data-window-active");
     }

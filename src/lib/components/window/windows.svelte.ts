@@ -1,5 +1,6 @@
 import { tick, type Component } from "svelte";
 import { applyFocus, container, getSize, move, resize, type Vector } from "./helpers.svelte";
+import type { MenubarItem } from "$lib/applications.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -20,7 +21,15 @@ export interface WindowProperties {
 
 export const windows: WindowProperties[] = $state([]);
 export const stackOrder: string[] = $state([]);
-export const activeWindow: { current: WindowProperties | null } = $state({ current: null });
+export const activeWindow: {
+  current: WindowProperties | null;
+  menuBarActive: MenubarItem | null;
+  menuBarItems: MenubarItem[];
+} = $state({
+  current: null,
+  menuBarActive: null,
+  menuBarItems: [],
+});
 
 export function add(...properties: WindowProperties[]): void {
   const containerSize: Vector = container.current ? getSize(container.current) : { x: 0, y: 0 };
@@ -77,6 +86,7 @@ export function unfocus(): void {
     window.removeAttribute("data-window-active");
   });
   activeWindow.current = null;
+  activeWindow.menuBarActive = null;
 }
 
 export function snap(id: string, snap: WindowSnap, target?: HTMLElement): void {

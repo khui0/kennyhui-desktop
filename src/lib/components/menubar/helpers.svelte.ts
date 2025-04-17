@@ -19,10 +19,13 @@ export const systemMenu = new MenubarItem("system", "", [
   new MenuItem("System Settings...", () => {
     applications.find((app) => app.id === "dev.kennyhui.settings")?.open();
   }),
+  new MenuItem("Debug", () => {
+    applications.find((app) => app.id === "dev.kennyhui.debug")?.open();
+  }),
 ]);
 
-export const systemActiveMenu = new MenubarItem("active-app", "Kenny Hui", [
-  new MenuItem("About This System", () => {
-    console.log("hi");
+export const systemActiveMenu = new MenubarItem("system-active", "Kenny Hui", [
+  new MenuItem("Visit kennyhui.dev...", () => {
+    window.open("https://kennyhui.dev/", "_blank");
   }),
 ]);

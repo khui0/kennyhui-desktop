@@ -31,6 +31,8 @@ export class App {
   defaultPosition: Vector | null = null;
   showInDock: boolean = true;
   showInLaunchpad: boolean = true;
+  activeItems: MenuItem[] = [];
+  menuBarItems: MenubarItem[] = [];
 
   constructor(id: string, name: string, icon: PictureModule) {
     this.id = id;
@@ -83,6 +85,16 @@ export class App {
     return this;
   }
 
+  setMenuBarActive(items: MenuItem[]): App {
+    this.activeItems = items;
+    return this;
+  }
+
+  setMenuBarItems(items: MenubarItem[]): App {
+    this.menuBarItems = items;
+    return this;
+  }
+
   window(title: string = this.name, size: Vector = this.defaultSize): WindowProperties {
     const properties: WindowProperties = {
       id: `${this.id}.${this.count()}`,
@@ -98,6 +110,15 @@ export class App {
       properties.position = this.defaultPosition;
     }
     return properties;
+  }
+
+  menuBarActive(): MenubarItem {
+    return new MenubarItem(this.id + "-active", this.name, [
+      ...this.activeItems,
+      new MenuItem(`Quit ${this.name}`, () => {
+        this.quit();
+      }),
+    ]);
   }
 
   // Returns number of App.window() instances
@@ -137,47 +158,6 @@ export class App {
     applyFocus();
   }
 }
-
-export const applications: App[] = $state([
-  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"))
-    .setBody(Resume)
-    .setDefaultSize({ x: 400, y: 450 }),
-  new App("dev.kennyhui.launchpad", "Launchpad", query("icons/launchpad.png"))
-    .setCallback(() => {
-      launchpad.current?.show();
-    })
-    .hideFromLaunchpad(),
-  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"))
-    .setBody(Contact)
-    .disableTitlebar()
-    .setDefaultSize({ x: 280, y: 500 })
-    .setMinSize({ x: 280, y: 500 }),
-  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"))
-    .setBody(Settings)
-    .disableTitlebar()
-    .setDefaultSize({
-      x: 600,
-      y: 500,
-    }),
-  new App("dev.kennyhui.browser", "Browser", query("icons/chromium.png"))
-    .setBody(Browser)
-    .setDefaultSize({
-      x: 600,
-      y: 500,
-    })
-    .setMinSize({
-      x: 300,
-      y: 58,
-    })
-    .allowMultipleWindows(),
-  new App("dev.kennyhui.debug", "Debug", query("icons/debug.png"))
-    .setBody(Debug)
-    .disableTitlebar()
-    .setDefaultSize({ x: 280, y: 400 })
-    .setMinSize({ x: 280, y: 400 })
-    .setDefaultPosition({ x: 40, y: 40 })
-    .hideFromDock(),
-]);
 
 export class Shortcut {
   shortcut: string;
@@ -234,3 +214,49 @@ export class MenubarItem {
     this.items = items;
   }
 }
+
+export const applications: App[] = $state([
+  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"))
+    .setBody(Resume)
+    .setDefaultSize({ x: 400, y: 450 }),
+  new App("dev.kennyhui.launchpad", "Launchpad", query("icons/launchpad.png"))
+    .setCallback(() => {
+      launchpad.current?.show();
+    })
+    .hideFromLaunchpad(),
+  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"))
+    .setBody(Contact)
+    .disableTitlebar()
+    .setDefaultSize({ x: 280, y: 500 })
+    .setMinSize({ x: 280, y: 500 })
+    .setMenuBarItems([
+      new MenubarItem("file", "File", [
+        new MenuItem("Test", () => {}, [new Shortcut("command-key"), new Shortcut("H")]),
+      ]),
+    ]),
+  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"))
+    .setBody(Settings)
+    .disableTitlebar()
+    .setDefaultSize({
+      x: 600,
+      y: 500,
+    }),
+  new App("dev.kennyhui.browser", "Browser", query("icons/chromium.png"))
+    .setBody(Browser)
+    .setDefaultSize({
+      x: 600,
+      y: 500,
+    })
+    .setMinSize({
+      x: 300,
+      y: 58,
+    })
+    .allowMultipleWindows(),
+  new App("dev.kennyhui.debug", "Debug", query("icons/debug.png"))
+    .setBody(Debug)
+    .disableTitlebar()
+    .setDefaultSize({ x: 280, y: 400 })
+    .setMinSize({ x: 280, y: 400 })
+    .setDefaultPosition({ x: 40, y: 40 })
+    .hideFromDock(),
+]);
