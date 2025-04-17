@@ -22,7 +22,6 @@
 
   $effect(() => {
     open;
-    console.log("uh");
     positionMenu();
   });
 
@@ -32,8 +31,6 @@
 
     const left = parentRef.getBoundingClientRect().x;
     const width = menuRef.clientWidth;
-
-    console.log(left, width, document.body.clientWidth);
 
     if (left + width >= document.body.clientWidth) {
       flip = true;
