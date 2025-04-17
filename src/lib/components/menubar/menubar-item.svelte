@@ -2,6 +2,7 @@
   import { onMount, type Snippet } from "svelte";
   import Menu from "../menu/menu.svelte";
   import { menubar } from "$lib/meta.svelte";
+  import { activateMenubar, deactivateMenubar } from "./helpers.svelte";
 
   let {
     type = "item",
@@ -27,8 +28,6 @@
       flip = true;
     }
   });
-
-  
 </script>
 
 <div data-menubar-item={id} class="group relative -mx-1 py-1" bind:this={menuRef}>
@@ -39,6 +38,14 @@
       "font-bold": type === "name",
       "font-normal": type === "item",
       "menubar-active:bg-black/10 dark:menubar-active:bg-white/20 ": open,
+    }}
+    onkeydown={(e) => {
+      if (e.key !== " " && e.key !== "Enter") return;
+      if (menubar.activeId === id) {
+        deactivateMenubar();
+      } else {
+        activateMenubar(id);
+      }
     }}
   >
     {@render children?.()}

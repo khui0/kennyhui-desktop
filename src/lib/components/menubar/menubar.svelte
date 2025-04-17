@@ -40,6 +40,7 @@
   function onpointerdown(e: PointerEvent) {
     const target = e.target as HTMLElement;
     const item = target?.closest("[data-menubar-item]") as HTMLElement;
+
     if (itemVisitNumber > 1) {
       itemVisitNumber = 0;
     }
@@ -47,6 +48,10 @@
     if (item !== null) {
       const id = item.getAttribute("data-menubar-item");
       if (id === null) return;
+
+      if (id !== menubar.activeId) {
+        itemVisitNumber = 0;
+      }
 
       startDisableTimeout();
       activateMenubar(id);
