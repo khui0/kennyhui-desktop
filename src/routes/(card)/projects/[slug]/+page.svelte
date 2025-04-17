@@ -54,6 +54,6 @@
     <p>{data.project.year}</p>
   </div>
 </div>
-<div class="prose not-print:m-6 font-light print:max-w-full">
+<div class="prose font-light not-print:m-6 print:max-w-full">
   {@html data.html?.code}
 </div>

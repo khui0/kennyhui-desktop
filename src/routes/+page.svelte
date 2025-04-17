@@ -10,7 +10,7 @@
   });
 </script>
 
-<div class="flex h-full w-full flex-col">
+<div class="flex h-full w-full flex-col overflow-hidden">
   <Menubar />
   <WindowManager />
   <Dock />

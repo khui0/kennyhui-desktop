@@ -74,6 +74,8 @@
 
 @custom-variant window-active (&:where([data-window-active] *));
 
+@custom-variant menubar-active (&:where([data-menubar-active] *));
+
 @theme {
   --text-sm: 13px;
 }
