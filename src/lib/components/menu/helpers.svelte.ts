@@ -14,7 +14,9 @@ export function activateMenuBar(id: string): void {
 }
 
 export const systemMenu = new MenuBarItem("system", "", [
-  new MenuItem("About This System", () => {}),
+  new MenuItem("About This System", () => {
+    applications.find((app) => app.id === "dev.kennyhui.about")?.open();
+  }),
   new MenuSeparator(),
   new MenuItem("System Settings...", () => {
     applications.find((app) => app.id === "dev.kennyhui.settings")?.open();

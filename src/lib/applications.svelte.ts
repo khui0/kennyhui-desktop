@@ -1,6 +1,7 @@
 import type { Component } from "svelte";
+import About from "./apps/about/about.svelte";
 import Browser from "./apps/browser/browser.svelte";
-import Contact from "./apps/contact/contact.svelte";
+import Debug from "./apps/debug/debug.svelte";
 import Resume from "./apps/resume/resume.svelte";
 import Settings from "./apps/settings/settings.svelte";
 import { applyFocus, type Vector } from "./components/window/helpers.svelte";
@@ -16,7 +17,6 @@ import {
 } from "./components/window/windows.svelte";
 import { query, type PictureModule } from "./images";
 import { launchpad, modifiers } from "./meta.svelte";
-import Debug from "./apps/debug/debug.svelte";
 
 export class App {
   id: string;
@@ -224,8 +224,8 @@ export const applications: App[] = $state([
       launchpad.current?.show();
     })
     .hideFromLaunchpad(),
-  new App("dev.kennyhui.contact", "Contact", query("icons/contact.png"))
-    .setBody(Contact)
+  new App("dev.kennyhui.about", "About", query("icons/about.png"))
+    .setBody(About)
     .disableTitlebar()
     .setDefaultSize({ x: 280, y: 500 })
     .setMinSize({ x: 280, y: 500 })
@@ -233,8 +233,9 @@ export const applications: App[] = $state([
       new MenuBarItem("file", "File", [
         new MenuItem("Test", () => {}, [new Shortcut("command-key"), new Shortcut("H")]),
       ]),
-    ]),
-  new App("dev.kennyhui.settings", "Settings", query("icons/settings.png"))
+    ])
+    .hideFromDock(),
+  new App("dev.kennyhui.settings", "System Settings", query("icons/settings.png"))
     .setBody(Settings)
     .disableTitlebar()
     .setDefaultSize({

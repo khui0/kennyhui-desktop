@@ -20,7 +20,7 @@
 
   onMount(() => {
     ready = true;
-    applications.find((app) => app.id === "dev.kennyhui.contact")?.open();
+    applications.find((app) => app.id === "dev.kennyhui.about")?.open();
   });
 </script>
 
