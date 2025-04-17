@@ -1,14 +1,16 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import { applications } from "$lib/applications.svelte";
+  import Dock from "$lib/components/dock/dock.svelte";
   import Gradient from "$lib/components/gradient/gradient.svelte";
   import Launchpad from "$lib/components/launchpad/launchpad.svelte";
+  import Menubar from "$lib/components/menubar/menubar.svelte";
   import Search from "$lib/components/search/search.svelte";
+  import WindowManager from "$lib/components/window/window-manager.svelte";
   import { commandKey, launchpad, search } from "$lib/meta.svelte";
+  import { onMount } from "svelte";
   import { MetaTags, deepMerge } from "svelte-meta-tags";
   import "../app.css";
-  import { onMount } from "svelte";
-  import { fade } from "svelte/transition";
-  import { cubicOut } from "svelte/easing";
 
   let { data, children } = $props();
 
@@ -18,6 +20,7 @@
 
   onMount(() => {
     ready = true;
+    applications.find((app) => app.id === "dev.kennyhui.contact")?.open();
   });
 </script>
 
@@ -39,10 +42,18 @@
 />
 
 <MetaTags {...metaTags} />
-<div class="fixed inset-0 z-[-1]">
-  <Gradient />
+
+<div class="flex h-full w-full flex-col overflow-hidden">
+  <div class="fixed inset-0 z-[-1]">
+    <Gradient />
+  </div>
+  {@render children()}
+  <main class="fixed top-8.75 right-0 bottom-18 left-0">
+    <WindowManager />
+  </main>
+  <Menubar />
+  <Dock />
 </div>
-{@render children()}
 
 <Launchpad bind:this={launchpad.current} />
 <Search bind:this={search.current} />
