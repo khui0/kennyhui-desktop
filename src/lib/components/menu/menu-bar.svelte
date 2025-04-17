@@ -10,6 +10,7 @@
     deactivateMenuBar,
     systemActiveMenu,
     systemMenu,
+    systemMenuBarItems,
   } from "./helpers.svelte";
   import MenuBarButton from "./menu-bar-button.svelte";
 
@@ -113,6 +114,10 @@
   {/if}
   {#if activeWindow.current !== null}
     {#each activeWindow.menuBarItems as data}
+      <MenuBarItem {data} />
+    {/each}
+  {:else}
+    {#each systemMenuBarItems as data}
       <MenuBarItem {data} />
     {/each}
   {/if}

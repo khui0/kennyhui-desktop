@@ -29,3 +29,5 @@ export const systemActiveMenu = new MenuBarItem("system-active", "Kenny Hui", [
     window.open("https://kennyhui.dev/", "_blank");
   }),
 ]);
+
+export const systemMenuBarItems = [];
