@@ -89,6 +89,10 @@
     @apply border-base-content/10;
   }
 
+  * {
+    @apply touch-manipulation;
+  }
+
   html,
   body {
     @apply h-full;
@@ -114,6 +118,10 @@
   a {
     @apply outline-base-content outline-offset-2 focus-visible:outline-2;
   }
+}
+
+@utility dragging {
+  @apply select-none;
 }
 
 @utility text-shadow {

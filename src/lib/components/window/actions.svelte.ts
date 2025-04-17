@@ -98,6 +98,7 @@ function onpointerdown(e: PointerEvent) {
 
   targetWindow = parent;
 
+  document.body.classList.add("dragging");
   window.getSelection()?.removeAllRanges();
 }
 
@@ -133,6 +134,8 @@ function onpointerup(e: PointerEvent) {
       }
     }
   }
+
+  document.body.classList.remove("dragging");
 }
 
 function onpointermove(e: PointerEvent) {

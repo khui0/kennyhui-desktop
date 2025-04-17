@@ -101,7 +101,7 @@
 <menu
   data-menu-bar
   class={{
-    "absolute flex h-8 w-full items-center bg-white/50 px-2 backdrop-blur-[50px] transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:bg-black/18": true,
+    "fixed flex h-8 w-full items-center bg-white/50 px-2 backdrop-blur-[50px] transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:bg-black/18": true,
     "opacity-0": launchpad.open,
     "opacity-100": !launchpad.open,
   }}
