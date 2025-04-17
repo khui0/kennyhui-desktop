@@ -15,7 +15,7 @@ import {
   type WindowProperties,
 } from "./components/window/windows.svelte";
 import { query, type PictureModule } from "./images";
-import { launchpad } from "./meta.svelte";
+import { launchpad, modifiers } from "./meta.svelte";
 import Debug from "./apps/debug/debug.svelte";
 
 export class App {
@@ -178,3 +178,59 @@ export const applications: App[] = $state([
     .setDefaultPosition({ x: 40, y: 40 })
     .hideFromDock(),
 ]);
+
+export class Shortcut {
+  shortcut: string;
+
+  constructor(shortcut: string) {
+    this.shortcut = shortcut;
+  }
+
+  toString(): string {
+    switch (this.shortcut) {
+      case "control-key": {
+        return modifiers.control;
+      }
+      case "option-key": {
+        return modifiers.option;
+      }
+      case "shift-key": {
+        return modifiers.shift;
+      }
+      case "command-key": {
+        return modifiers.command;
+      }
+      default: {
+        return this.shortcut.trim().toUpperCase();
+      }
+    }
+  }
+}
+
+export class MenuItem {
+  text: string;
+  callback: () => void;
+  shortcuts: Shortcut[] = [];
+
+  constructor(text: string, callback: () => void, shortcuts: Shortcut[] = []) {
+    this.text = text;
+    this.callback = callback;
+    this.shortcuts = shortcuts;
+  }
+}
+
+export class MenuSeparator {
+  constructor() {}
+}
+
+export class MenubarItem {
+  id: string;
+  text: string;
+  items: (MenuItem | MenuSeparator)[];
+
+  constructor(id: string, text: string, items: (MenuItem | MenuSeparator)[]) {
+    this.id = id;
+    this.text = text;
+    this.items = items;
+  }
+}

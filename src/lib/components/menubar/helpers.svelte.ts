@@ -1,3 +1,4 @@
+import { applications, MenubarItem, MenuItem, MenuSeparator } from "$lib/applications.svelte";
 import { menubar } from "$lib/meta.svelte";
 
 export function deactivateMenubar(): void {
@@ -11,3 +12,17 @@ export function activateMenubar(id: string): void {
   menubar.active = true;
   menubar.activeId = id;
 }
+
+export const systemMenu = new MenubarItem("system", "", [
+  new MenuItem("About This System", () => {}),
+  new MenuSeparator(),
+  new MenuItem("System Settings...", () => {
+    applications.find((app) => app.id === "dev.kennyhui.settings")?.open();
+  }),
+]);
+
+export const systemActiveMenu = new MenubarItem("active-app", "Kenny Hui", [
+  new MenuItem("About This System", () => {
+    console.log("hi");
+  }),
+]);
