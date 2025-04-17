@@ -4,7 +4,7 @@
   import Dock from "$lib/components/dock/dock.svelte";
   import Gradient from "$lib/components/gradient/gradient.svelte";
   import Launchpad from "$lib/components/launchpad/launchpad.svelte";
-  import Menubar from "$lib/components/menubar/menubar.svelte";
+  import MenuBar from "$lib/components/menuBar/menu-bar.svelte";
   import Search from "$lib/components/search/search.svelte";
   import WindowManager from "$lib/components/window/window-manager.svelte";
   import { commandKey, launchpad, search } from "$lib/meta.svelte";
@@ -51,7 +51,7 @@
   <main class="fixed top-8 right-0 bottom-18 left-0">
     <WindowManager />
   </main>
-  <Menubar />
+  <MenuBar />
   <Dock />
 </div>
 

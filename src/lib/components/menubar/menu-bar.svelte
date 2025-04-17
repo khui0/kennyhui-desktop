@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { launchpad, menubar } from "$lib/meta.svelte";
+  import { launchpad, menuBar } from "$lib/meta.svelte";
   import dayjs from "dayjs";
   import { onMount } from "svelte";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import { activeWindow } from "../window/windows.svelte";
-  import MenubarItem from "./menubar-item.svelte";
+  import MenuBarItem from "./menu-bar-item.svelte";
   import {
-    activateMenubar,
-    deactivateMenubar,
+    activateMenuBar,
+    deactivateMenuBar,
     systemActiveMenu,
     systemMenu,
   } from "./helpers.svelte";
-  import MenubarButton from "./menubar-button.svelte";
+  import MenuBarButton from "./menu-bar-button.svelte";
 
   let time: string = $state("");
 
@@ -44,52 +44,52 @@
 
   function onpointerdown(e: PointerEvent) {
     const target = e.target as HTMLElement;
-    const item = target?.closest("[data-menubar-item]") as HTMLElement;
+    const item = target?.closest("[data-menu-bar-item]") as HTMLElement;
 
     if (itemVisitNumber > 1) {
       itemVisitNumber = 0;
     }
 
     if (item !== null) {
-      const id = item.getAttribute("data-menubar-item");
+      const id = item.getAttribute("data-menu-bar-item");
       if (id === null) return;
 
-      if (id !== menubar.activeId) {
+      if (id !== menuBar.activeId) {
         itemVisitNumber = 0;
       }
 
       startDisableTimeout();
-      activateMenubar(id);
+      activateMenuBar(id);
     } else {
-      deactivateMenubar();
+      deactivateMenuBar();
     }
   }
 
   function onpointermove(e: PointerEvent) {
     const target = e.target as HTMLElement;
-    const item = target?.closest("[data-menubar-item]") as HTMLElement;
+    const item = target?.closest("[data-menu-bar-item]") as HTMLElement;
 
-    if (!menubar.active) return;
+    if (!menuBar.active) return;
 
     if (item !== null) {
-      const id = item.getAttribute("data-menubar-item");
-      if (id !== null && id !== menubar.activeId) {
-        activateMenubar(id);
+      const id = item.getAttribute("data-menu-bar-item");
+      if (id !== null && id !== menuBar.activeId) {
+        activateMenuBar(id);
       }
     }
   }
 
   function onpointerup(e: PointerEvent) {
     const target = e.target as HTMLElement;
-    const item = target?.closest("[data-menubar-item]") as HTMLElement;
+    const item = target?.closest("[data-menu-bar-item]") as HTMLElement;
 
     if (disableOnPointerUp) {
       if (item === null) return;
-      deactivateMenubar();
+      deactivateMenuBar();
     }
 
     if (itemVisitNumber > 0) {
-      deactivateMenubar();
+      deactivateMenuBar();
     }
     itemVisitNumber++;
   }
@@ -98,27 +98,27 @@
 <svelte:document {onpointerdown} {onpointermove} {onpointerup} />
 
 <menu
-  data-menubar
+  data-menu-bar
   class={{
     "absolute flex h-8 w-full items-center bg-white/50 px-2 backdrop-blur-[50px] transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] dark:bg-black/18": true,
     "opacity-0": launchpad.open,
     "opacity-100": !launchpad.open,
   }}
 >
-  <MenubarItem type="logo" data={systemMenu}><TablerCircleFilled /></MenubarItem>
+  <MenuBarItem type="logo" data={systemMenu}><TablerCircleFilled /></MenuBarItem>
   {#if activeWindow.menuBarActive !== null}
-    <MenubarItem type="name" data={activeWindow.menuBarActive} />
+    <MenuBarItem type="name" data={activeWindow.menuBarActive} />
   {:else}
-    <MenubarItem type="name" data={systemActiveMenu} />
+    <MenuBarItem type="name" data={systemActiveMenu} />
   {/if}
   {#if activeWindow.current !== null}
     {#each activeWindow.menuBarItems as data}
-      <MenubarItem {data} />
+      <MenuBarItem {data} />
     {/each}
   {/if}
   <div class="flex-1"></div>
-  <MenubarButton id="system-time">
+  <MenuBarButton id="system-time">
     {#snippet content()}{/snippet}
     {time}
-  </MenubarButton>
+  </MenuBarButton>
 </menu>

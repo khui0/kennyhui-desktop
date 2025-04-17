@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { menubar } from "$lib/meta.svelte";
+  import { menuBar } from "$lib/meta.svelte";
   import type { Snippet } from "svelte";
-  import { activateMenubar, deactivateMenubar } from "./helpers.svelte";
+  import { activateMenuBar, deactivateMenuBar } from "./helpers.svelte";
 
   let {
     type = "item",
@@ -18,7 +18,7 @@
   let parentRef: HTMLElement | null = $state(null);
   let menuRef: HTMLElement | null = $state(null);
 
-  let open: boolean = $derived(menubar.activeId === id);
+  let open: boolean = $derived(menuBar.activeId === id);
   let flip: boolean = $state(false);
 
   $effect(() => {
@@ -39,21 +39,21 @@
   }
 </script>
 
-<div data-menubar-item={id} class="group relative -mx-1 py-1" bind:this={parentRef}>
+<div data-menu-bar-item={id} class="group relative -mx-1 py-1" bind:this={parentRef}>
   <button
     class={{
       "flex h-6 shrink-0 items-center justify-center rounded-sm px-[11px] text-[13px] text-shadow-md": true,
       "w-[37px]": type === "logo",
       "font-bold": type === "name",
       "font-normal": type === "item",
-      "menubar-active:bg-black/10 dark:menubar-active:bg-white/20 ": open,
+      "menu-bar-active:bg-black/10 dark:menu-bar-active:bg-white/20 ": open,
     }}
     onkeydown={(e) => {
       if (e.key !== " " && e.key !== "Enter") return;
-      if (menubar.activeId === id) {
-        deactivateMenubar();
+      if (menuBar.activeId === id) {
+        deactivateMenuBar();
       } else {
-        activateMenubar(id);
+        activateMenuBar(id);
       }
     }}
   >

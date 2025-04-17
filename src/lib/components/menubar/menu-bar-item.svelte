@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { MenubarItem } from "$lib/applications.svelte";
+  import type { MenuBarItem } from "$lib/applications.svelte";
   import type { Snippet } from "svelte";
   import Menu from "../menu/menu.svelte";
-  import MenubarButton from "./menubar-button.svelte";
+  import MenuBarButton from "./menu-bar-button.svelte";
 
   let {
     type = "item",
@@ -10,12 +10,12 @@
     children,
   }: {
     type?: "logo" | "name" | "item";
-    data: MenubarItem;
+    data: MenuBarItem;
     children?: Snippet;
   } = $props();
 </script>
 
-<MenubarButton {type} id={data.id}>
+<MenuBarButton {type} id={data.id}>
   {#snippet content()}
     <Menu items={data.items} />
   {/snippet}
@@ -24,4 +24,4 @@
   {:else}
     {data.text}
   {/if}
-</MenubarButton>
+</MenuBarButton>

@@ -1,19 +1,19 @@
-import { applications, MenubarItem, MenuItem, MenuSeparator } from "$lib/applications.svelte";
-import { menubar } from "$lib/meta.svelte";
+import { applications, MenuBarItem, MenuItem, MenuSeparator } from "$lib/applications.svelte";
+import { menuBar } from "$lib/meta.svelte";
 
-export function deactivateMenubar(): void {
-  document.querySelector("[data-menubar-active]")?.removeAttribute("data-menubar-active");
-  menubar.active = false;
-  menubar.activeId = "";
+export function deactivateMenuBar(): void {
+  document.querySelector("[data-menu-bar-active]")?.removeAttribute("data-menu-bar-active");
+  menuBar.active = false;
+  menuBar.activeId = "";
 }
 
-export function activateMenubar(id: string): void {
-  document.querySelector("[data-menubar]")?.setAttribute("data-menubar-active", "");
-  menubar.active = true;
-  menubar.activeId = id;
+export function activateMenuBar(id: string): void {
+  document.querySelector("[data-menu-bar]")?.setAttribute("data-menu-bar-active", "");
+  menuBar.active = true;
+  menuBar.activeId = id;
 }
 
-export const systemMenu = new MenubarItem("system", "", [
+export const systemMenu = new MenuBarItem("system", "", [
   new MenuItem("About This System", () => {}),
   new MenuSeparator(),
   new MenuItem("System Settings...", () => {
@@ -24,7 +24,7 @@ export const systemMenu = new MenubarItem("system", "", [
   }),
 ]);
 
-export const systemActiveMenu = new MenubarItem("system-active", "Kenny Hui", [
+export const systemActiveMenu = new MenuBarItem("system-active", "Kenny Hui", [
   new MenuItem("Visit kennyhui.dev...", () => {
     window.open("https://kennyhui.dev/", "_blank");
   }),

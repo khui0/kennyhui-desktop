@@ -17,7 +17,7 @@ export const search: {
   open: false,
 });
 
-export const menubar: {
+export const menuBar: {
   active: boolean;
   activeId: string;
 } = $state({

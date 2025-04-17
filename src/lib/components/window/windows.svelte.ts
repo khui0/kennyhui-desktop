@@ -1,6 +1,6 @@
 import { tick, type Component } from "svelte";
 import { applyFocus, container, getSize, move, resize, type Vector } from "./helpers.svelte";
-import type { MenubarItem } from "$lib/applications.svelte";
+import type { MenuBarItem } from "$lib/applications.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -23,8 +23,8 @@ export const windows: WindowProperties[] = $state([]);
 export const stackOrder: string[] = $state([]);
 export const activeWindow: {
   current: WindowProperties | null;
-  menuBarActive: MenubarItem | null;
-  menuBarItems: MenubarItem[];
+  menuBarActive: MenuBarItem | null;
+  menuBarItems: MenuBarItem[];
 } = $state({
   current: null,
   menuBarActive: null,

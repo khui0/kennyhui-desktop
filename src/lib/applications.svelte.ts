@@ -32,7 +32,7 @@ export class App {
   showInDock: boolean = true;
   showInLaunchpad: boolean = true;
   activeItems: MenuItem[] = [];
-  menuBarItems: MenubarItem[] = [];
+  menuBarItems: MenuBarItem[] = [];
 
   constructor(id: string, name: string, icon: PictureModule) {
     this.id = id;
@@ -90,7 +90,7 @@ export class App {
     return this;
   }
 
-  setMenuBarItems(items: MenubarItem[]): App {
+  setMenuBarItems(items: MenuBarItem[]): App {
     this.menuBarItems = items;
     return this;
   }
@@ -112,8 +112,8 @@ export class App {
     return properties;
   }
 
-  menuBarActive(): MenubarItem {
-    return new MenubarItem(this.id + "-active", this.name, [
+  menuBarActive(): MenuBarItem {
+    return new MenuBarItem(this.id + "-active", this.name, [
       ...this.activeItems,
       new MenuItem(`Quit ${this.name}`, () => {
         this.quit();
@@ -203,7 +203,7 @@ export class MenuSeparator {
   constructor() {}
 }
 
-export class MenubarItem {
+export class MenuBarItem {
   id: string;
   text: string;
   items: (MenuItem | MenuSeparator)[];
@@ -230,7 +230,7 @@ export const applications: App[] = $state([
     .setDefaultSize({ x: 280, y: 500 })
     .setMinSize({ x: 280, y: 500 })
     .setMenuBarItems([
-      new MenubarItem("file", "File", [
+      new MenuBarItem("file", "File", [
         new MenuItem("Test", () => {}, [new Shortcut("command-key"), new Shortcut("H")]),
       ]),
     ]),
