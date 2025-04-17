@@ -90,7 +90,7 @@ export class App {
     return this;
   }
 
-  setMenuBarItems(items: MenuBarItem[]): App {
+  setMenuBarItems(...items: MenuBarItem[]): App {
     this.menuBarItems = items;
     return this;
   }
@@ -229,11 +229,28 @@ export const applications: App[] = $state([
     .disableTitlebar()
     .setDefaultSize({ x: 280, y: 500 })
     .setMinSize({ x: 280, y: 500 })
-    .setMenuBarItems([
+    .setMenuBarItems(
       new MenuBarItem("file", "File", [
-        new MenuItem("Test", () => {}, [new Shortcut("command-key"), new Shortcut("H")]),
+        new MenuItem("Open LinkedIn", () => {
+          window.open("https://www.linkedin.com/in/k-hui/", "_blank");
+        }),
+        new MenuItem("Open GitHub", () => {
+          window.open("https://github.com/khui0", "_blank");
+        }),
+        new MenuItem("Open Bluesky", () => {
+          window.open("https://bsky.app/profile/kennyhui.dev", "_blank");
+        }),
       ]),
-    ])
+      new MenuBarItem("edit", "Edit", [
+        new MenuItem(
+          "Copy Email",
+          () => {
+            navigator.clipboard.writeText("hello@kennyhui.dev");
+          },
+          [new Shortcut("command-key"), new Shortcut("c")],
+        ),
+      ]),
+    )
     .hideFromDock(),
   new App("dev.kennyhui.settings", "System Settings", query("icons/settings.png"))
     .setBody(Settings)
