@@ -118,6 +118,10 @@
   a {
     @apply outline-base-content outline-offset-2 focus-visible:outline-2;
   }
+
+  .dragging [data-window] * {
+    touch-action: none;
+  }
 }
 
 @utility dragging {
