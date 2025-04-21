@@ -3,12 +3,12 @@
 
   let {
     src,
+    alt,
     size = "md",
   }: {
     src: string | Picture;
     alt?: string;
     size?: "xs" | "sm" | "md" | "lg" | "xl";
-    icon?: string;
   } = $props();
 </script>
 
@@ -16,7 +16,7 @@
   <enhanced:img
     loading="lazy"
     {src}
-    alt="{src} icon"
+    {alt}
     class={{
       "object-cover": true,
       "h-5 w-5": size === "xs",
