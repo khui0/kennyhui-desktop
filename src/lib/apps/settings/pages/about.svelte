@@ -1,17 +1,24 @@
 <script lang="ts">
-  import Wordmark from "$lib/components/wordmark.svelte";
+  import AppIcon from "$lib/components/app/app-icon.svelte";
+  import { query } from "$lib/images";
+  import { getScreenSizeEstimate, version } from "$lib/meta.svelte";
   import SimpleIconsBluesky from "~icons/simple-icons/bluesky";
   import SimpleIconsGithub from "~icons/simple-icons/github";
   import SimpleIconsLinkedin from "~icons/simple-icons/linkedin";
-  import SettingsGroup from "../settings-group.svelte";
   import SettingsField from "../settings-field.svelte";
-  import { version } from "$lib/meta.svelte";
+  import SettingsGroup from "../settings-group.svelte";
+  import dayjs from "dayjs";
 </script>
 
 <div class="flex h-full flex-col gap-2.5 text-center">
-  <section class="mx-auto my-10 text-start">
-    <Wordmark class="w-auto text-8xl" />
-    <p class="text-base-content/30 text-sm uppercase">CS @ SBU &mdash; New York</p>
+  <section class="mx-auto mt-10 mb-2 text-start">
+    <AppIcon src={query("icons/desktop.png").default} alt="Desktop icon" size="lg" />
+  </section>
+  <section class="mb-2">
+    <p class="text-2xl font-bold">kennyhui-desktop</p>
+    <p class="text-base-content/30">
+      {getScreenSizeEstimate()}-inch, {dayjs().format("MMMM YYYY")}
+    </p>
   </section>
   <SettingsGroup>
     <SettingsField label="Email">

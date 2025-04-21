@@ -1,20 +1,46 @@
 <script lang="ts">
-  import Wordmark from "$lib/components/wordmark.svelte";
+  import AppIcon from "$lib/components/app/app-icon.svelte";
+  import { query } from "$lib/images";
+  import { getScreenSizeEstimate } from "$lib/meta.svelte";
+  import dayjs from "dayjs";
   import SimpleIconsBluesky from "~icons/simple-icons/bluesky";
   import SimpleIconsGithub from "~icons/simple-icons/github";
   import SimpleIconsLinkedin from "~icons/simple-icons/linkedin";
 </script>
 
 <div class="flex h-full flex-col gap-2.5 p-5 text-center">
-  <section class="mx-auto mt-16 text-start">
-    <Wordmark class="w-auto text-8xl" />
-    <p class="text-base-content/30 text-sm uppercase">CS @ SBU &mdash; New York</p>
+  <section class="mx-auto mt-12 mb-6 text-center">
+    <AppIcon src={query("icons/desktop.png").default} alt="Desktop icon" size="xl" />
   </section>
-  <section
-    class="[&>*:nth-child(even)]:text-base-content/50 grid flex-1 grid-cols-[3fr_5fr] items-center gap-2 text-sm [&>*:nth-child(even)]:justify-self-start [&>*:nth-child(odd)]:justify-self-end"
-  >
-    <p>Email</p>
-    <a data-nodrag href="mailto:hello@kennyhui.dev">hello@kennyhui.dev</a>
+  <section>
+    <p class="text-2xl font-bold">kennyhui-desktop</p>
+    <p class="text-base-content/30">
+      {getScreenSizeEstimate()}-inch, {dayjs().format("MMMM YYYY")}
+    </p>
+  </section>
+  <section class="flex flex-1 flex-col justify-center">
+    <div class="grid grid-cols-[3fr_5fr] gap-2">
+      <span class="justify-self-end text-end">Email</span>
+      <a
+        class="text-base-content/50 justify-self-start text-start"
+        data-nodrag
+        href="mailto:hello@kennyhui.dev"
+      >
+        hello@kennyhui.dev
+      </a>
+    </div>
+    <div class="grid grid-cols-[3fr_5fr] gap-2">
+      <span class="justify-self-end text-end">GitHub</span>
+      <a
+        class="text-base-content/50 justify-self-start text-start"
+        data-nodrag
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/khui0/kennyhui-desktop"
+      >
+        khui0/kennyhui-desktop
+      </a>
+    </div>
   </section>
   <section class="my-2 flex flex-wrap justify-center gap-2">
     <a

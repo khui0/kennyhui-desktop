@@ -56,3 +56,11 @@ export const backspaceKey = "⌫";
 export const version: string = import.meta.env.PACKAGE_VERSION.split(".")
   .filter((n: string) => n !== "0")
   .join(".");
+
+export function getScreenSizeEstimate(): number {
+  const w = window.screen.width;
+  const h = window.screen.height;
+  const diagonal = Math.sqrt(Math.pow(w, 2) + Math.pow(h, 2));
+
+  return Math.floor(diagonal / 94);
+}
