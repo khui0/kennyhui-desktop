@@ -2,13 +2,29 @@
   import { App } from "$lib/applications.svelte";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import AppIcon from "../app/app-icon.svelte";
+
   let { app }: { app: App } = $props();
 
+  let previous: number = $state(0);
+
   let open: boolean = $derived(app.instances() > 0);
+  let timeout: NodeJS.Timeout;
+  let bounce: boolean = $state(false);
 
   function onclick() {
     app.open();
   }
+
+  $effect(() => {
+    if (open && previous === 0) {
+      previous = app.instances();
+      bounce = true;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        bounce = false;
+      }, 800);
+    }
+  });
 </script>
 
 <button class="group relative shrink-0" {onclick}>
@@ -22,7 +38,13 @@
     </div>
   </div>
   <div class="relative">
-    <AppIcon src={app.icon.default} size="sm" />
+    <div
+      class={{
+        bounce: bounce,
+      }}
+    >
+      <AppIcon src={app.icon.default} size="sm" />
+    </div>
     <span
       class={{
         "text-base-content/50 absolute top-full left-1/2 mt-1 -translate-x-1/2 text-[4px]": true,
@@ -34,3 +56,23 @@
     </span>
   </div>
 </button>
+
+<style>
+  .bounce {
+    animation: bounce 800ms ease-in-out forwards;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
+  }
+</style>
