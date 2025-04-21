@@ -1,6 +1,6 @@
+import type { MenuBarItem } from "$lib/applications.svelte";
 import { tick, type Component } from "svelte";
 import { applyFocus, container, getSize, move, resize, type Vector } from "./helpers.svelte";
-import type { MenuBarItem } from "$lib/applications.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
