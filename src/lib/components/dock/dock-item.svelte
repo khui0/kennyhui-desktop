@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="relative">
-    <AppIcon icon="resume" src={app.icon.default} size="sm" />
+    <AppIcon src={app.icon.default} size="sm" />
     <span
       class={{
         "text-base-content/50 absolute top-full left-1/2 mt-1 -translate-x-1/2 text-[4px]": true,
