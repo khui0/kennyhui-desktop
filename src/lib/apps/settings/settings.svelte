@@ -1,20 +1,28 @@
 <script lang="ts">
   import AppIcon from "$lib/components/app/app-icon.svelte";
-  import { type Snippet } from "svelte";
+  import { onMount, tick, type Snippet } from "svelte";
   import TablerLayoutSidebarFilled from "~icons/tabler/layout-sidebar-filled";
   import { settingsPages } from "./helpers.svelte";
 
   let index: number = $state(0);
 
   let sidebarOpen: boolean = $state(false);
+
+  let ready: boolean = $state(false);
+
+  onMount(async () => {
+    await tick();
+    ready = true;
+  });
 </script>
 
 <div class="relative flex h-full overflow-x-hidden">
   <div
     class={{
-      "flex shrink-0 overflow-hidden transition-[width] @md:w-[200px]": true,
+      "flex shrink-0 overflow-hidden  @md:w-[200px]": true,
       "w-0": !sidebarOpen,
       "w-[200px]": sidebarOpen,
+      "transition-[width]": ready,
     }}
   >
     <ul class="mt-[28px] w-[200px] shrink-0 flex-col p-2.5" data-nodrag>
