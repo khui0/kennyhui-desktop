@@ -1,5 +1,6 @@
 <script lang="ts">
   import { App } from "$lib/applications.svelte";
+  import { cubicIn, cubicInOut, linear, quadIn, quintIn, quintOut } from "svelte/easing";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import AppIcon from "../app/app-icon.svelte";
 
@@ -27,9 +28,31 @@
       previousOpen = false;
     }
   });
+
+  let width: number = $state(0);
+
+  const DURATION = 500;
+
+  function shrink(_node: HTMLElement) {
+    return {
+      duration: DURATION,
+      easing: cubicInOut,
+      css: (t: number) => {
+        const eased = quadIn(t);
+
+        return `width: ${width * t}px; scale: ${eased};`;
+      },
+    };
+  }
 </script>
 
-<button class="group relative shrink-0" {onclick}>
+<button
+  class="group relative shrink-0 overflow-visible"
+  {onclick}
+  bind:clientWidth={width}
+  in:shrink
+  out:shrink
+>
   <div
     class="pointer-events-none absolute left-1/2 -translate-x-1/2 pb-4 opacity-0 group-hover:bottom-full group-hover:opacity-100"
   >
@@ -39,7 +62,7 @@
       <p>{app.name}</p>
     </div>
   </div>
-  <div class="relative">
+  <div class="relative px-1.5">
     <div
       class={{
         bounce: bounce,
