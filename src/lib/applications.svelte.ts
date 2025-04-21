@@ -1,10 +1,14 @@
-import type { Component } from "svelte";
+import { tick, type Component } from "svelte";
 import About from "./apps/about/about.svelte";
 import Browser from "./apps/browser/browser.svelte";
 import Debug from "./apps/debug/debug.svelte";
 import Resume from "./apps/resume/resume.svelte";
 import Settings from "./apps/settings/settings.svelte";
-import { applyFocus, type Vector } from "./components/window/helpers.svelte";
+import {
+  applyFocus,
+  moveWindowsWithinBounds,
+  type Vector,
+} from "./components/window/helpers.svelte";
 import {
   add,
   focus,
@@ -131,7 +135,7 @@ export class App {
     return stackOrder.filter((id) => id.startsWith(this.id)).length;
   }
 
-  open(): void {
+  async open(): Promise<void> {
     this.callback?.();
     if (this.body !== null) {
       if (this.instances() <= 0) {
@@ -145,6 +149,8 @@ export class App {
       }
       focus(this.id);
       applyFocus();
+      await tick();
+      moveWindowsWithinBounds(0);
     }
   }
 

@@ -120,7 +120,7 @@ export function getMinSize(element: HTMLElement): Vector {
   };
 }
 
-export function moveWindowsWithinBounds() {
+export function moveWindowsWithinBounds(duration: number = 200) {
   if (container.current === null) return;
   const maxSize = getSize(container.current);
   container.current.querySelectorAll("[data-window]").forEach((element) => {
@@ -138,7 +138,7 @@ export function moveWindowsWithinBounds() {
         x: size.x < minSize.x ? Math.min(minSize.x, maxSize.x) : Math.min(size.x, maxSize.x),
         y: size.y < minSize.y ? Math.min(minSize.y, maxSize.y) : Math.min(size.y, maxSize.y),
       };
-      resize(window, targetSize.x, targetSize.y);
+      resize(window, targetSize.x, targetSize.y, duration);
 
       const position = fromTranslate(window);
       const targetPosition: Vector = {
@@ -146,7 +146,7 @@ export function moveWindowsWithinBounds() {
         y: clamp(position.y, 0, maxSize.y - targetSize.y),
       };
 
-      move(window, targetPosition.x, targetPosition.y);
+      move(window, targetPosition.x, targetPosition.y, duration);
     }
   });
 }
