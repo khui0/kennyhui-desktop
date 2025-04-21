@@ -216,7 +216,7 @@ export class MenuBarItem {
 }
 
 export const applications: App[] = $state([
-  new App("dev.kennyhui.resume", "Resume", query("icons/resume.png"))
+  new App("dev.kennyhui.resume", "Resume", query("icons/file.png"))
     .setBody(Resume)
     .setDefaultSize({ x: 400, y: 450 }),
   new App("dev.kennyhui.launchpad", "Launchpad", query("icons/launchpad.png"))
