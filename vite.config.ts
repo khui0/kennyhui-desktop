@@ -4,6 +4,7 @@ import { enhancedImages } from "@sveltejs/enhanced-img";
 import version from "vite-plugin-package-version";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
+import { imagetools } from "vite-imagetools";
 
 export default defineConfig({
   plugins: [
@@ -14,5 +15,6 @@ export default defineConfig({
     enhancedImages(),
     version(),
     tailwindcss(),
+    imagetools(),
   ],
 });

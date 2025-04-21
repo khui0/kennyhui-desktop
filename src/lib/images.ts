@@ -1,17 +1,10 @@
-export interface Picture {
-  sources: Record<string, string>;
-  img: {
-    src: string;
-    w: number;
-    h: number;
-  };
-}
+import type { Picture } from "vite-imagetools";
 
-export interface PictureModule {
+export interface ImageModule {
   default: Picture;
 }
 
-export const images = import.meta.glob(
+const images: Record<string, ImageModule> = import.meta.glob(
   "$lib/assets/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}",
   {
     eager: true,
@@ -21,6 +14,6 @@ export const images = import.meta.glob(
   },
 );
 
-export function query(image: string): PictureModule {
-  return images["/src/lib/assets/" + image] as PictureModule;
+export function query(image: string) {
+  return images["/src/lib/assets/" + image];
 }

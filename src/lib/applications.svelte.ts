@@ -15,13 +15,13 @@ import {
   windows,
   type WindowProperties,
 } from "./components/window/windows.svelte";
-import { query, type PictureModule } from "./images";
+import { query, type ImageModule } from "./images";
 import { launchpad, modifiers } from "./meta.svelte";
 
 export class App {
   id: string;
   name: string;
-  icon: PictureModule;
+  icon: ImageModule;
   body: Component | null = null;
   callback: (() => void) | null = null;
   multipleWindows: boolean = false;
@@ -34,7 +34,7 @@ export class App {
   activeItems: MenuItem[] = [];
   menuBarItems: MenuBarItem[] = [];
 
-  constructor(id: string, name: string, icon: PictureModule) {
+  constructor(id: string, name: string, icon: ImageModule) {
     this.id = id;
     this.name = name;
     this.icon = icon;
