@@ -29,7 +29,7 @@
       <div
         bind:clientWidth={itemWidth[i]}
         class={{
-          "z-50 shrink-0": true,
+          "z-50 flex shrink-0": true,
           hidden: i >= maxItemCount,
         }}
       >
