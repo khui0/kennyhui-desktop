@@ -15,6 +15,7 @@ export function activateMenuBar(id: string): void {
 
 export const systemMenu = new MenuBarItem("system", "", [
   new MenuItem("About This System", () => {
+    console.log("hi");
     applications.find((app) => app.id === "dev.kennyhui.about")?.open();
   }),
   new MenuSeparator(),
@@ -33,3 +34,25 @@ export const systemActiveMenu = new MenuBarItem("system-active", "Kenny Hui", [
 ]);
 
 export const systemMenuBarItems = [];
+
+export let disableTimeout: NodeJS.Timeout;
+export const menuBarState: {
+  visitCount: number;
+  skipPointerUp: boolean;
+} = $state({
+  visitCount: 0,
+  skipPointerUp: false,
+});
+
+export function startDisableTimeout(): void {
+  cancelDisableTimeout();
+
+  disableTimeout = setTimeout(() => {
+    menuBarState.skipPointerUp = true;
+  }, 1000);
+}
+
+export function cancelDisableTimeout(): void {
+  menuBarState.skipPointerUp = false;
+  clearTimeout(disableTimeout);
+}

@@ -65,7 +65,7 @@
       "absolute top-full": true,
       "left-0": !flip,
       "right-0": flip,
-      "pointer-events-auto opacity-100": open,
+      "pointer-events-auto opacity-100 z-50": open,
       "pointer-events-none opacity-0": !open,
     }}
     bind:this={menuRef}

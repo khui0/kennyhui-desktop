@@ -8,6 +8,8 @@
   import {
     activateMenuBar,
     deactivateMenuBar,
+    menuBarState,
+    startDisableTimeout,
     systemActiveMenu,
     systemMenu,
     systemMenuBarItems,
@@ -15,10 +17,6 @@
   import MenuBarButton from "./menu-bar-button.svelte";
 
   let time: string = $state("");
-
-  let disableTimeout: number = 0;
-  let disableOnPointerUp: boolean = false;
-  let itemVisitNumber: number = 0;
 
   update();
 
@@ -30,25 +28,12 @@
     time = dayjs().format("ddd MMM D h:mm A");
   }
 
-  function startDisableTimeout(): void {
-    cancelDisableTimeout();
-
-    disableTimeout = setTimeout(() => {
-      disableOnPointerUp = true;
-    }, 1000);
-  }
-
-  function cancelDisableTimeout(): void {
-    disableOnPointerUp = false;
-    clearTimeout(disableTimeout);
-  }
-
   function onpointerdown(e: PointerEvent) {
     const target = e.target as HTMLElement;
     const item = target?.closest("[data-menu-bar-item]") as HTMLElement;
 
-    if (itemVisitNumber > 1) {
-      itemVisitNumber = 0;
+    if (menuBarState.visitCount > 1) {
+      menuBarState.visitCount = 0;
     }
 
     if (item !== null) {
@@ -56,7 +41,7 @@
       if (id === null) return;
 
       if (id !== menuBar.activeId) {
-        itemVisitNumber = 0;
+        menuBarState.visitCount = 0;
       }
 
       startDisableTimeout();
@@ -84,15 +69,17 @@
     const target = e.target as HTMLElement;
     const item = target?.closest("[data-menu-bar-item]") as HTMLElement;
 
-    if (disableOnPointerUp) {
-      if (item === null) return;
-      deactivateMenuBar();
-    }
+    if (!target.closest("[data-menu]")) {
+      if (menuBarState.skipPointerUp) {
+        if (item === null) return;
+        deactivateMenuBar();
+      }
 
-    if (itemVisitNumber > 0) {
-      deactivateMenuBar();
+      if (menuBarState.visitCount > 0) {
+        deactivateMenuBar();
+      }
+      menuBarState.visitCount++;
     }
-    itemVisitNumber++;
   }
 </script>
 

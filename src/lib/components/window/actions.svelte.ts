@@ -80,6 +80,8 @@ function onpointerdown(e: PointerEvent) {
 
   if (target.closest("[data-nodrag]") && target !== parent) return;
 
+  e.preventDefault();
+
   windowTransform = target
     .getAttribute("data-window-transform")
     ?.split(",")
@@ -117,6 +119,8 @@ function onpointerup(e: PointerEvent) {
   if (!parent.contains(e.target as Node)) return;
 
   const id = parent.getAttribute("data-window");
+
+  e.preventDefault();
 
   if (id !== null) {
     if (target?.closest("[data-window-close]")) {

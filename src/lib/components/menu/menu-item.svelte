@@ -1,5 +1,8 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import { deactivateMenuBar } from "./helpers.svelte";
+
+  let self: HTMLElement | null = $state(null);
 
   let {
     children,
@@ -15,10 +18,16 @@
 </script>
 
 <button
+  bind:this={self}
   data-menu-item
   class="rounded-field text-base-content/85 disabled:text-base-content/25 flex h-[22px] items-center gap-2 px-[10px] text-sm hover:bg-[#0A82FF]/75 active:bg-[#0A82FF]/75"
   {disabled}
-  {onclick}
+  onclick={() => {
+    onclick?.();
+    if (self?.closest("[data-menu-bar]")) {
+      deactivateMenuBar();
+    }
+  }}
 >
   {@render children?.()}
   {#if shortcuts.length > 0}
