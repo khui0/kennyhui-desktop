@@ -16,10 +16,7 @@
 
   let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
 
-  let ready = $state(false);
-
   onMount(() => {
-    ready = true;
     applications.find((app) => app.id === "dev.kennyhui.about")?.open();
   });
 </script>

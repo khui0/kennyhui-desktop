@@ -2,24 +2,23 @@ import "@fontsource-variable/dm-sans";
 
 import type { MetaTagsProps } from "svelte-meta-tags";
 
-const DESCRIPTION =
-  "Kenny Hui is a CS student at Stony Brook University. They are experienced in web development and UX/UI design. Based in New York. View his portfolio.";
+const DESCRIPTION = "Web-based desktop environment.";
 
 export const load = ({ url }) => {
   const baseMetaTags = Object.freeze({
-    title: "Kenny Hui",
+    title: "Desktop",
     description: DESCRIPTION,
     canonical: new URL(url.pathname, url.origin).href,
     openGraph: {
       type: "website",
       url: new URL(url.pathname, url.origin).href,
       locale: "en_US",
-      title: "Kenny Hui",
+      title: "Desktop",
       description: DESCRIPTION,
-      siteName: "kennyhui.dev",
+      siteName: "desktop.kennyhui.dev",
       images: [
         {
-          url: "https://kennyhui.dev/og/index.png",
+          url: "https://desktop.kennyhui.dev/og/index.png",
         },
       ],
     },
