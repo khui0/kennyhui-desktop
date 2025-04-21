@@ -22,6 +22,8 @@ import {
 import { query, type ImageModule } from "./images";
 import { launchpad, modifiers } from "./meta.svelte";
 
+type AppObserverCallback = (e: { action?: string }) => void;
+
 export class App {
   id: string;
   name: string;
@@ -38,10 +40,24 @@ export class App {
   activeItems: MenuItem[] = [];
   menuBarItems: MenuBarItem[] = [];
 
+  observers: AppObserverCallback[] = [];
+
   constructor(id: string, name: string, icon: ImageModule) {
     this.id = id;
     this.name = name;
     this.icon = icon;
+  }
+
+  subscribe(callback: AppObserverCallback) {
+    this.observers.push(callback);
+  }
+
+  unsubscribe(callback: AppObserverCallback) {
+    this.observers = this.observers.filter((observer) => observer !== callback);
+  }
+
+  notify(action: string) {
+    this.observers.forEach((observer) => observer({ action }));
   }
 
   setBody(body: Component): App {
@@ -137,6 +153,7 @@ export class App {
 
   async open(): Promise<void> {
     this.callback?.();
+    this.notify("open");
     if (this.body !== null) {
       if (this.instances() <= 0) {
         add(this.window());
@@ -155,6 +172,7 @@ export class App {
   }
 
   close(): void {
+    this.notify("close");
     hide(this.id);
     applyFocus();
   }

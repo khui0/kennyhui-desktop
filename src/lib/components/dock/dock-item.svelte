@@ -5,9 +5,9 @@
 
   let { app }: { app: App } = $props();
 
-  let previous: number = $state(0);
-
   let open: boolean = $derived(app.instances() > 0);
+  let previousOpen: boolean = $state(false);
+
   let timeout: NodeJS.Timeout;
   let bounce: boolean = $state(false);
 
@@ -15,14 +15,16 @@
     app.open();
   }
 
-  $effect(() => {
-    if (open && previous === 0) {
-      previous = app.instances();
+  app.subscribe((e) => {
+    if (app.instances() === 0 && e.action === "open") {
+      previousOpen = true;
       bounce = true;
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         bounce = false;
       }, 800);
+    } else if (e.action === "close") {
+      previousOpen = false;
     }
   });
 </script>
