@@ -1,6 +1,14 @@
 import type { MenuBarItem } from "$lib/applications.svelte";
 import { tick, type Component } from "svelte";
-import { applyFocus, container, getSize, move, resize, type Vector } from "./helpers.svelte";
+import {
+  applyFocus,
+  container,
+  getSize,
+  move,
+  moveWindowsWithinBounds,
+  resize,
+  type Vector,
+} from "./helpers.svelte";
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
@@ -51,8 +59,10 @@ export function add(...properties: WindowProperties[]): void {
   });
 }
 
-export function show(id: string): void {
+export async function show(id: string): Promise<void> {
   stackOrder.push(id);
+  await tick();
+  moveWindowsWithinBounds(0);
 }
 
 export function remove(id: string): void {
