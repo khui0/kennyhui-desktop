@@ -23,7 +23,7 @@
   } = $props();
 
   let modal: HTMLDialogElement | undefined = $state();
-  let timeout: number;
+  let timeout: NodeJS.Timeout;
 
   export function show() {
     clearTimeout(timeout);
