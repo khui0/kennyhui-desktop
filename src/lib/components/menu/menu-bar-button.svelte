@@ -2,6 +2,7 @@
   import { menuBar } from "$lib/meta.svelte";
   import type { Snippet } from "svelte";
   import { activateMenuBar, deactivateMenuBar } from "./helpers.svelte";
+  import { settings } from "$lib/apps/settings/settings";
 
   let {
     type = "item",
@@ -47,6 +48,7 @@
       "font-bold": type === "name",
       "font-normal": type === "item",
       "menu-bar-active:bg-black/10 dark:menu-bar-active:bg-white/20 ": open,
+      "group-first:rounded-tl-[8px] group-last:rounded-tr-[8px]": $settings.roundedCorners,
     }}
     onkeydown={(e) => {
       if (e.key !== " " && e.key !== "Enter") return;
@@ -65,7 +67,7 @@
       "absolute top-full": true,
       "left-0": !flip,
       "right-0": flip,
-      "pointer-events-auto opacity-100 z-50": open,
+      "pointer-events-auto z-50 opacity-100": open,
       "pointer-events-none opacity-0": !open,
     }}
     bind:this={menuRef}
