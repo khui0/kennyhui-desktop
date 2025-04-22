@@ -56,17 +56,6 @@
       <SimpleIconsGithub></SimpleIconsGithub>
       github.com/khui0
     </a>
-    <a
-      data-nodrag
-      class="btn"
-      aria-label="Bluesky"
-      href="https://bsky.app/profile/kennyhui.dev"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <SimpleIconsBluesky></SimpleIconsBluesky>
-      @kennyhui.dev
-    </a>
   </section>
   <section class="text-base-content/30 text-center text-[11px] leading-tight">
     <p>&copy; 2025 Kenny Hui</p>

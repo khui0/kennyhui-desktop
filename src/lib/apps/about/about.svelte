@@ -1,11 +1,12 @@
 <script lang="ts">
   import AppIcon from "$lib/components/app/app-icon.svelte";
   import { query } from "$lib/images";
-  import { getScreenSizeEstimate } from "$lib/meta.svelte";
+  import { getScreenSizeEstimate, version } from "$lib/meta.svelte";
   import dayjs from "dayjs";
   import SimpleIconsBluesky from "~icons/simple-icons/bluesky";
   import SimpleIconsGithub from "~icons/simple-icons/github";
   import SimpleIconsLinkedin from "~icons/simple-icons/linkedin";
+  import AboutSection from "./about-section.svelte";
 </script>
 
 <div class="flex h-full flex-col gap-2.5 p-5 text-center">
@@ -19,20 +20,11 @@
     </p>
   </section>
   <section class="flex flex-1 flex-col justify-center">
-    <div class="grid grid-cols-[3fr_5fr] gap-2">
-      <span class="justify-self-end text-end">Email</span>
+    <AboutSection label="Email">
+      <a data-nodrag href="mailto:hello@kennyhui.dev"> hello@kennyhui.dev </a>
+    </AboutSection>
+    <AboutSection label="GitHub">
       <a
-        class="text-base-content/50 justify-self-start text-start"
-        data-nodrag
-        href="mailto:hello@kennyhui.dev"
-      >
-        hello@kennyhui.dev
-      </a>
-    </div>
-    <div class="grid grid-cols-[3fr_5fr] gap-2">
-      <span class="justify-self-end text-end">GitHub</span>
-      <a
-        class="text-base-content/50 justify-self-start text-start"
         data-nodrag
         target="_blank"
         rel="noopener noreferrer"
@@ -40,7 +32,10 @@
       >
         khui0/kennyhui-desktop
       </a>
-    </div>
+    </AboutSection>
+    <AboutSection label="Version">
+      <p>{version}</p>
+    </AboutSection>
   </section>
   <section class="my-2 flex flex-wrap justify-center gap-2">
     <a
@@ -64,17 +59,6 @@
     >
       <SimpleIconsGithub></SimpleIconsGithub>
       github.com/khui0
-    </a>
-    <a
-      data-nodrag
-      class="btn"
-      aria-label="Bluesky"
-      href="https://bsky.app/profile/kennyhui.dev"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <SimpleIconsBluesky></SimpleIconsBluesky>
-      @kennyhui.dev
     </a>
   </section>
   <section class="text-base-content/30 text-center text-[11px] leading-tight">
