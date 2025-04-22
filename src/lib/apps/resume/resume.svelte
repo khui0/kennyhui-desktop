@@ -15,6 +15,14 @@
     >
       View Projects
     </a>
+    <a
+      class="btn"
+      href="https://kennyhui.dev/resume.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Full Resume
+    </a>
   </div>
   <ResumeSection title="Experience">
     <ResumeRole title="Freelance Frontend Developer" date="Jan 2024 - Jun 2024">
