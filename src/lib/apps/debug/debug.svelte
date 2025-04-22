@@ -19,7 +19,7 @@
 <div class="mt-[28px] flex flex-col gap-2.5 overflow-auto p-2.5 pt-0">
   <div class="bg-base-100/50 rounded-field shrink-0 overflow-hidden border">
     <p class="border-b px-2 py-1 font-semibold">{applications.length} apps loaded</p>
-    <ul class="flex flex-col">
+    <ul class="flex flex-col max-h-64 overflow-auto">
       {#each applications as app}
         <li class="even:bg-base-content/5 grid grid-cols-[auto_1fr] gap-2 px-2 py-1">
           <div class="flex items-center">
