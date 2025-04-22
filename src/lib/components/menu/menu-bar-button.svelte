@@ -4,18 +4,22 @@
 
   let {
     active = $bindable(false),
+    controls,
     onclick,
     children,
   }: {
     active?: boolean;
+    controls?: string;
     onclick?: () => void;
     children?: Snippet;
   } = $props();
 </script>
 
-<div class="group relative -mx-1 py-1">
+<div class="group relative -mx-1 py-1" data-control-center-controls={controls}>
   <button
-    {onclick}
+    onpointerdown={() => {
+      onclick?.();
+    }}
     class={{
       "flex h-6 shrink-0 items-center justify-center rounded-sm px-[11px] text-[13px] text-shadow-md": true,
       "group-active:bg-black/10 dark:group-active:bg-white/20 ": !active,

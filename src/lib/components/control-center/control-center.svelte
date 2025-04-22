@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { search } from "$lib/meta.svelte";
+  import { controlCenter, search } from "$lib/meta.svelte";
   import HeroiconsArrowsPointingOut from "~icons/heroicons/arrows-pointing-out";
   import HeroiconsMagnifyingGlass from "~icons/heroicons/magnifying-glass";
   import HeroiconsMoon16Solid from "~icons/heroicons/moon-16-solid";
@@ -10,10 +10,23 @@
   import TablerBluetooth from "~icons/tabler/bluetooth";
   import ControlCenterButton from "./control-center-button.svelte";
   import ControlCenterToggle from "./control-center-toggle.svelte";
+
+  function onpointerdown(e: PointerEvent) {
+    const target = e.target as HTMLElement;
+    if (
+      !target.closest("[data-control-center]") &&
+      !target.closest(`[data-control-center-controls="control-center"]`) &&
+      controlCenter.open
+    ) {
+      controlCenter.open = false;
+    }
+  }
 </script>
 
+<svelte:document {onpointerdown} />
+
 <div
-  data-menu-bar-ignore
+  data-control-center
   class="bg-glass fixed right-0 m-1.5 grid w-80 cursor-default grid-cols-4 gap-2.5 rounded-[17.5px] p-2.5 shadow-lg"
 >
   <div class="bg-control col-span-2 col-start-1 flex h-33 flex-col justify-center gap-2 pl-3">

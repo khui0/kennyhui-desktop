@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { launchpad, menuBar } from "$lib/meta.svelte";
+  import { controlCenter, launchpad, menuBar } from "$lib/meta.svelte";
   import dayjs from "dayjs";
   import { onMount } from "svelte";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
@@ -17,6 +17,7 @@
   import ControlCenterIcon from "~icons/custom/control-center";
   import ControlCenter from "../control-center/control-center.svelte";
   import MenuBarButton from "./menu-bar-button.svelte";
+  import { fade } from "svelte/transition";
 
   let time: string = $state("");
 
@@ -113,7 +114,13 @@
     {/each}
   {/if}
   <div class="flex-1"></div>
-  <MenuBarButton>
+  <MenuBarButton
+    controls="control-center"
+    bind:active={controlCenter.open}
+    onclick={() => {
+      controlCenter.open = !controlCenter.open;
+    }}
+  >
     <span class="text-[11px]">
       <ControlCenterIcon />
     </span>
@@ -121,4 +128,9 @@
   <MenuBarButton>
     {time}
   </MenuBarButton>
+  {#if controlCenter.open}
+    <div out:fade={{ duration: 200 }} class="absolute top-full right-0">
+      <ControlCenter />
+    </div>
+  {/if}
 </menu>
