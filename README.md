@@ -2,8 +2,8 @@
 
 # Kenny Hui's Desktop
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/khui0/kennyhui-desktop?color=%23600cae)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/khui0/kennyhui-desktop?color=%23600cae)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/khui0/kennyhui-desktop?color=%23600cae&)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/khui0/kennyhui-desktop?color=%23600cae&)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fdesktop.kennyhui.dev%2F&color=%23600cae)
 
 ### Try it here: [desktop.kennyhui.dev](https://desktop.kennyhui.dev/)
