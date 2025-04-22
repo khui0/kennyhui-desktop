@@ -6,23 +6,40 @@
 
 <WindowContent>
   <h2 class="text-3xl font-bold">Kenny Hui</h2>
+  <div class="mt-5 flex items-center gap-1">
+    <a
+      class="btn btn-accent"
+      href="https://kennyhui.dev/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View Projects
+    </a>
+  </div>
   <ResumeSection title="Experience">
-    <ResumeRole title="Freelance Frontend Developer" date="January 2024 - June 2024">
-      Developed a web-based storefront for a client that allowed for the creation of posts and
-      product listings via a CMS and inquiries via a contact form. Used 11ty and Nunjucks.
+    <ResumeRole title="Freelance Frontend Developer" date="Jan 2024 - Jun 2024">
+      <ul class="text-base-content/75 list-disc pl-6 text-xs">
+        <li>
+          Delivered a fully responsive website for a client to manage posts and product listings.
+        </li>
+        <li>
+          Integrated Decap CMS to enable non-technical users to update the site content easily.
+        </li>
+        <li>Used 11ty and Nunjucks to optimize performance and maintainability.</li>
+      </ul>
     </ResumeRole>
   </ResumeSection>
   <ResumeSection title="Education">
-    <ResumeRole title="Stony Brook University" date="Fall 2024 - Spring 2028">
-      B.S. in Computer Science
+    <ResumeRole title="Stony Brook University" date="Aug 2024 - May 2028">
+      Bachelor of Science in Computer Science
     </ResumeRole>
   </ResumeSection>
   <ResumeSection title="Skills">
     <ul class="text-base-content/75 list-disc pl-6 text-xs">
-      <li>TypeScript, Java, SQL, Python, Arduino, HTML/CSS, C#</li>
-      <li>Svelte + SvelteKit, Tailwind, Astro, 11ty, Node.js, Electron</li>
-      <li>Express.js, Socket.IO, Zod</li>
-      <li>Git, Docker</li>
+      <li><b>Languages</b>: TypeScript, Java, SQL, HTML/CSS</li>
+      <li><b>Frameworks</b>: Node.js, Svelte, SvelteKit, Tailwind, Astro, 11ty, Electron</li>
+      <li><b>Libraries</b>: Express.js, Socket.IO, Zod</li>
+      <li><b>Developer Tools</b>: VSCode, Git, Docker, Oracle Cloud</li>
     </ul>
   </ResumeSection>
 </WindowContent>

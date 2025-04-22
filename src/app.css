@@ -195,6 +195,14 @@
   }
 }
 
+@utility btn-accent {
+  @apply bg-accent text-accent-content;
+
+  &:active {
+    @apply bg-accent/90;
+  }
+}
+
 @utility btn-lg {
   @apply h-7 rounded-[6px] px-[5px] text-lg;
 }
