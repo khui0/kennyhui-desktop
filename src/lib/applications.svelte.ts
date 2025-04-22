@@ -319,4 +319,16 @@ export const applications: App[] = $state([
       y: 58,
     })
     .hideFromDock(),
+  new App("dev.kennyhui.videopoker", "Video Poker", query("icons/video-poker.png"))
+    .setBody(Iframe)
+    .setProps({ src: "https://poker.kennyhui.dev/", title: "Video Poker" })
+    .setDefaultSize({
+      x: 600,
+      y: 500,
+    })
+    .setMinSize({
+      x: 300,
+      y: 58,
+    })
+    .hideFromDock(),
 ]);
