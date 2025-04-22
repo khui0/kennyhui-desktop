@@ -5,10 +5,9 @@
 
   let dockItems = $derived([
     ...applications.filter((app) => app.showInDock),
-    ...applications.filter(
-      (app) =>
-        !app.showInDock && windows.findIndex((window) => window.id.startsWith(app.id)) !== -1,
-    ),
+    ...windows
+      .map((window) => applications.find((app) => window.id.startsWith(app.id)))
+      .filter((app) => !app?.showInDock),
   ]);
 
   let dockWidth: number = $state(0);
@@ -25,7 +24,7 @@
     data-dock
     class="bg-dock flex min-h-15.5 w-fit max-w-full shrink-0 items-start rounded-[18px] bg-[F6F6F6]/36 px-1 py-2.5 shadow-xl backdrop-blur-[135px]"
   >
-    {#each dockItems as app, i}
+    {#each dockItems as app, i (app.id)}
       <div
         bind:clientWidth={itemWidth[i]}
         class={{
