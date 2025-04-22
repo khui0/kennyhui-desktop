@@ -7,11 +7,13 @@
   let {
     children,
     disabled = false,
+    hidden,
     shortcuts = [],
     onclick,
   }: {
     children?: Snippet;
     disabled?: boolean;
+    hidden?: boolean;
     shortcuts?: string[];
     onclick?: () => void;
   } = $props();
@@ -20,6 +22,7 @@
 <button
   bind:this={self}
   data-menu-item
+  tabindex={hidden ? -1 : 0}
   class="rounded-field text-base-content/85 disabled:text-base-content/25 hover:bg-accent/75 active:bg-accent/75 hover:text-accent-content active:text-accent-content flex h-[22px] items-center gap-2 px-[10px] text-sm"
   {disabled}
   onclick={() => {

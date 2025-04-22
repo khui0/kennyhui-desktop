@@ -8,8 +8,10 @@
 
   let {
     items,
+    hidden = false,
   }: {
     items: (MenuItemClass | MenuSeparatorClass)[];
+    hidden?: boolean;
   } = $props();
 </script>
 
@@ -20,7 +22,11 @@
   >
     {#each items as item}
       {#if item instanceof MenuItemClass}
-        <MenuItem onclick={item.callback} shortcuts={item.shortcuts.map((s) => s.toString())}>
+        <MenuItem
+          {hidden}
+          onclick={item.callback}
+          shortcuts={item.shortcuts.map((s) => s.toString())}
+        >
           {item.text}
         </MenuItem>
       {:else if item instanceof MenuSeparatorClass}

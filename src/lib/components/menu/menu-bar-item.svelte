@@ -76,6 +76,6 @@
     }}
     bind:this={menuRef}
   >
-    <Menu items={data.items} />
+    <Menu hidden={!open} items={data.items} />
   </div>
 </div>
