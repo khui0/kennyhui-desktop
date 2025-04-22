@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { applications } from "$lib/applications.svelte";
+  import { applications, type App } from "$lib/applications.svelte";
   import { windows } from "../window/windows.svelte";
   import DockItem from "./dock-item.svelte";
 
@@ -7,8 +7,8 @@
     ...applications.filter((app) => app.showInDock),
     ...windows
       .map((window) => applications.find((app) => window.id.startsWith(app.id)))
-      .filter((app) => !app?.showInDock),
-  ]);
+      .filter((app) => app && !app.showInDock),
+  ]) as App[];
 
   let dockWidth: number = $state(0);
   let itemWidth: number[] = $state([]);
