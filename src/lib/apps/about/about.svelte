@@ -3,7 +3,6 @@
   import { query } from "$lib/images";
   import { getScreenSizeEstimate, version } from "$lib/meta.svelte";
   import dayjs from "dayjs";
-  import SimpleIconsBluesky from "~icons/simple-icons/bluesky";
   import SimpleIconsGithub from "~icons/simple-icons/github";
   import SimpleIconsLinkedin from "~icons/simple-icons/linkedin";
   import AboutSection from "./about-section.svelte";

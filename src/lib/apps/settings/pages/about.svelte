@@ -2,12 +2,11 @@
   import AppIcon from "$lib/components/app/app-icon.svelte";
   import { query } from "$lib/images";
   import { getScreenSizeEstimate, version } from "$lib/meta.svelte";
-  import SimpleIconsBluesky from "~icons/simple-icons/bluesky";
+  import dayjs from "dayjs";
   import SimpleIconsGithub from "~icons/simple-icons/github";
   import SimpleIconsLinkedin from "~icons/simple-icons/linkedin";
   import SettingsField from "../settings-field.svelte";
   import SettingsGroup from "../settings-group.svelte";
-  import dayjs from "dayjs";
 </script>
 
 <div class="flex h-full flex-col gap-2.5 text-center">
