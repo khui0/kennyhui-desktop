@@ -80,4 +80,5 @@
     {@render children()}
   </div>
   {@render handles()}
+  <div class="window-active:pointer-events-none absolute inset-0"></div>
 </div>

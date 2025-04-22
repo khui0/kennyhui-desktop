@@ -129,5 +129,4 @@
     class="h-full w-full"
     sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"
   ></iframe>
-  <div class="window-active:pointer-events-none absolute inset-0"></div>
 </div>
