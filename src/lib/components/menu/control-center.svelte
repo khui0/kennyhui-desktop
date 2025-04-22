@@ -11,11 +11,13 @@
 
 <div
   data-menu-bar-ignore
-  class="bg-glass fixed cursor-default right-0 m-1.5 grid w-80 grid-cols-4 gap-2.5 rounded-[17.5px] p-2.5 shadow-lg"
+  class="bg-glass fixed right-0 m-1.5 grid w-80 cursor-default grid-cols-4 gap-2.5 rounded-[17.5px] p-2.5 shadow-lg"
 >
   <div class="control col-span-2 col-start-1 flex h-33 flex-col justify-center gap-2 pl-3">
     <div class="grid grid-cols-[auto_1fr] items-center gap-2">
-      <div class="bg-accent flex h-6.5 w-6.5 items-center justify-center rounded-full">
+      <div
+        class="bg-accent text-accent-content flex h-6.5 w-6.5 items-center justify-center rounded-full"
+      >
         <HeroiconsWifi16Solid />
       </div>
       <div class="flex flex-col justify-center">
@@ -24,7 +26,9 @@
       </div>
     </div>
     <div class="grid grid-cols-[auto_1fr] items-center gap-2">
-      <div class="bg-accent flex h-6.5 w-6.5 items-center justify-center rounded-full">
+      <div
+        class="bg-accent text-accent-content flex h-6.5 w-6.5 items-center justify-center rounded-full"
+      >
         <TablerBluetooth />
       </div>
       <div class="flex flex-col justify-center">
@@ -33,7 +37,9 @@
       </div>
     </div>
     <div class="grid grid-cols-[auto_1fr] items-center gap-2">
-      <div class="bg-accent flex h-6.5 w-6.5 items-center justify-center rounded-full">
+      <div
+        class="bg-accent text-accent-content flex h-6.5 w-6.5 items-center justify-center rounded-full"
+      >
         <HeroiconsSignal16Solid />
       </div>
       <div class="flex flex-col justify-center">
@@ -45,7 +51,7 @@
   <div class="col-span-2 col-start-3 grid h-33 grid-rows-2 gap-2.5">
     <div class="control col-span-2 flex flex-col justify-center pl-3">
       <div class="grid grid-cols-[auto_1fr] items-center gap-2">
-        <div class="bg-base-300 flex h-6.5 w-6.5 items-center justify-center rounded-full">
+        <div class="bg-base-content/25 flex h-6.5 w-6.5 items-center justify-center rounded-full">
           <HeroiconsMoon16Solid />
         </div>
         <div class="flex flex-col justify-center">
@@ -71,8 +77,14 @@
   <div class="control col-span-4 flex h-16.5 flex-col justify-center gap-2 px-3">
     <p class="-mt-1 text-[12px] font-semibold">Display</p>
     <div class="relative flex">
-      <input type="range" min="0" max="100" value="40" class="range" />
-      <span class="text-neutral-content/80 absolute top-1/2 left-0.75 -translate-y-1/2 text-[10px]">
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="40"
+        class="range [--range-progress:white] [--range-thumb:white]"
+      />
+      <span class="absolute top-1/2 left-0.75 -translate-y-1/2 text-[10px] text-black/80">
         <HeroiconsSun16Solid />
       </span>
     </div>
@@ -80,8 +92,14 @@
   <div class="control col-span-4 flex h-16.5 flex-col justify-center gap-2 px-3">
     <p class="-mt-1 text-[12px] font-semibold">Sound</p>
     <div class="relative flex">
-      <input type="range" min="0" max="100" value="40" class="range" />
-      <span class="text-neutral-content/80 absolute top-1/2 left-0.75 -translate-y-1/2 text-[10px]">
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="40"
+        class="range [--range-progress:white] [--range-thumb:white]"
+      />
+      <span class="absolute top-1/2 left-0.75 -translate-y-1/2 text-[10px] text-black/80">
         <HeroiconsSpeakerWave16Solid />
       </span>
     </div>
