@@ -14,9 +14,9 @@
     systemMenu,
     systemMenuBarItems,
   } from "./helpers.svelte";
-  import MenuBarButton from "./menu-bar-button.svelte";
   import ControlCenterIcon from "~icons/custom/control-center";
   import ControlCenter from "../control-center/control-center.svelte";
+  import MenuBarButton from "./menu-bar-button.svelte";
 
   let time: string = $state("");
 
@@ -113,16 +113,12 @@
     {/each}
   {/if}
   <div class="flex-1"></div>
-  <MenuBarButton id="system-control-center">
-    {#snippet content()}
-      <ControlCenter />
-    {/snippet}
+  <MenuBarButton>
     <span class="text-[11px]">
       <ControlCenterIcon />
     </span>
   </MenuBarButton>
-  <MenuBarButton id="system-time">
-    {#snippet content()}{/snippet}
+  <MenuBarButton>
     {time}
   </MenuBarButton>
 </menu>

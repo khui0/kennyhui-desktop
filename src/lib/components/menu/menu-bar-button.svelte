@@ -1,77 +1,28 @@
 <script lang="ts">
-  import { menuBar } from "$lib/meta.svelte";
-  import type { Snippet } from "svelte";
-  import { activateMenuBar, deactivateMenuBar } from "./helpers.svelte";
   import { settings } from "$lib/apps/settings/settings";
+  import type { Snippet } from "svelte";
 
   let {
-    type = "item",
-    id,
-    content,
+    active = $bindable(false),
+    onclick,
     children,
   }: {
-    type?: "logo" | "name" | "item";
-    id: string;
-    content: Snippet;
-    children: Snippet;
+    active?: boolean;
+    onclick?: () => void;
+    children?: Snippet;
   } = $props();
-
-  let parentRef: HTMLElement | null = $state(null);
-  let menuRef: HTMLElement | null = $state(null);
-
-  let open: boolean = $derived(menuBar.activeId === id);
-  let flip: boolean = $state(false);
-
-  $effect(() => {
-    open;
-    positionMenu();
-  });
-
-  function positionMenu(): void {
-    if (!parentRef) return;
-    if (!menuRef) return;
-
-    const left = parentRef.getBoundingClientRect().x;
-    const width = menuRef.clientWidth;
-
-    if (left + width >= document.body.clientWidth) {
-      flip = true;
-    }
-  }
 </script>
 
-<div data-menu-bar-item={id} class="group relative -mx-1 py-1" bind:this={parentRef}>
+<div class="group relative -mx-1 py-1">
   <button
+    {onclick}
     class={{
       "flex h-6 shrink-0 items-center justify-center rounded-sm px-[11px] text-[13px] text-shadow-md": true,
-      "w-[37px]": type === "logo",
-      "font-bold": type === "name",
-      "font-normal": type === "item",
-      "menu-bar-active:bg-black/10 dark:menu-bar-active:bg-white/20 ": open,
+      "group-active:bg-black/10 dark:group-active:bg-white/20 ": !active,
+      "bg-black/10 dark:bg-white/20 ": active,
       "group-first:rounded-tl-[8px] group-last:rounded-tr-[8px]": $settings.roundedCorners,
     }}
-    onkeydown={(e) => {
-      if (e.key !== " " && e.key !== "Enter") return;
-      if (menuBar.activeId === id) {
-        deactivateMenuBar();
-      } else {
-        activateMenuBar(id);
-      }
-    }}
   >
-    {@render children()}
+    {@render children?.()}
   </button>
-  <div
-    aria-hidden={!open}
-    class={{
-      "absolute top-full": true,
-      "left-0": !flip,
-      "right-0": flip,
-      "pointer-events-auto z-50 opacity-100": open,
-      "pointer-events-none opacity-0": !open,
-    }}
-    bind:this={menuRef}
-  >
-    {@render content()}
-  </div>
 </div>
