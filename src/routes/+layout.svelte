@@ -11,6 +11,7 @@
   import { onMount } from "svelte";
   import { MetaTags, deepMerge } from "svelte-meta-tags";
   import "../app.css";
+  import { settings } from "$lib/apps/settings/settings";
 
   let { data, children } = $props();
 
@@ -40,8 +41,13 @@
 
 <MetaTags {...metaTags} />
 
-<div class="flex h-full w-full flex-col overflow-hidden">
-  <div class="fixed inset-0">
+<div
+  class={{
+    "relative flex h-full w-full flex-col overflow-hidden": true,
+    "rounded-box": $settings.roundedCorners as boolean,
+  }}
+>
+  <div class="absolute inset-0">
     <Gradient />
   </div>
   {@render children()}
@@ -50,7 +56,6 @@
   </main>
   <MenuBar />
   <Dock />
+  <Launchpad bind:this={launchpad.current} />
+  <Search bind:this={search.current} />
 </div>
-
-<Launchpad bind:this={launchpad.current} />
-<Search bind:this={search.current} />
