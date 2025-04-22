@@ -1,6 +1,6 @@
 {
-  "name": "Kenny Hui",
-  "short_name": "Kenny Hui",
+  "name": "Desktop",
+  "short_name": "Desktop",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,5 +15,7 @@
       "purpose": "maskable"
     }
   ],
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "display": "standalone"
 }
