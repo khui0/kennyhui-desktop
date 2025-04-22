@@ -53,9 +53,7 @@ export const modifiers = isMac()
 export const enterKey = "↵";
 export const backspaceKey = "⌫";
 
-export const version: string = import.meta.env.PACKAGE_VERSION.split(".")
-  .filter((n: string) => n !== "0")
-  .join(".");
+export const version: string = import.meta.env.PACKAGE_VERSION;
 
 export function getScreenSizeEstimate(): number {
   const w = window.screen.width;
