@@ -15,6 +15,8 @@
     systemMenuBarItems,
   } from "./helpers.svelte";
   import MenuBarButton from "./menu-bar-button.svelte";
+  import ControlCenterIcon from "~icons/custom/control-center";
+  import ControlCenter from "./control-center.svelte";
 
   let time: string = $state("");
 
@@ -69,6 +71,8 @@
     const target = e.target as HTMLElement;
     const item = target?.closest("[data-menu-bar-item]") as HTMLElement;
 
+    if (target.closest("[data-menu-bar-ignore]")) return;
+
     if (!target.closest("[data-menu]")) {
       if (menuBarState.skipPointerUp) {
         if (item === null) return;
@@ -109,6 +113,14 @@
     {/each}
   {/if}
   <div class="flex-1"></div>
+  <MenuBarButton id="system-control-center">
+    {#snippet content()}
+      <ControlCenter />
+    {/snippet}
+    <span class="text-[11px]">
+      <ControlCenterIcon />
+    </span>
+  </MenuBarButton>
   <MenuBarButton id="system-time">
     {#snippet content()}{/snippet}
     {time}
