@@ -6,11 +6,11 @@
   import WindowControls from "./window-controls.svelte";
   import WindowTitleBar from "./window-title-bar.svelte";
   import Window from "./window.svelte";
-  import { stackOrder, windows, type WindowSnap } from "./windows.svelte";
+  import { windows, type WindowSnap } from "./windows.svelte";
 
   let snap: WindowSnap = $state(null);
 
-  let resizeTimeout: number = 0;
+  let resizeTimeout: NodeJS.Timeout;
 
   onMount(() => {
     moveWindowsWithinBounds();
@@ -58,7 +58,7 @@
   ></div>
   {#each windows as window (window.id)}
     <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
-      <div class="absolute left-0 flex h-7 items-center z-50">
+      <div class="absolute left-0 z-50 flex h-7 items-center">
         <WindowControls />
       </div>
       {#if window.titlebar}

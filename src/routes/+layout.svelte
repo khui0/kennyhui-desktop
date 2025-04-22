@@ -51,7 +51,7 @@
     <Gradient />
   </div>
   {@render children()}
-  <main class="fixed top-8 right-0 bottom-18 left-0">
+  <main class="fixed top-8 right-0 bottom-18 left-0 overflow-hidden">
     <WindowManager />
   </main>
   <MenuBar />
