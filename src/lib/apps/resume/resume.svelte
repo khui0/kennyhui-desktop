@@ -1,5 +1,8 @@
 <script lang="ts">
+  import AppIcon from "$lib/components/app/app-icon.svelte";
   import WindowContent from "$lib/components/window/window-content.svelte";
+  import { query } from "$lib/images";
+  import { modifiers } from "$lib/meta.svelte";
   import ResumeRole from "./resume-role.svelte";
   import ResumeSection from "./resume-section.svelte";
 </script>
@@ -15,14 +18,17 @@
     >
       View Projects
     </a>
-    <a
-      class="btn"
-      href="https://kennyhui.dev/resume.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a class="btn" href="https://kennyhui.dev/resume.pdf" target="_blank" rel="noopener noreferrer">
       Full Resume
     </a>
+  </div>
+  <div class="mt-5">
+    <p class="text-base-content/80">Try some of my games in Launchpad</p>
+    <div class="mt-2 flex items-center gap-5">
+      <AppIcon src={query("icons/launchpad.png").default} size="sm" />
+      <p>or</p>
+      <p class="text-xl">{modifiers.command} L</p>
+    </div>
   </div>
   <ResumeSection title="Experience">
     <ResumeRole title="Freelance Frontend Developer" date="Jan 2024 - Jun 2024">
