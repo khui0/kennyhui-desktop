@@ -96,6 +96,7 @@
   html,
   body {
     @apply h-full;
+    overscroll-behavior: none;
   }
 
   body {
