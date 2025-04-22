@@ -47,12 +47,19 @@
       </ControlCenterToggle>
     </div>
     <div class="col-span-2 grid grid-cols-2 gap-2.5">
-      <ControlCenterButton label="Search" onclick={search.current?.show}>
+      <ControlCenterButton
+        label="Search"
+        onclick={() => {
+          controlCenter.open = false;
+          search.current?.show();
+        }}
+      >
         <HeroiconsMagnifyingGlass />
       </ControlCenterButton>
       <ControlCenterButton
         label="Fullscreen"
         onclick={() => {
+          controlCenter.open = false;
           document.documentElement.requestFullscreen();
         }}
       >
