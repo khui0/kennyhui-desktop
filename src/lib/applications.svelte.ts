@@ -2,6 +2,7 @@ import { type Component } from "svelte";
 import About from "./apps/about/about.svelte";
 import Browser from "./apps/browser/browser.svelte";
 import Debug from "./apps/debug/debug.svelte";
+import Iframe from "./apps/iframe/iframe.svelte";
 import Resume from "./apps/resume/resume.svelte";
 import Settings from "./apps/settings/settings.svelte";
 import { applyFocus, type Vector } from "./components/window/helpers.svelte";
@@ -24,7 +25,13 @@ export class App {
   id: string;
   name: string;
   icon: ImageModule;
-  body: Component | null = null;
+  body: {
+    component: Component | null;
+    props: object;
+  } = {
+    component: null,
+    props: {},
+  };
   callback: (() => void) | null = null;
   multipleWindows: boolean = false;
   titlebar: boolean = true;
@@ -57,7 +64,12 @@ export class App {
   }
 
   setBody(body: Component): App {
-    this.body = body;
+    this.body.component = body;
+    return this;
+  }
+
+  setProps(props: object) {
+    this.body.props = props;
     return this;
   }
 
@@ -294,5 +306,17 @@ export const applications: App[] = $state([
     .setDefaultSize({ x: 280, y: 400 })
     .setMinSize({ x: 280, y: 400 })
     .setDefaultPosition({ x: 40, y: 40 })
+    .hideFromDock(),
+  new App("dev.kennyhui.flaggle", "Flaggle", query("icons/chromium.png"))
+    .setBody(Iframe)
+    .setProps({ src: "https://flaggle.kennyhui.dev/", title: "Flaggle" })
+    .setDefaultSize({
+      x: 600,
+      y: 500,
+    })
+    .setMinSize({
+      x: 300,
+      y: 58,
+    })
     .hideFromDock(),
 ]);

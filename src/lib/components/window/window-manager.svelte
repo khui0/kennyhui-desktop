@@ -1,6 +1,6 @@
 <script lang="ts">
   import { launchpad } from "$lib/meta.svelte";
-  import { onMount, type Snippet } from "svelte";
+  import { onMount, type Component, type Snippet } from "svelte";
   import { windowDragHandler } from "./actions.svelte";
   import { container, moveWindowsWithinBounds } from "./helpers.svelte";
   import WindowControls from "./window-controls.svelte";
@@ -66,8 +66,9 @@
           <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
         </WindowTitleBar>
       {/if}
-      {#if window.body !== null}
-        {@render (window.body as Snippet)()}
+      {#if window.body.component !== null}
+        {@const Component = window.body.component as Component}
+        <Component {...window.body.props} />
       {/if}
     </Window>
   {/each}

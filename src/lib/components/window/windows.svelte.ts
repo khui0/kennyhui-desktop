@@ -16,7 +16,10 @@ export interface WindowProperties {
   id: string;
   title: string;
   name: string;
-  body: Component | null;
+  body: {
+    component: Component<never> | null;
+    props: object;
+  };
   callback: (() => void) | null;
   position?: Vector;
   size?: Vector;
