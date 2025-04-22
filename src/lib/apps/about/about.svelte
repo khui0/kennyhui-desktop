@@ -1,7 +1,7 @@
 <script lang="ts">
   import AppIcon from "$lib/components/app/app-icon.svelte";
   import { query } from "$lib/images";
-  import { getScreenSizeEstimate, version } from "$lib/meta.svelte";
+  import { version } from "$lib/meta.svelte";
   import dayjs from "dayjs";
   import SimpleIconsGithub from "~icons/simple-icons/github";
   import SimpleIconsLinkedin from "~icons/simple-icons/linkedin";
@@ -15,7 +15,7 @@
   <section>
     <p class="text-2xl font-bold">kennyhui-desktop</p>
     <p class="text-base-content/30">
-      {getScreenSizeEstimate()}-inch, {dayjs().format("MMMM YYYY")}
+      Portfolio, {dayjs().format("MMMM YYYY")}
     </p>
   </section>
   <section class="flex flex-1 flex-col justify-center">
