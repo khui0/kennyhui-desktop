@@ -20,7 +20,7 @@ async function process() {
 
 async function generateIcon(input: string, output: string, file: string) {
   const parsed = path.parse(file);
-  const name = `${parsed.name}${parsed.ext}`;
+  const name = `${parsed.name}.png`;
 
   const inputPath = path.join(input, file);
   const outputPath = path.join(output, name);
