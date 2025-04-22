@@ -162,7 +162,7 @@ export class App {
   open(): void {
     this.callback?.();
     this.notify("open");
-    if (this.body !== null) {
+    if (this.body.component !== null) {
       if (this.instances() <= 0) {
         add(this.window());
       } else if (this.count() <= 0) {
@@ -307,7 +307,7 @@ export const applications: App[] = $state([
     .setMinSize({ x: 280, y: 400 })
     .setDefaultPosition({ x: 40, y: 40 })
     .hideFromDock(),
-  new App("dev.kennyhui.flaggle", "Flaggle", query("icons/chromium.png"))
+  new App("dev.kennyhui.flaggle", "Flaggle", query("icons/flaggle.png"))
     .setBody(Iframe)
     .setProps({ src: "https://flaggle.kennyhui.dev/", title: "Flaggle" })
     .setDefaultSize({
