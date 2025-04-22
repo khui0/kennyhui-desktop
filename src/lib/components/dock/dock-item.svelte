@@ -17,6 +17,7 @@
   }
 
   app.subscribe((e) => {
+    if (app.id === "dev.kennyhui.launchpad") return;
     if (app.instances() === 0 && e.action === "open") {
       previousOpen = true;
       bounce = true;
