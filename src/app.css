@@ -136,6 +136,10 @@
   }
 }
 
+@utility focus-ring {
+  @apply focus-visible:outline-base-content focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+
 @utility dragging {
   @apply select-none;
 }
@@ -169,6 +173,10 @@
     content: "";
     @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15;
   }
+}
+
+@utility bg-control {
+  @apply rounded-box bg-base-200/30 flex flex-col border-[0.5px] border-white/20 shadow-md outline-[0.5px] outline-black/20;
 }
 
 @utility preview {

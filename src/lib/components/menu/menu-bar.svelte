@@ -16,7 +16,7 @@
   } from "./helpers.svelte";
   import MenuBarButton from "./menu-bar-button.svelte";
   import ControlCenterIcon from "~icons/custom/control-center";
-  import ControlCenter from "./control-center.svelte";
+  import ControlCenter from "../control-center/control-center.svelte";
 
   let time: string = $state("");
 
