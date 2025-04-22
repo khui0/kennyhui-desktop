@@ -100,7 +100,7 @@
   }
 
   body {
-    @apply text-sm;
+    @apply text-sm bg-black;
   }
 
   html {

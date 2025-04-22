@@ -41,7 +41,7 @@
 <MetaTags {...metaTags} />
 
 <div class="flex h-full w-full flex-col overflow-hidden">
-  <div class="fixed inset-0 z-[-1]">
+  <div class="fixed inset-0">
     <Gradient />
   </div>
   {@render children()}
