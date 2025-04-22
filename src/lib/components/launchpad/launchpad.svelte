@@ -52,7 +52,7 @@
           <AppIcon src={app.icon.default} alt="{app.name} icon" size="lg" />
         </div>
         <p
-          class="text-shadow pointer-events-none absolute top-full left-1/2 mt-2.5 w-24 -translate-x-1/2 text-center text-[13px]"
+          class="text-shadow pointer-events-none absolute top-full left-1/2 mt-2.5 w-32 -translate-x-1/2 text-center text-[13px]"
         >
           {app.name}
         </p>
