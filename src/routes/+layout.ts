@@ -1,5 +1,3 @@
-import "@fontsource-variable/dm-sans";
-
 import type { MetaTagsProps } from "svelte-meta-tags";
 
 const DESCRIPTION = "Web-based desktop environment.";
