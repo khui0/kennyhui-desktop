@@ -1,16 +1,15 @@
 <script lang="ts">
   import { settings } from "../settings";
-  import SettingsField from "../settings-field.svelte";
-  import SettingsGroup from "../settings-group.svelte";
+  import FormGroup from "$lib/components/ui/form-group.svelte";
+  import FormRow from "$lib/components/ui/form-row.svelte";
   import ThemeSelector from "../theme-selector.svelte";
 </script>
 
-<SettingsGroup>
-  <SettingsField label="Appearance">
+<FormGroup>
+  <FormRow label="Appearance">
     <ThemeSelector />
-  </SettingsField>
-  <hr />
-  <SettingsField label="Rounded Corners">
+  </FormRow>
+  <FormRow label="Rounded Corners">
     <input type="checkbox" bind:checked={$settings.roundedCorners as boolean} class="toggle" />
-  </SettingsField>
-</SettingsGroup>
+  </FormRow>
+</FormGroup>

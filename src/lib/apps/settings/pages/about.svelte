@@ -5,8 +5,8 @@
   import dayjs from "dayjs";
   import SimpleIconsGithub from "~icons/simple-icons/github";
   import SimpleIconsLinkedin from "~icons/simple-icons/linkedin";
-  import SettingsField from "../settings-field.svelte";
-  import SettingsGroup from "../settings-group.svelte";
+  import FormGroup from "$lib/components/ui/form-group.svelte";
+  import FormRow from "$lib/components/ui/form-row.svelte";
 </script>
 
 <div class="flex h-full flex-col gap-2.5 text-center">
@@ -19,19 +19,18 @@
       Portfolio, {dayjs().format("MMMM YYYY")}
     </p>
   </section>
-  <SettingsGroup>
-    <SettingsField label="Email">
+  <FormGroup>
+    <FormRow label="Email">
       <span class="text-base-content/50 px-1">
         <a href="mailto:hello@kennyhui.dev">hello@kennyhui.dev</a>
       </span>
-    </SettingsField>
-    <hr />
-    <SettingsField label="Version">
+    </FormRow>
+    <FormRow label="Version">
       <span class="text-base-content/50 px-1">
         <p>{version}</p>
       </span>
-    </SettingsField>
-  </SettingsGroup>
+    </FormRow>
+  </FormGroup>
   <section class="my-2 mt-auto flex flex-wrap justify-center gap-2">
     <a
       data-nodrag
