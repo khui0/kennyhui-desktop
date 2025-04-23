@@ -21,8 +21,8 @@
 <div
   class={{
     "text-base-content/85 flex h-13 w-full shrink-0 overflow-hidden py-2.25 transition-[padding]": true,
-    "pl-[92px]": controls === "always",
-    "@max-md:pl-[92px]": controls === "auto",
+    "pl-[80px]": controls === "always",
+    "@max-md:pl-[80px]": controls === "auto",
     "border-b border-black/18 bg-[#eaeaea]/85 dark:border-black dark:bg-[#3c3c3c]/80": !transparent,
   }}
 >
