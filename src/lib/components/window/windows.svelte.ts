@@ -12,6 +12,8 @@ import {
 
 export type WindowSnap = "full" | "left" | "right" | null;
 
+export type WindowControlsSize = "standard" | "mono" | "title-tab";
+
 export interface WindowProperties {
   id: string;
   title: string;
@@ -29,7 +31,7 @@ export interface WindowProperties {
   previousPosition?: Vector;
   titlebar?: boolean;
   titlebarHeight?: number;
-  controlsType?: "standard" | "mono" | "title-tab";
+  controlsSize?: WindowControlsSize;
 }
 
 export const windows: WindowProperties[] = $state([]);

@@ -2,11 +2,12 @@
   import HeroiconsXMark16Solid from "~icons/heroicons/x-mark-16-solid";
   import HeroiconsMinus16Solid from "~icons/heroicons/minus-16-solid";
   import TablerCaretUpDownFilled from "~icons/tabler/caret-up-down-filled";
+  import type { WindowControlsSize } from "./windows.svelte";
 
   let {
-    type = "standard",
+    size = "standard",
   }: {
-    type?: "standard" | "mono" | "title-tab";
+    size?: WindowControlsSize;
   } = $props();
 </script>
 
@@ -14,9 +15,9 @@
   data-window-controls
   class={{
     "group grid grid-cols-3 items-center gap-2": true,
-    "mx-2": type === "title-tab",
-    "mx-3.25": type === "mono",
-    "mx-5": type === "standard",
+    "mx-2": size === "title-tab",
+    "mx-3.25": size === "mono",
+    "mx-5": size === "standard",
   }}
 >
   <div

@@ -14,6 +14,7 @@ import {
   show,
   stackOrder,
   windows,
+  type WindowControlsSize,
   type WindowProperties,
 } from "./components/window/windows.svelte";
 import { query, type ImageModule } from "./images";
@@ -42,6 +43,7 @@ export class App {
   showInLaunchpad: boolean = true;
   activeItems: MenuItem[] = [];
   menuBarItems: MenuBarItem[] = [];
+  controlsSize: WindowControlsSize = "title-tab";
 
   observers: AppObserverCallback[] = [];
 
@@ -133,12 +135,17 @@ export class App {
       size,
       titlebar: this.titlebar,
       minSize: this.minSize,
-      controlsType: "mono",
+      controlsSize: this.controlsSize,
     };
     if (this.defaultPosition !== null) {
       properties.position = this.defaultPosition;
     }
     return properties;
+  }
+
+  setControlsSize(controlsSize: WindowControlsSize) {
+    this.controlsSize = controlsSize;
+    return this;
   }
 
   menuBarActive(): MenuBarItem {
@@ -289,7 +296,8 @@ export const applications: App[] = $state([
     .setDefaultSize({
       x: 600,
       y: 500,
-    }),
+    })
+    .setControlsSize("standard"),
   new App("dev.kennyhui.browser", "Browser", query("icons/chromium.png"))
     .setBody(Browser)
     .setDefaultSize({

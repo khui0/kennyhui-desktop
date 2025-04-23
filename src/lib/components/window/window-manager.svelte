@@ -61,12 +61,12 @@
       <div
         class={{
           "absolute left-0 z-50 flex items-center": true,
-          "h-7": window.controlsType === "title-tab",
-          "h-10": window.controlsType === "mono",
-          "h-13": window.controlsType === "standard",
+          "h-7": window.controlsSize === "title-tab",
+          "h-10": window.controlsSize === "mono",
+          "h-13": window.controlsSize === "standard",
         }}
       >
-        <WindowControls type={window.controlsType} />
+        <WindowControls size={window.controlsSize} />
       </div>
       {#if window.titlebar}
         <WindowTitleBar>
