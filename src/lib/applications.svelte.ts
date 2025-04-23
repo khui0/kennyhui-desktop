@@ -133,6 +133,7 @@ export class App {
       size,
       titlebar: this.titlebar,
       minSize: this.minSize,
+      controlsType: "mono",
     };
     if (this.defaultPosition !== null) {
       properties.position = this.defaultPosition;

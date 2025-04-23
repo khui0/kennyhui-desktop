@@ -58,8 +58,15 @@
   ></div>
   {#each windows as window (window.id)}
     <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
-      <div class="absolute left-0 z-50 flex h-7 items-center">
-        <WindowControls />
+      <div
+        class={{
+          "absolute left-0 z-50 flex items-center": true,
+          "h-7": window.controlsType === "title-tab",
+          "h-10": window.controlsType === "mono",
+          "h-13": window.controlsType === "standard",
+        }}
+      >
+        <WindowControls type={window.controlsType} />
       </div>
       {#if window.titlebar}
         <WindowTitleBar>

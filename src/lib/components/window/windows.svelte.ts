@@ -28,6 +28,8 @@ export interface WindowProperties {
   previousSize?: Vector;
   previousPosition?: Vector;
   titlebar?: boolean;
+  titlebarHeight?: number;
+  controlsType?: "standard" | "mono" | "title-tab";
 }
 
 export const windows: WindowProperties[] = $state([]);

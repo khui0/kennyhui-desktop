@@ -3,16 +3,20 @@
   import HeroiconsMinus16Solid from "~icons/heroicons/minus-16-solid";
   import TablerCaretUpDownFilled from "~icons/tabler/caret-up-down-filled";
 
-  let { size = "sm" }: { size?: "sm" | "md" | "lg" } = $props();
+  let {
+    type = "standard",
+  }: {
+    type?: "standard" | "mono" | "title-tab";
+  } = $props();
 </script>
 
 <div
   data-window-controls
   class={{
     "group grid grid-cols-3 items-center gap-2": true,
-    "mx-2": size === "sm",
-    "mx-3.25": size === "md",
-    "mx-5": size === "lg",
+    "mx-2": type === "title-tab",
+    "mx-3.25": type === "mono",
+    "mx-5": type === "standard",
   }}
 >
   <div
