@@ -134,6 +134,10 @@
   .dragging [data-window] * {
     touch-action: none;
   }
+
+  [data-window] {
+    @apply text-base-content/85;
+  }
 }
 
 @utility focus-ring {
