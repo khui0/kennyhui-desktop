@@ -6,15 +6,15 @@
     subtitle,
     controls = "always",
     transparent = false,
-    navigation,
-    children,
+    leading,
+    trailing,
   }: {
     title: string;
     subtitle?: string;
     controls?: "auto" | "always" | "never";
     transparent?: boolean;
-    navigation?: Snippet;
-    children?: Snippet;
+    leading?: Snippet;
+    trailing?: Snippet;
   } = $props();
 </script>
 
@@ -27,7 +27,7 @@
   }}
 >
   <div class="flex items-center gap-2 px-3">
-    {@render navigation?.()}
+    {@render leading?.()}
     <div class="flex w-fit flex-col items-start">
       <p class="text-[15px] font-semibold">{title}</p>
       {#if subtitle}
@@ -37,6 +37,6 @@
   </div>
   <div class="flex-1"></div>
   <div class="flex items-center pl-3">
-    {@render children?.()}
+    {@render trailing?.()}
   </div>
 </div>

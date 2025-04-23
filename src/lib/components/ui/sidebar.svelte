@@ -2,15 +2,20 @@
   import { onMount, tick, type Snippet } from "svelte";
   import TablerLayoutSidebar from "~icons/tabler/layout-sidebar";
   import Toolbar from "./toolbar.svelte";
+  import ToolbarButton from "./toolbar-button.svelte";
 
   let {
     title,
     transparent,
+    leading: leadingSnippet,
+    trailing: trailingSnippet,
     sidebar,
     children,
   }: {
     title: string;
     transparent?: boolean;
+    leading?: Snippet;
+    trailing?: Snippet;
     sidebar?: Snippet;
     children?: Snippet;
   } = $props();
@@ -45,16 +50,18 @@
     }}
   >
     <Toolbar {transparent} {title} controls={open ? "never" : "auto"}>
-      {#snippet navigation()}
-        <button
-          data-nodrag
-          class="btn btn-ghost btn-lg text-[17px] @md:pointer-events-none @md:opacity-50"
+      {#snippet leading()}
+        {@render leadingSnippet?.()}
+        <ToolbarButton
           onclick={() => {
             open = !open;
           }}
         >
           <TablerLayoutSidebar />
-        </button>
+        </ToolbarButton>
+      {/snippet}
+      {#snippet trailing()}
+        {@render trailingSnippet?.()}
       {/snippet}
     </Toolbar>
     <div data-nodrag class="flex-1 overflow-auto">
