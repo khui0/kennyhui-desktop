@@ -76,7 +76,7 @@
   data-window-transform="0,0"
   data-window-min="{minSize.x},{minSize.y}"
 >
-  <div class="flex h-full w-full flex-col overflow-hidden">
+  <div class="relative flex h-full w-full flex-col overflow-hidden">
     {@render children()}
   </div>
   {@render handles()}

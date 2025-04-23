@@ -41,12 +41,7 @@
 
 <MetaTags {...metaTags} />
 
-<div
-  class={{
-    "relative flex h-full w-full flex-col overflow-hidden": true,
-    "rounded-box": $settings.roundedCorners as boolean,
-  }}
->
+<div class="relative flex h-full w-full flex-col overflow-hidden">
   <div class="absolute inset-0">
     <Gradient />
   </div>
@@ -59,3 +54,6 @@
   <Launchpad bind:this={launchpad.current} />
   <Search bind:this={search.current} />
 </div>
+{#if $settings.roundedCorners}
+  <div class="pointer-events-none fixed inset-0 rounded-[10px] shadow-[0_0_0_10px_black]"></div>
+{/if}
