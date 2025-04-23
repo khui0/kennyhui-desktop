@@ -8,7 +8,7 @@
   let index: number = $state(0);
 </script>
 
-<Sidebar transparent>
+<Sidebar title={settingsPages[index].title} transparent>
   {#snippet sidebar()}
     {#each settingsPages as page, i}
       <SidebarItem
@@ -22,7 +22,7 @@
       </SidebarItem>
     {/each}
   {/snippet}
-  <div class="p-5 pt-0 h-full">
+  <div class="h-full p-5 pt-0">
     {@render (settingsPages[index].content as Snippet)()}
   </div>
 </Sidebar>

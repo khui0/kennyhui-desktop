@@ -4,10 +4,12 @@
   import Toolbar from "./toolbar.svelte";
 
   let {
+    title,
     transparent,
     sidebar,
     children,
   }: {
+    title: string;
     transparent?: boolean;
     sidebar?: Snippet;
     children?: Snippet;
@@ -42,7 +44,7 @@
       "@max-md:border-none": !open,
     }}
   >
-    <Toolbar {transparent} title="Appearance" controls={open ? "never" : "auto"}>
+    <Toolbar {transparent} {title} controls={open ? "never" : "auto"}>
       {#snippet navigation()}
         <button
           data-nodrag
