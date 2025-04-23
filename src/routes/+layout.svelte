@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state";
   import { applications } from "$lib/applications.svelte";
+  import { settings } from "$lib/apps/settings/settings";
   import Dock from "$lib/components/dock/dock.svelte";
   import Gradient from "$lib/components/gradient/gradient.svelte";
   import Launchpad from "$lib/components/launchpad/launchpad.svelte";
@@ -11,7 +12,6 @@
   import { onMount } from "svelte";
   import { MetaTags, deepMerge } from "svelte-meta-tags";
   import "../app.css";
-  import { settings } from "$lib/apps/settings/settings";
 
   let { data, children } = $props();
 
