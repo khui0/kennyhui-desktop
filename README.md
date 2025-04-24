@@ -8,21 +8,24 @@
 
 ### Try it here: [desktop.kennyhui.dev](https://desktop.kennyhui.dev/)
 
-
-
 ## Development
 
-Install dependencies
+Install dependencies and run dev server
 
 ```bash
 npm i
-```
-
-Run dev server
-
-```bash
 npm run dev
 ```
+
+### Icons
+
+Place square icons in `src/icons/source` and run
+
+```bash
+npm run build:icons
+```
+
+Generated icons will be placed in `src/lib/assets/icons`. Icons are automatically generated on `npm i` and are required to be generated.
 
 ## Building
 
