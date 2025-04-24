@@ -38,7 +38,10 @@
       "transition-[width]": ready,
     }}
   >
-    <ul class="mt-13 w-[200px] flex-1 shrink-0 flex-col overflow-auto p-2.5 pt-0" data-nodrag>
+    <ul
+      class="mt-13 w-[200px] flex-1 shrink-0 flex-col overflow-x-hidden overflow-y-auto p-2.5 pt-0"
+      data-nodrag
+    >
       {@render sidebar?.()}
     </ul>
   </div>
