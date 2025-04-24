@@ -88,6 +88,8 @@
     <ToolbarButton label="forward" onclick={forward}>
       <HeroiconsChevronRightSolid />
     </ToolbarButton>
+  {/snippet}
+  {#snippet center()}
     <form
       data-nodrag
       class="flex flex-1 justify-center"

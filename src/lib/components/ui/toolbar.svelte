@@ -7,6 +7,7 @@
     controls = "always",
     transparent = false,
     leading,
+    center,
     trailing,
   }: {
     title?: string;
@@ -14,6 +15,7 @@
     controls?: "auto" | "always" | "never";
     transparent?: boolean;
     leading?: Snippet;
+    center?: Snippet;
     trailing?: Snippet;
   } = $props();
 </script>
@@ -40,6 +42,12 @@
       </div>
     {/if}
   </div>
+  {#if center}
+    <div class="flex-1"></div>
+    <div class="flex items-center gap-2 pr-3">
+      {@render center()}
+    </div>
+  {/if}
   <div class="flex-1"></div>
   <div class="flex items-center gap-2 pr-3">
     {@render trailing?.()}
