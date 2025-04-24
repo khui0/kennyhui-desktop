@@ -170,7 +170,7 @@
 
   &::after {
     content: "";
-    @apply pointer-events-none absolute inset-0 z-[100] rounded-[inherit] outline -outline-offset-1 outline-white/20;
+    @apply pointer-events-none absolute inset-0 z-[90] rounded-[inherit] outline -outline-offset-1 outline-white/20;
   }
 }
 
