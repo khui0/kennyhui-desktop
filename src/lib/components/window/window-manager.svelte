@@ -69,9 +69,7 @@
         <WindowControls size={window.controlsSize} />
       </div>
       {#if window.titlebar}
-        <WindowTitleBar>
-          <h1 class="text-base-content/80 text-[13px] font-bold">{window.title}</h1>
-        </WindowTitleBar>
+        <WindowTitleBar title={window.title} />
       {/if}
       {#if window.body.component !== null}
         {@const Component = window.body.component as Component}

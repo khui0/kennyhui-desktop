@@ -192,7 +192,7 @@
 }
 
 @utility btn {
-  @apply bg-base-content/15 rounded-field text-base-content/80 h-[22px] translate-none border-none px-[7px] py-[3px] text-[13px] font-normal;
+  @apply bg-base-content/15 rounded-field text-base-content/80 h-[22px] translate-none border-none px-[7px] py-[3px] text-[13px] font-normal duration-0;
 
   &:not(.btn-ghost) {
     @apply highlight;
@@ -208,7 +208,7 @@
 }
 
 @utility btn-accent {
-  @apply bg-accent text-accent-content;
+  @apply window-active:bg-accent window-active:text-accent-content;
 
   &:active {
     @apply bg-accent/90;
