@@ -16,7 +16,7 @@
   }
 </script>
 
-<div class="mt-[28px] flex flex-col gap-2.5 overflow-auto p-2.5 pt-0">
+<div data-nodrag class="mt-[28px] flex flex-col gap-2.5 overflow-auto p-2.5 pt-0">
   <div class="bg-base-100/50 rounded-field shrink-0 overflow-hidden border">
     <p class="border-b px-2 py-1 font-semibold">{applications.length} apps loaded</p>
     <ul class="flex flex-col max-h-64 overflow-auto">

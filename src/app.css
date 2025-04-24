@@ -95,7 +95,7 @@
 
   html,
   body {
-    @apply h-full;
+    @apply h-full select-none;
     overscroll-behavior: none;
   }
 
