@@ -15,7 +15,7 @@
 <button
   {disabled}
   data-nodrag
-  class="btn btn-ghost btn-lg text-[17px] disabled:pointer-events-none disabled:opacity-50"
+  class="not-window-active:text-base-content/50 btn btn-ghost btn-lg text-[17px] disabled:pointer-events-none disabled:opacity-50"
   {onclick}
 >
   {@render children?.()}
