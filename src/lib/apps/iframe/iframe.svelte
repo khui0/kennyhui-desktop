@@ -8,7 +8,7 @@
   } = $props();
 </script>
 
-<div class="relative flex h-full flex-col">
+<div data-nodrag class="relative flex h-full flex-col">
   <iframe
     {src}
     title={title || "IFrame"}
