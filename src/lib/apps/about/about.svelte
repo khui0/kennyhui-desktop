@@ -13,7 +13,7 @@
     <AppIcon src={query("icons/desktop.png").default} alt="Desktop icon" size="xl" />
   </section>
   <section>
-    <p class="text-2xl font-bold">kennyhui-desktop</p>
+    <p class="text-2xl font-bold">Kenny Hui's Desktop</p>
     <p class="text-base-content/30">
       Portfolio, {dayjs().format("MMMM YYYY")}
     </p>
