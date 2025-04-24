@@ -62,8 +62,10 @@ export const applications: App[] = $state([
     })
     .setMinSize({
       x: 300,
-      y: 58,
+      y: 52,
     })
+    .disableTitlebar()
+    .setControlsSize("standard")
     .allowMultipleWindows(),
   new App("dev.kennyhui.debug", "Debug", query("icons/debug.png"))
     .setBody(Debug)

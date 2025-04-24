@@ -29,17 +29,19 @@
 >
   <div class="flex items-center gap-2 px-3">
     {@render leading?.()}
-    <div class="flex w-fit flex-col items-start">
-      {#if title}
-        <p class="text-[15px] font-semibold">{title}</p>
-      {/if}
-      {#if subtitle}
-        <p class="text-base-content/50 leading-[14px]">{subtitle}</p>
-      {/if}
-    </div>
+    {#if title || subtitle}
+      <div class="flex w-fit flex-col items-start">
+        {#if title}
+          <p class="text-[15px] font-semibold">{title}</p>
+        {/if}
+        {#if subtitle}
+          <p class="text-base-content/50 leading-[14px]">{subtitle}</p>
+        {/if}
+      </div>
+    {/if}
   </div>
   <div class="flex-1"></div>
-  <div class="flex items-center pl-3">
+  <div class="flex items-center gap-2 pr-3">
     {@render trailing?.()}
   </div>
 </div>

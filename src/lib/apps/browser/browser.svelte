@@ -1,11 +1,13 @@
 <script lang="ts">
   import { applications } from "$lib/applications.svelte";
+  import ToolbarButton from "$lib/components/ui/toolbar-button.svelte";
+  import Toolbar from "$lib/components/ui/toolbar.svelte";
   import { add } from "$lib/components/window/windows.svelte";
   import { onMount } from "svelte";
-  import HeroiconsArrowLeft16Solid from "~icons/heroicons/arrow-left-16-solid";
-  import HeroiconsArrowPath16Solid from "~icons/heroicons/arrow-path-16-solid";
-  import HeroiconsArrowRight16Solid from "~icons/heroicons/arrow-right-16-solid";
-  import HeroiconsSquaresPlus16Solid from "~icons/heroicons/squares-plus-16-solid";
+  import HeroiconsArrowPathSolid from "~icons/heroicons/arrow-path-solid";
+  import HeroiconsChevronLeftSolid from "~icons/heroicons/chevron-left-solid";
+  import HeroiconsChevronRightSolid from "~icons/heroicons/chevron-right-solid";
+  import HeroiconsSquaresPlusSolid from "~icons/heroicons/squares-plus-solid";
 
   const app = $derived(applications.find((app) => app.id === "dev.kennyhui.browser"));
 
@@ -78,17 +80,16 @@
   }
 </script>
 
-<div class="relative flex h-full flex-col">
-  <div data-nodrag class="bg-base-200/80 flex items-center gap-2 p-1">
-    <div class="flex items-center gap-1">
-      <button class="btn" aria-label="back" onclick={back}>
-        <HeroiconsArrowLeft16Solid />
-      </button>
-      <button class="btn" aria-label="forwards" onclick={forward}>
-        <HeroiconsArrowRight16Solid />
-      </button>
-    </div>
+<Toolbar>
+  {#snippet leading()}
+    <ToolbarButton label="back" onclick={back}>
+      <HeroiconsChevronLeftSolid />
+    </ToolbarButton>
+    <ToolbarButton label="forward" onclick={forward}>
+      <HeroiconsChevronRightSolid />
+    </ToolbarButton>
     <form
+      data-nodrag
       class="flex flex-1 justify-center"
       onsubmit={(e) => {
         e.preventDefault();
@@ -106,27 +107,21 @@
         placeholder="Search or enter address"
       />
     </form>
-    <div>
-      <button
-        class={{
-          btn: true,
-          "pointer-events-none opacity-50": (app?.instances() || 3) >= 3,
-        }}
-        aria-label="new window"
-        onclick={newWindow}
-      >
-        <HeroiconsSquaresPlus16Solid />
-      </button>
-      <button class="btn" aria-label="refresh" onclick={refresh}>
-        <HeroiconsArrowPath16Solid />
-      </button>
-    </div>
-  </div>
-  <iframe
-    bind:this={iframeRef}
-    title="Browser"
-    referrerpolicy="no-referrer"
-    class="h-full w-full"
-    sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"
-  ></iframe>
-</div>
+  {/snippet}
+  {#snippet trailing()}
+    <ToolbarButton disabled={(app?.instances() || 3) >= 3} label="new window" onclick={newWindow}>
+      <HeroiconsSquaresPlusSolid />
+    </ToolbarButton>
+    <ToolbarButton label="refresh" onclick={refresh}>
+      <HeroiconsArrowPathSolid />
+    </ToolbarButton>
+  {/snippet}
+</Toolbar>
+<iframe
+  data-nodrag
+  bind:this={iframeRef}
+  title="Browser"
+  referrerpolicy="no-referrer"
+  class="h-full w-full"
+  sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

@@ -26,12 +26,12 @@
     >
   {/snippet}
   {#snippet trailing()}
-    <p class="text-base-content/50 pr-5 font-semibold">
+    <p class="text-base-content/50 px-2 font-semibold">
       Ln {position?.lineNumber || 1}, Col {position?.column || 1}
     </p>
   {/snippet}
 </Toolbar>
-<div class="h-full relative z-10">
+<div class="relative z-10 h-full">
   <MonacoEditor bind:value bind:position></MonacoEditor>
 </div>
 {#if dialogOpen}
