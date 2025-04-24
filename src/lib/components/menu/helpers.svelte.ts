@@ -1,4 +1,5 @@
-import { applications, MenuBarItem, MenuItem, MenuSeparator } from "$lib/applications.svelte";
+import { applications } from "$lib/app-index.svelte";
+import { MenuBarItem, MenuItem, MenuSeparator } from "$lib/applications.svelte";
 import { menuBar } from "$lib/meta.svelte";
 
 export function deactivateMenuBar(): void {

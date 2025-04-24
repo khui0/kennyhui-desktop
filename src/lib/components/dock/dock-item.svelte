@@ -1,6 +1,6 @@
 <script lang="ts">
   import { App } from "$lib/applications.svelte";
-  import { cubicIn, cubicInOut, cubicOut, linear, quadIn, quadInOut, quadOut } from "svelte/easing";
+  import { quadInOut } from "svelte/easing";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import AppIcon from "../app/app-icon.svelte";
 

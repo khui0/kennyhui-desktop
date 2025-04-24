@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { applications } from "$lib/applications.svelte";
+  import { applications } from "$lib/app-index.svelte";
   import { launchpad } from "$lib/meta.svelte";
   import AppIcon from "../app/app-icon.svelte";
   import FullscreenModal from "./fullscreen-modal.svelte";

@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { App, applications } from "$lib/applications.svelte";
+  import { App } from "$lib/applications.svelte";
   import { controlKey, search } from "$lib/meta.svelte";
   import Fuse from "fuse.js";
   import { tick } from "svelte";
   import AppIcon from "../app/app-icon.svelte";
   import CommandModal from "./command-modal.svelte";
+  import { applications } from "$lib/app-index.svelte";
 
   const sorted = applications
     .slice(0)
