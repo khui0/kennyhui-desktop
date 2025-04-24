@@ -52,13 +52,20 @@
     <Toolbar {transparent} {title} controls={open ? "never" : "auto"}>
       {#snippet leading()}
         {@render leadingSnippet?.()}
-        <ToolbarButton
-          onclick={() => {
-            open = !open;
-          }}
-        >
-          <TablerLayoutSidebar />
-        </ToolbarButton>
+        <div class="@md:hidden">
+          <ToolbarButton
+            onclick={() => {
+              open = !open;
+            }}
+          >
+            <TablerLayoutSidebar />
+          </ToolbarButton>
+        </div>
+        <div class="@max-md:hidden">
+          <ToolbarButton disabled>
+            <TablerLayoutSidebar />
+          </ToolbarButton>
+        </div>
       {/snippet}
       {#snippet trailing()}
         {@render trailingSnippet?.()}
