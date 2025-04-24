@@ -56,7 +56,8 @@ let windowInitialSize: Vector = { x: 0, y: 0 };
 let windowSnap: WindowSnap = $state(null);
 
 function onpointerdown(e: PointerEvent) {
-  const target = e.target as HTMLElement;
+  const target = e.target;
+  if (!(target instanceof HTMLElement)) return;
   const ignoreUnfocus = target.closest("[data-menu-bar]") || target.closest("[data-dock]");
   if (target.closest("[data-window]") === null && ignoreUnfocus === null) {
     unfocus();

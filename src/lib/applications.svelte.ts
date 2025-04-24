@@ -7,6 +7,7 @@ import Resume from "./apps/resume/resume.svelte";
 import Settings from "./apps/settings/settings.svelte";
 import { query } from "./images";
 import { launchpad } from "./meta.svelte";
+import Monaco from "./apps/monaco/monaco.svelte";
 
 export const applications: App[] = $state([
   new App("dev.kennyhui.resume", "Resume", query("icons/file.png"))
@@ -95,4 +96,16 @@ export const applications: App[] = $state([
       y: 58,
     })
     .hideFromDock(),
+  new App("dev.kennyhui.monaco", "Monaco Editor", query("icons/monaco.png"))
+    .setBody(Monaco)
+    .setDefaultSize({
+      x: 600,
+      y: 500,
+    })
+    .disableTitlebar()
+    .setControlsSize("standard")
+    .setMinSize({
+      x: 300,
+      y: 52,
+    }),
 ]);

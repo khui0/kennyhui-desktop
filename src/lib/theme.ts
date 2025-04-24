@@ -11,6 +11,7 @@ export const themeName = {
 export type Theme = keyof typeof themeName | "auto";
 
 export const theme: Writable<Theme | null> = writable(null);
+export const parsedTheme: Writable<string> = writable("dark");
 
 let currentTheme: Theme;
 
@@ -45,6 +46,8 @@ export function setTheme(value: Theme, save: boolean = true) {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     value = prefersDark ? "dark" : "light";
   }
+
+  parsedTheme.set(value);
 
   if (save) {
     theme.set(initialValue);

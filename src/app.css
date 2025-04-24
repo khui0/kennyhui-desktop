@@ -152,21 +152,25 @@
   text-shadow: 0 0.05em 0.1em rgba(0, 0, 0, 0.3);
 }
 
-@utility bg-glass {
-  @apply bg-base-200/50 relative outline backdrop-blur-[15px] transition-colors not-dark:outline-black/10 sm:outline-[0.5px] dark:outline-black/90;
+@utility standard-border {
+  @apply relative outline not-dark:outline-black/10 sm:outline-[0.5px] dark:outline-black/90;
 
-  &::after {
+  &:not(.bg-window)::after {
     content: "";
-    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/15;
+    @apply pointer-events-none absolute inset-0 z-[100] rounded-[inherit] outline -outline-offset-1 outline-white/15;
   }
 }
 
+@utility bg-glass {
+  @apply standard-border bg-base-200/50 relative backdrop-blur-[15px] transition-colors;
+}
+
 @utility bg-window {
-  @apply dark:bg-base-100/50 not-[[data-window-active]]:bg-base-100 bg-base-100/65 relative outline backdrop-blur-[40px] backdrop-saturate-150 not-dark:outline-black/10 sm:outline-[0.5px] dark:outline-black/90;
+  @apply standard-border dark:bg-base-100/50 not-[[data-window-active]]:bg-base-100 bg-base-100/65 relative backdrop-blur-[40px] backdrop-saturate-150;
 
   &::after {
     content: "";
-    @apply pointer-events-none absolute inset-0 rounded-[inherit] outline -outline-offset-1 outline-white/20;
+    @apply pointer-events-none absolute inset-0 z-[100] rounded-[inherit] outline -outline-offset-1 outline-white/20;
   }
 }
 

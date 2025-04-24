@@ -9,7 +9,7 @@
     leading,
     trailing,
   }: {
-    title: string;
+    title?: string;
     subtitle?: string;
     controls?: "auto" | "always" | "never";
     transparent?: boolean;
@@ -20,16 +20,19 @@
 
 <div
   class={{
-    "text-base-content/85 flex h-13 w-full shrink-0 overflow-hidden py-2.25 transition-[padding]": true,
+    "text-base-content/50 window-active:text-base-content/85 flex h-13 w-full shrink-0 overflow-hidden py-2.25 transition-[padding]": true,
     "pl-[80px]": controls === "always",
     "@max-md:pl-[80px]": controls === "auto",
-    "border-b border-black/18 bg-[#eaeaea]/85 dark:border-black dark:bg-[#3c3c3c]/80": !transparent,
+    "bg-base-100 window-active:bg-base-200/80 border-b border-black/18 dark:border-black":
+      !transparent,
   }}
 >
   <div class="flex items-center gap-2 px-3">
     {@render leading?.()}
     <div class="flex w-fit flex-col items-start">
-      <p class="text-[15px] font-semibold">{title}</p>
+      {#if title}
+        <p class="text-[15px] font-semibold">{title}</p>
+      {/if}
       {#if subtitle}
         <p class="text-base-content/50 leading-[14px]">{subtitle}</p>
       {/if}

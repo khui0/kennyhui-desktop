@@ -60,7 +60,7 @@
     <Window id={window.id} position={window.position} size={window.size} minSize={window.minSize}>
       <div
         class={{
-          "absolute left-0 z-50 flex items-center": true,
+          "absolute left-0 z-[80] flex items-center": true,
           "h-7": window.controlsSize === "title-tab",
           "h-10": window.controlsSize === "mono",
           "h-13": window.controlsSize === "standard",

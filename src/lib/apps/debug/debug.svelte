@@ -1,7 +1,7 @@
 <script lang="ts">
   import { applications } from "$lib/applications.svelte";
   import AppIcon from "$lib/components/app/app-icon.svelte";
-  import { hide, remove, stackOrder, windows } from "$lib/components/window/windows.svelte";
+  import { hide, stackOrder, windows } from "$lib/components/window/windows.svelte";
 
   function closeAll() {
     let i = 0;

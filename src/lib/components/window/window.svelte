@@ -26,42 +26,42 @@
   <!-- Top -->
   <div
     data-window-transform="0,-1"
-    class="not-window-active:pointer-events-none absolute -top-1.25 right-1.25 left-1.25 h-2.5 cursor-ns-resize"
+    class="not-window-active:pointer-events-none z-[90] absolute -top-1.25 right-1.25 left-1.25 h-2.5 cursor-ns-resize"
   ></div>
   <!-- Bottom -->
   <div
     data-window-transform="0,1"
-    class="not-window-active:pointer-events-none absolute right-1.25 -bottom-1.25 left-1.25 h-2.5 cursor-ns-resize"
+    class="not-window-active:pointer-events-none z-[90] absolute right-1.25 -bottom-1.25 left-1.25 h-2.5 cursor-ns-resize"
   ></div>
   <!-- Left -->
   <div
     data-window-transform="-1,0"
-    class="not-window-active:pointer-events-none absolute top-1.25 bottom-1.25 -left-1.25 w-2.5 cursor-ew-resize"
+    class="not-window-active:pointer-events-none z-[90] absolute top-1.25 bottom-1.25 -left-1.25 w-2.5 cursor-ew-resize"
   ></div>
   <!-- Right -->
   <div
     data-window-transform="1,0"
-    class="not-window-active:pointer-events-none absolute top-1.25 -right-1.25 bottom-1.25 w-2.5 cursor-ew-resize"
+    class="not-window-active:pointer-events-none z-[90] absolute top-1.25 -right-1.25 bottom-1.25 w-2.5 cursor-ew-resize"
   ></div>
   <!-- Top Left -->
   <div
     data-window-transform="-1,-1"
-    class="not-window-active:pointer-events-none absolute -top-1.25 -left-1.25 h-4 w-4 cursor-nwse-resize"
+    class="not-window-active:pointer-events-none z-[90] absolute -top-1.25 -left-1.25 h-4 w-4 cursor-nwse-resize"
   ></div>
   <!-- Top Right -->
   <div
     data-window-transform="1,-1"
-    class="not-window-active:pointer-events-none absolute -top-1.25 -right-1.25 h-4 w-4 cursor-nesw-resize"
+    class="not-window-active:pointer-events-none z-[90] absolute -top-1.25 -right-1.25 h-4 w-4 cursor-nesw-resize"
   ></div>
   <!-- Bottom Left -->
   <div
     data-window-transform="-1,1"
-    class="not-window-active:pointer-events-none absolute -bottom-1.25 -left-1.25 h-4 w-4 cursor-nesw-resize"
+    class="not-window-active:pointer-events-none z-[90] absolute -bottom-1.25 -left-1.25 h-4 w-4 cursor-nesw-resize"
   ></div>
   <!-- Bottom Right -->
   <div
     data-window-transform="1,1"
-    class="not-window-active:pointer-events-none absolute -right-1.25 -bottom-1.25 h-4 w-4 cursor-nwse-resize"
+    class="not-window-active:pointer-events-none z-[90] absolute -right-1.25 -bottom-1.25 h-4 w-4 cursor-nwse-resize"
   ></div>
 {/snippet}
 

@@ -19,6 +19,7 @@
     "@eslint/compat": "^1.2.5",
     "@eslint/js": "^9.18.0",
     "@iconify/json": "^2.2.300",
+    "@monaco-editor/loader": "^1.5.0",
     "@sveltejs/adapter-auto": "^4.0.0",
     "@sveltejs/adapter-vercel": "^5.7.0",
     "@sveltejs/enhanced-img": "^0.4.4",
@@ -53,6 +54,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "dayjs": "^1.11.13",
     "fuse.js": "^7.1.0",
+    "monaco-editor": "^0.52.2",
     "typewriter-editor": "^0.12.9",
     "vite-plugin-package-version": "^1.1.0"
   }
