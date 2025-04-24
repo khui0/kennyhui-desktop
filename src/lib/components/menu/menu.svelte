@@ -2,7 +2,7 @@
   import {
     MenuItem as MenuItemClass,
     MenuSeparator as MenuSeparatorClass,
-  } from "$lib/applications.svelte";
+  } from "$lib/core";
   import MenuItem from "./menu-item.svelte";
   import MenuSeparator from "./menu-separator.svelte";
 

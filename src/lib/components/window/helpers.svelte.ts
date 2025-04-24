@@ -1,4 +1,4 @@
-import { applications } from "$lib/app-index.svelte";
+import { applications } from "$lib/applications.svelte";
 import { activeWindow, stackOrder, unfocus, windows, type WindowSnap } from "./windows.svelte";
 
 export interface Vector {

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import { applications } from "$lib/app-index.svelte";
+  import { applications } from "$lib/applications.svelte";
   import { settings } from "$lib/apps/settings/settings";
   import Dock from "$lib/components/dock/dock.svelte";
   import Gradient from "$lib/components/gradient/gradient.svelte";

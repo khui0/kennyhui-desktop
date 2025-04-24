@@ -1,4 +1,4 @@
-import type { MenuBarItem } from "$lib/applications.svelte";
+import type { MenuBarItem } from "$lib/core";
 import { tick, type Component } from "svelte";
 import {
   applyFocus,

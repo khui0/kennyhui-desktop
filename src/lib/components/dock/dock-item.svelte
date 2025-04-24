@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { App } from "$lib/applications.svelte";
+  import { App } from "$lib/core";
   import { quadInOut } from "svelte/easing";
   import TablerCircleFilled from "~icons/tabler/circle-filled";
   import AppIcon from "../app/app-icon.svelte";

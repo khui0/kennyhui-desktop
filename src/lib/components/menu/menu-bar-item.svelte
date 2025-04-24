@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { MenuBarItem } from "$lib/applications.svelte";
+  import { MenuBarItem } from "$lib/core";
   import { settings } from "$lib/apps/settings/settings";
   import { menuBar } from "$lib/meta.svelte";
   import type { Snippet } from "svelte";

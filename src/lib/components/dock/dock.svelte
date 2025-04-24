@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { applications } from "$lib/app-index.svelte";
-  import { type App } from "$lib/applications.svelte";
+  import { applications } from "$lib/applications.svelte";
+  import { type App } from "$lib/core";
   import { windows } from "../window/windows.svelte";
   import DockItem from "./dock-item.svelte";
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { applications } from "$lib/app-index.svelte";
+  import { applications } from "$lib/applications.svelte";
   import AppIcon from "$lib/components/app/app-icon.svelte";
   import { hide, remove, stackOrder, windows } from "$lib/components/window/windows.svelte";
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { applications } from "$lib/app-index.svelte";
+  import { applications } from "$lib/applications.svelte";
   import { add } from "$lib/components/window/windows.svelte";
   import { onMount } from "svelte";
   import HeroiconsArrowLeft16Solid from "~icons/heroicons/arrow-left-16-solid";
