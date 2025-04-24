@@ -25,7 +25,7 @@ Place square icons in `src/icons/source` and run
 npm run build:icons
 ```
 
-Generated icons will be placed in `src/lib/assets/icons`. Icons are automatically generated on `npm i` and are required to be generated.
+Generated icons will be placed in `src/lib/assets/icons`. Icons are automatically generated on `npm i`.
 
 ## Building
 
