@@ -95,7 +95,7 @@
 
   html,
   body {
-    @apply h-full select-none;
+    @apply h-full;
     overscroll-behavior: none;
   }
 
@@ -120,7 +120,7 @@
   }
 
   ::selection {
-    @apply text-neutral-content bg-neutral;
+    @apply text-accent-content bg-accent;
   }
 
   kbd {

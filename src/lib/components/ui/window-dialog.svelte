@@ -9,7 +9,7 @@
   in:fade={{ duration: 300 }}
   out:fade={{ duration: 300 }}
   data-nodrag
-  class="absolute inset-0 z-40 flex items-center justify-center bg-black/20 p-5"
+  class="absolute inset-0 z-[110] flex items-center justify-center bg-black/20 p-5"
 >
   <div
     in:fly={{ y: -50 }}
