@@ -3,6 +3,7 @@
   import loader from "@monaco-editor/loader";
   import type * as Monaco from "monaco-editor/esm/vs/editor/editor.api";
   import { onDestroy, onMount } from "svelte";
+  import { get } from "svelte/store";
 
   let editor: Monaco.editor.IStandaloneCodeEditor;
   let monaco: typeof Monaco;
@@ -11,7 +12,7 @@
   let {
     value = $bindable(""),
     position = $bindable(null),
-    language = "html",
+    language = "plaintext",
   }: {
     value?: string;
     position?: Monaco.Position | null;
@@ -33,7 +34,7 @@
         // setValue
       } else {
         console.log("hi");
-        const updatedValue = editor?.getValue() || " ";
+        const updatedValue = editor?.getValue() || "";
         value = updatedValue;
       }
     });
@@ -41,7 +42,7 @@
 
   parsedTheme.subscribe(create);
 
-  async function create(theme: string = "dark") {
+  async function create(theme: string = get(parsedTheme)) {
     if (!monaco) return;
     editor = monaco.editor.create(container, {
       theme: theme === "dark" ? "vs-dark" : "vs-light",
