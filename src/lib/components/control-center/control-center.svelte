@@ -77,7 +77,9 @@
         value="60"
         class="range [--range-progress:white] [--range-thumb:white]"
       />
-      <span class="absolute top-1/2 left-0.75 -translate-y-1/2 text-[10px] text-black/80">
+      <span
+        class="pointer-events-none absolute top-1/2 left-0.75 -translate-y-1/2 text-[10px] text-black/80"
+      >
         <HeroiconsSun16Solid />
       </span>
     </div>
@@ -92,7 +94,9 @@
         value="40"
         class="range [--range-progress:white] [--range-thumb:white]"
       />
-      <span class="absolute top-1/2 left-0.75 -translate-y-1/2 text-[10px] text-black/80">
+      <span
+        class="pointer-events-none absolute top-1/2 left-0.75 -translate-y-1/2 text-[10px] text-black/80"
+      >
         <HeroiconsSpeakerWave16Solid />
       </span>
     </div>
