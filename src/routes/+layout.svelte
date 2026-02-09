@@ -2,10 +2,10 @@
   import { page } from "$app/state";
   import { applications } from "$lib/applications.svelte";
   import { settings } from "$lib/apps/settings/settings";
+  import DesktopWallpaper from "$lib/components/desktop/desktop-wallpaper.svelte";
   import Dock from "$lib/components/dock/dock.svelte";
-  import Gradient from "$lib/components/gradient/gradient.svelte";
   import Launchpad from "$lib/components/launchpad/launchpad.svelte";
-  import MenuBar from "$lib/components/menu/menu-bar.svelte";
+  import MenuBar from "$lib/components/menu-bar/menu-bar.svelte";
   import Search from "$lib/components/search/search.svelte";
   import WindowManager from "$lib/components/window/window-manager.svelte";
   import { commandKey, launchpad, search } from "$lib/meta.svelte";
@@ -18,7 +18,7 @@
   let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
 
   onMount(() => {
-    applications.find((app) => app.id === "dev.kennyhui.about")?.open();
+    applications.find((app) => app.id === "dev.kennyhui.onboarding")?.open();
   });
 </script>
 
@@ -42,11 +42,9 @@
 <MetaTags {...metaTags} />
 
 <div class="relative flex h-full w-full flex-col overflow-hidden">
-  <div class="absolute inset-0">
-    <Gradient />
-  </div>
+  <DesktopWallpaper />
   {@render children()}
-  <main class="fixed top-8 right-0 bottom-18 left-0 overflow-hidden">
+  <main class="fixed top-8 right-0 bottom-18 left-0 mt-[1px] overflow-hidden">
     <WindowManager />
   </main>
   <MenuBar />
@@ -55,5 +53,7 @@
   <Search bind:this={search.current} />
 </div>
 {#if $settings.roundedCorners}
-  <div class="pointer-events-none fixed inset-0 rounded-[10px] shadow-[0_0_0_10px_black]"></div>
+  <div
+    class="pointer-events-none fixed inset-0 z-50 rounded-[10px] shadow-[0_0_0_10px_black]"
+  ></div>
 {/if}

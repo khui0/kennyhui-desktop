@@ -8,27 +8,37 @@
   import HeroiconsPlusSolid from "~icons/heroicons/plus-solid";
   import BrowserIframe from "./browser-iframe.svelte";
 
-  let tabCount: number = $state(1);
+  let visibleTabs: number = $state(1);
   let selectedTab: number = $state(0);
 
   let searchBarRef: HTMLInputElement | null = $state(null);
   let searchBar: string = $state("");
 
-  function navigate(input: string) {}
+  let browserFrames: BrowserIframe[] = $state([]);
 
-  function back() {}
+  function navigate(input: string) {
+    searchBar = browserFrames[selectedTab].navigate(input);
+  }
 
-  function forward() {}
+  function back() {
+    browserFrames[selectedTab].back();
+  }
 
-  async function refresh() {}
+  function forward() {
+    browserFrames[selectedTab].forward();
+  }
+
+  async function refresh() {
+    browserFrames[selectedTab].refresh();
+  }
 
   function newTab() {
-    if (tabCount >= 3) return;
-    tabCount++;
+    if (visibleTabs >= 3) return;
+    visibleTabs++;
   }
 </script>
 
-<Toolbar showTabs={tabCount > 1}>
+<Toolbar showTabs={visibleTabs > 1}>
   {#snippet leading()}
     <ToolbarButton label="back" onclick={back}>
       <HeroiconsChevronLeftSolid />
@@ -67,25 +77,33 @@
     </ToolbarButton>
   {/snippet}
   {#snippet tabs()}
-    {#each new Array(tabCount) as _, i}
-      <ToolbarTab
-        onclick={() => {
-          selectedTab = i;
-        }}
-        active={i === selectedTab}>Tab {i + 1}</ToolbarTab
-      >
+    {#each new Array(3) as _, i}
+      {#if i < visibleTabs}
+        <ToolbarTab
+          onclick={() => {
+            selectedTab = i;
+            searchBar = browserFrames[selectedTab].getSrc();
+          }}
+          onclose={() => {
+            visibleTabs--;
+            selectedTab = Math.min(visibleTabs - 1, selectedTab);
+          }}
+          active={i === selectedTab}
+          >Tab {i + 1}
+        </ToolbarTab>
+      {/if}
     {/each}
   {/snippet}
 </Toolbar>
 <div class="grid h-full">
-  {#each new Array(tabCount) as _, i}
+  {#each new Array(3) as _, i}
     <div
       class={{
         "col-start-1 row-start-1": true,
         hidden: i !== selectedTab,
       }}
     >
-      <BrowserIframe />
+      <BrowserIframe bind:this={browserFrames[i]} />
     </div>
   {/each}
 </div>

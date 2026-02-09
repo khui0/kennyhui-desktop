@@ -114,10 +114,13 @@ function onpointerup(e: PointerEvent) {
     windowSnap = null;
   }
 
-  const target = e.target as HTMLElement;
-  const parent = target?.closest("[data-window]") as HTMLElement;
+  document.body.classList.remove("dragging");
+
+  const target = e.target as HTMLElement | HTMLDocument;
+  if (target instanceof HTMLDocument) return;
+  const parent: HTMLElement | null = target.closest && target?.closest("[data-window]");
   if (parent === null) return;
-  if (!parent.contains(e.target as Node)) return;
+  if (parent.contains && !parent.contains(e.target as Node)) return;
 
   const id = parent.getAttribute("data-window");
 
@@ -139,8 +142,6 @@ function onpointerup(e: PointerEvent) {
       }
     }
   }
-
-  document.body.classList.remove("dragging");
 }
 
 function onpointermove(e: PointerEvent) {

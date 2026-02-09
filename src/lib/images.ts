@@ -1,10 +1,22 @@
-import type { Picture } from "vite-imagetools";
-
-export interface ImageModule {
-  default: Picture;
+interface ImageProperties {
+  sources: Record<string, string>;
+  img: {
+    src: string;
+    w: number;
+    h: number;
+  };
 }
 
-const images: Record<string, ImageModule> = import.meta.glob(
+interface ModuleImport {
+  default: ImageProperties;
+}
+
+export interface Image {
+  default: ImageProperties;
+  alt: string;
+}
+
+const images: Record<string, ModuleImport> = import.meta.glob(
   "$lib/assets/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}",
   {
     eager: true,
@@ -14,6 +26,9 @@ const images: Record<string, ImageModule> = import.meta.glob(
   },
 );
 
-export function query(image: string) {
-  return images["/src/lib/assets/" + image];
+export function query(image: string, alt: string = ""): Image {
+  return {
+    default: images["/src/lib/assets/" + image]?.default,
+    alt,
+  };
 }

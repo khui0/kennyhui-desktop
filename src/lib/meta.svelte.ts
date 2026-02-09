@@ -1,4 +1,3 @@
-import type ControlCenter from "./components/control-center/control-center.svelte";
 import type Launchpad from "./components/launchpad/launchpad.svelte";
 import type Search from "./components/search/search.svelte";
 
@@ -16,22 +15,6 @@ export const search: {
 } = $state({
   current: undefined,
   open: false,
-});
-
-export const controlCenter: {
-  current: ControlCenter | undefined;
-  open: boolean;
-} = $state({
-  current: undefined,
-  open: false,
-});
-
-export const menuBar: {
-  active: boolean;
-  activeId: string;
-} = $state({
-  active: false,
-  activeId: "",
 });
 
 export function isMac(): boolean {

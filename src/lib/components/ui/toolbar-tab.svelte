@@ -9,6 +9,7 @@
     children,
   }: {
     active?: boolean;
+    hidden?: boolean;
     onclick?: () => void;
     onclose?: () => void;
     children?: Snippet;
@@ -22,12 +23,20 @@
       !active,
   }}
 >
-  <button aria-label="select tab" {onclick} class="h-full w-full border-l group-first:border-none">
+  <button
+    aria-label="select tab"
+    onclick={() => {
+      onclick?.();
+    }}
+    class="h-full w-full border-l group-first:border-none"
+  >
     {@render children?.()}
   </button>
   <button
     aria-label="close tab"
-    {onclose}
+    onclick={() => {
+      onclose?.();
+    }}
     class="text-base-content/50 hover:bg-base-content/25 absolute top-1/2 left-1.5 -translate-y-1/2 rounded-xs text-xs opacity-0 transition-all group-hover:opacity-100"
   >
     <HeroiconsXMark20Solid />

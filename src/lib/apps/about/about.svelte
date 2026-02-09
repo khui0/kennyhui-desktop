@@ -10,10 +10,10 @@
 
 <div class="flex h-full flex-col gap-2.5 p-5 text-center">
   <section class="mx-auto mt-12 mb-6 text-center">
-    <AppIcon src={query("icons/desktop.png").default} alt="Desktop icon" size="xl" />
+    <AppIcon src={query("icons/system.png").default} alt="Desktop icon" size="xl" />
   </section>
   <section>
-    <p class="text-2xl font-bold">Kenny Hui's Desktop</p>
+    <p class="text-2xl font-bold">Kenny Hui</p>
     <p class="text-base-content/30">
       Portfolio, {dayjs().format("MMMM YYYY")}
     </p>
@@ -21,16 +21,6 @@
   <section class="flex flex-1 flex-col justify-center">
     <AboutSection label="Email">
       <a data-nodrag href="mailto:hello@kennyhui.dev"> hello@kennyhui.dev </a>
-    </AboutSection>
-    <AboutSection label="GitHub">
-      <a
-        data-nodrag
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/khui0/kennyhui-desktop"
-      >
-        khui0/kennyhui-desktop
-      </a>
     </AboutSection>
     <AboutSection label="Version">
       <p>{version}</p>

@@ -152,8 +152,8 @@
   text-shadow: 0 0.05em 0.1em rgba(0, 0, 0, 0.3);
 }
 
-@utility standard-border {
-  @apply relative outline not-dark:outline-black/10 sm:outline-[0.5px] dark:outline-black/90;
+@utility border-standard {
+  @apply relative outline not-dark:outline-black/20 dark:outline-black/90;
 
   &:not(.bg-window)::after {
     content: "";
@@ -162,11 +162,11 @@
 }
 
 @utility bg-glass {
-  @apply standard-border bg-base-200/50 relative backdrop-blur-[15px] transition-colors;
+  @apply border-standard bg-base-100/70 relative backdrop-blur-[15px] transition-colors;
 }
 
 @utility bg-window {
-  @apply standard-border dark:bg-base-100/50 not-[[data-window-active]]:bg-base-100 bg-base-100/65 relative backdrop-blur-[40px] backdrop-saturate-150;
+  @apply border-standard dark:bg-base-100/70 not-[[data-window-active]]:bg-base-100 bg-base-100/65 relative backdrop-blur-[40px] backdrop-saturate-150;
 
   &::after {
     content: "";
@@ -175,7 +175,7 @@
 }
 
 @utility bg-dock {
-  @apply relative bg-[#f6f6f6]/39 outline-black/50 backdrop-blur-[15px] dark:bg-[#4A4A4A]/39 dark:outline sm:dark:outline-[0.5px];
+  @apply relative bg-[#f6f6f6]/39 outline outline-black/20 backdrop-blur-[15px] dark:bg-[#4A4A4A]/39;
 
   &::after {
     content: "";

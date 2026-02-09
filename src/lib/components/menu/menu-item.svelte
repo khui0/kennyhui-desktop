@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { deactivateMenuBar } from "./helpers.svelte";
 
   let self: HTMLElement | null = $state(null);
 
@@ -25,11 +24,8 @@
   tabindex={hidden ? -1 : 0}
   class="rounded-field text-base-content/85 disabled:text-base-content/25 hover:bg-accent/75 active:bg-accent/75 hover:text-accent-content active:text-accent-content flex h-[22px] items-center gap-2 px-[10px] text-sm"
   {disabled}
-  onclick={() => {
+  onpointerup={() => {
     onclick?.();
-    if (self?.closest("[data-menu-bar]")) {
-      deactivateMenuBar();
-    }
   }}
 >
   {@render children?.()}

@@ -11,7 +11,7 @@ import {
   type WindowControlsSize,
   type WindowProperties,
 } from "./components/window/windows.svelte";
-import { type ImageModule } from "./images";
+import { query, type Image } from "./images";
 import { modifiers } from "./meta.svelte";
 
 type AppObserverCallback = (e: { action?: string }) => void;
@@ -19,7 +19,7 @@ type AppObserverCallback = (e: { action?: string }) => void;
 export class App {
   id: string;
   name: string;
-  icon: ImageModule;
+  icon: Image;
   body: {
     component: Component | null;
     props: object;
@@ -41,10 +41,14 @@ export class App {
 
   observers: AppObserverCallback[] = [];
 
-  constructor(id: string, name: string, icon: ImageModule) {
+  constructor(id: string, name: string, icon?: Image) {
     this.id = id;
     this.name = name;
-    this.icon = icon;
+    if (icon) {
+      this.icon = icon;
+    } else {
+      this.icon = query("icons/placeholder.png");
+    }
   }
 
   subscribe(callback: AppObserverCallback) {
@@ -235,14 +239,16 @@ export class MenuSeparator {
   constructor() {}
 }
 
+export type MenuContent = (MenuItem | MenuSeparator)[];
+
 export class MenuBarItem {
   id: string;
   text: string;
-  items: (MenuItem | MenuSeparator)[];
+  content: MenuContent;
 
-  constructor(id: string, text: string, items: (MenuItem | MenuSeparator)[]) {
+  constructor(id: string, text: string, content: MenuContent) {
     this.id = id;
     this.text = text;
-    this.items = items;
+    this.content = content;
   }
 }

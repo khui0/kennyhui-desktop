@@ -93,7 +93,7 @@
       bind:this={input}
       bind:value={query}
       type="text"
-      class="input input-lg input-ghost h-14 w-full rounded-xl px-4 focus-within:bg-transparent focus:bg-transparent focus:outline-none"
+      class="input input-lg input-ghost h-14 w-full rounded-2xl bg-transparent! px-4 focus-within:bg-transparent focus:bg-transparent focus:outline-none"
       placeholder="Search for apps"
     />
     <ul class="border-base-content/8 border-t p-2">
@@ -101,8 +101,9 @@
         <li>
           <button
             class={{
-              "rounded-field hover:bg-base-content/5 grid w-full grid-cols-[auto_auto_1fr] items-center gap-3 p-2 text-start text-sm whitespace-nowrap": true,
+              "rounded-field grid w-full grid-cols-[auto_auto_1fr] items-center gap-3 p-2 text-start text-sm whitespace-nowrap": true,
               "bg-base-content/10": i === selected,
+              "hover:bg-base-content/5": i !== selected,
             }}
             onclick={() => {
               app.open();

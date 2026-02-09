@@ -14,7 +14,7 @@
   <div
     in:fly={{ y: -50 }}
     out:fly={{ y: -50 }}
-    class="bg-base-100 standard-border rounded-box z-40 flex max-h-full w-[min(320px,100%)] overflow-hidden shadow-xl"
+    class="bg-base-100 border-standard rounded-box z-40 flex max-h-full w-[min(320px,100%)] overflow-hidden shadow-xl"
   >
     <div class="flex flex-col items-center gap-2.5 overflow-auto p-5 text-center">
       {@render children?.()}

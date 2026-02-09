@@ -12,6 +12,7 @@ export type Theme = keyof typeof themeName | "auto";
 
 export const theme: Writable<Theme | null> = writable(null);
 export const parsedTheme: Writable<string> = writable("dark");
+export const prefixedTheme: Writable<string> = writable(themeName["dark"]);
 
 let currentTheme: Theme;
 
@@ -54,5 +55,6 @@ export function setTheme(value: Theme, save: boolean = true) {
     localStorage.setItem("theme", initialValue);
     document.cookie = `theme=${value}; max-age=${ONE_YEAR}; path=/; SameSite=Strict;`;
     document.documentElement.setAttribute("data-theme", themeName[value]);
+    prefixedTheme.set(themeName[value]);
   }
 }

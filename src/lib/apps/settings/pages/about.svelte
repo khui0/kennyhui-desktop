@@ -11,10 +11,10 @@
 
 <div class="flex h-full flex-col gap-2.5 text-center">
   <section class="mx-auto mt-10 mb-2 text-start">
-    <AppIcon src={query("icons/desktop.png").default} alt="Desktop icon" size="lg" />
+    <AppIcon src={query("icons/system.png").default} alt="Desktop icon" size="lg" />
   </section>
   <section class="mb-2">
-    <p class="text-2xl font-bold">Kenny Hui's Desktop</p>
+    <p class="text-2xl font-bold">Kenny Hui</p>
     <p class="text-base-content/30">
       Portfolio, {dayjs().format("MMMM YYYY")}
     </p>

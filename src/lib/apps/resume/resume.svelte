@@ -10,20 +10,12 @@
 <WindowContent>
   <h2 class="text-3xl font-bold">Kenny Hui</h2>
   <div class="mt-5 flex items-center gap-1">
-    <a
-      class="btn btn-accent"
-      href="https://kennyhui.dev/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      View Projects
-    </a>
     <a class="btn" href="https://kennyhui.dev/resume.pdf" target="_blank" rel="noopener noreferrer">
-      Full Resume
+      View PDF Resume
     </a>
   </div>
   <div class="mt-5">
-    <p class="text-base-content/80">Try some of my games in Launchpad</p>
+    <p class="text-base-content/80">Tip: Open Launchpad to view available applications</p>
     <div class="mt-2 flex items-center gap-5">
       <AppIcon src={query("icons/launchpad.png").default} size="sm" />
       <p>or</p>
@@ -34,17 +26,18 @@
     <ResumeRole title="Freelance Frontend Developer" date="Jan 2024 - Jun 2024">
       <ul class="text-base-content/75 list-disc pl-6 text-xs">
         <li>
-          Delivered a fully responsive website for a client to manage posts and product listings.
+          Developed and deployed a custom online catalog site for a client, collaborating with the
+          client through revisions to ensure brand alignment.
         </li>
         <li>
-          Integrated Decap CMS to enable non-technical users to update the site content easily.
+          Implemented a CMS to empower the client with autonomous content updates for listings.
         </li>
-        <li>Used 11ty and Nunjucks to optimize performance and maintainability.</li>
+        <li>Designed core branding assets for the client's online presence.</li>
       </ul>
     </ResumeRole>
   </ResumeSection>
   <ResumeSection title="Education">
-    <ResumeRole title="Stony Brook University" date="Aug 2024 - May 2028">
+    <ResumeRole title="Stony Brook University" date="Fall 2024 - Spring 2028">
       Bachelor of Science in Computer Science
     </ResumeRole>
   </ResumeSection>

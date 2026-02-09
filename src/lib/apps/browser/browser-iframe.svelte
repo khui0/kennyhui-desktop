@@ -3,8 +3,6 @@
 
   let iframeRef: HTMLIFrameElement | null = $state(null);
 
-  let searchBar: string = $state("");
-
   let history: string[] = $state([]);
   let position: number = -1;
 
@@ -12,12 +10,14 @@
     navigate("https://www.google.com/search?igu=1");
   });
 
+  export function getSrc(): string {
+    return iframeRef?.src || "";
+  }
   export function navigate(input: string) {
-    if (iframeRef === null) return;
+    if (iframeRef === null) return "";
 
     const url = resolveQuery(input).href;
     iframeRef.src = url;
-    searchBar = iframeRef.src;
 
     if (position === history.length - 1) {
       history = [...history, url];
@@ -25,6 +25,8 @@
       history = [...history.slice(0, position + 1), url];
     }
     position = history.length - 1;
+
+    return iframeRef.src;
   }
 
   function resolveQuery(input: string): URL {
@@ -40,7 +42,6 @@
     if (position > 0) {
       position--;
       iframeRef.src = history[position];
-      searchBar = iframeRef.src;
     }
   }
 
@@ -50,7 +51,6 @@
     if (position < history.length - 1) {
       position++;
       iframeRef.src = history[position];
-      searchBar = iframeRef.src;
     }
   }
 

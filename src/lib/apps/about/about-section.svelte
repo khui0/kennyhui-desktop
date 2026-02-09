@@ -10,7 +10,7 @@
   } = $props();
 </script>
 
-<div class="grid grid-cols-[3fr_4fr] gap-3 text-[11px] leading-relaxed">
+<div class="grid grid-cols-[5fr_8fr] gap-3 text-[11px] leading-relaxed">
   <span class="justify-self-end text-end">{label}</span>
   <span class="text-base-content/50 justify-self-start text-start">
     {@render children?.()}
