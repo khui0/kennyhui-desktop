@@ -18,7 +18,7 @@
   let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
 
   onMount(() => {
-    applications.find((app) => app.id === "dev.kennyhui.onboarding")?.open();
+    // applications.find((app) => app.id === "dev.kennyhui.onboarding")?.open();
   });
 </script>
 

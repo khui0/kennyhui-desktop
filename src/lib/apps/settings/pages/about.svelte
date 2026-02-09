@@ -16,7 +16,7 @@
   <section class="mb-2">
     <p class="text-2xl font-bold">Kenny Hui</p>
     <p class="text-base-content/30">
-      Portfolio, {dayjs().format("MMMM YYYY")}
+      Web Browser, {dayjs().format("MMMM YYYY")}
     </p>
   </section>
   <FormGroup>
