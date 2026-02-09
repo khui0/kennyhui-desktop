@@ -1,11 +1,11 @@
 import type { MetaTagsProps } from "svelte-meta-tags";
 
 const DESCRIPTION =
-  "Kenny Hui is a CS student based in New York, specializing in modern web development with Svelte, TypeScript, and UX-forward design. Explore real-world projects and open-source work.";
+  "Kenny Hui's Desktop is a macOS inspired web desktop environment.";
 
 export const load = ({ url }) => {
   const baseMetaTags = Object.freeze({
-    title: "Kenny Hui",
+    title: "Kenny Hui's Desktop",
     description: DESCRIPTION,
     canonical: new URL(url.pathname, url.origin).href,
     openGraph: {
@@ -14,7 +14,7 @@ export const load = ({ url }) => {
       locale: "en_US",
       title: "Kenny Hui",
       description: DESCRIPTION,
-      siteName: "kennyhui.dev",
+      siteName: "desktop.kennyhui.dev",
       images: [
         {
           url: "https://kennyhui.dev/og/index.png",
